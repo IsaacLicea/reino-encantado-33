@@ -103,74 +103,73 @@
   if (!carta || !nombre || !mensaje || !imagen) return;
 
   
-   const cartas = [
-     {
-       nombre: "La Estrella",
-       slug: "la-estrella",
-       mensaje: "Una luz serena guía tu camino y te recuerda que aún hay magia esperándote."
-     },
-     {
-       nombre: "La Luna",
-       slug: "la-luna",
-       mensaje: "Escucha tu intuición: no todo se revela a simple vista."
-     },
-     {
-       nombre: "El Sol",
-       slug: "el-sol",
-       mensaje: "La alegría y la calidez se acercan; deja que tu luz encuentre a los demás."
-     },
-     {
-       nombre: "La Emperatriz",
-       slug: "la-emperatriz",
-       mensaje: "La belleza y la creatividad florecen a tu alrededor."
-     },
-     {
-       nombre: "La Sacerdotisa",
-       slug: "la-sacerdotisa",
-       mensaje: "El conocimiento oculto se mueve en silencio. Confía en lo que sientes."
-     },
-     {
-       nombre: "La Rueda de la Fortuna",
-       slug: "la-rueda",
-       mensaje: "El destino gira y abre un nuevo sendero en el bosque."
-     },
-     {
-       nombre: "Los Enamorados",
-       slug: "los-enamorados",
-       mensaje: "Los vínculos y decisiones cobran fuerza; el corazón también habla."
-     },
-     {
-       nombre: "El Mago",
-       slug: "el-mago",
-       mensaje: "Tienes las herramientas para transformar lo que imaginas en realidad."
-     },
-     {
-       nombre: "El Loco",
-       slug: "el-loco",
-       mensaje: "Una aventura inesperada te llama. Atrévete a dar el primer paso: incluso la patita más pequeña puede descubrir mundos extraordinarios."
-     },
-     {
-       nombre: "La Fuerza",
-       slug: "la-fuerza",
-       mensaje: "Tu mayor poder no está en rugir, sino en la ternura con la que enfrentas lo difícil. Confía en tu corazón valiente."
-     },
-     {
-       nombre: "El Emperador",
-       slug: "el-emperador",
-       mensaje: "Ha llegado el momento de construir sobre tierra firme. Protege lo que amas, confía en tus decisiones y gobierna tu propio destino."
-     },
-     {
-       nombre: "La Templanza",
-       slug: "la-templanza",
-       mensaje: "Entre el sol y la luna existe un equilibrio hecho para ti. Deja que la paciencia mezcle tus sueños con la magia del presente."
-     },
-     {
-       nombre: "El Mundo",
-       slug: "el-mundo",
-       mensaje: "El universo celebra el camino que has recorrido. Un ciclo florece por completo y, tras él, te espera un horizonte lleno de posibilidades."
-     }
-   ];
-
+  const cartas = [
+  {
+    nombre: "La Estrella",
+    slug: "la-estrella",
+    mensaje: "Una luz serena guía tus patitas por el camino correcto. Incluso en la noche más tranquila, siempre hay magia esperándote."
+  },
+  {
+    nombre: "La Luna",
+    slug: "la-luna",
+    mensaje: "Confía en tu olfato y en tu intuición perruna: no todo se revela a simple vista, pero tu corazón sabe por dónde ir."
+  },
+  {
+    nombre: "El Sol",
+    slug: "el-sol",
+    mensaje: "La alegría te envuelve como un rayo tibio sobre el lomito. Es momento de correr, brillar y contagiar tu luz a los demás."
+  },
+  {
+    nombre: "La Emperatriz",
+    slug: "la-emperatriz",
+    mensaje: "La dulzura, la belleza y el cariño florecen a tu alrededor. Tu presencia convierte cualquier rincón en un jardín encantado."
+  },
+  {
+    nombre: "La Sacerdotisa",
+    slug: "la-sacerdotisa",
+    mensaje: "Hay sabiduría en tu silencio y magia en tu mirada. Escucha con calma esa voz interior que mueve tus patitas con certeza."
+  },
+  {
+    nombre: "La Rueda de la Fortuna",
+    slug: "la-rueda",
+    mensaje: "El destino da vueltas como un perrito antes de acostarse. Algo nuevo se acomoda para abrirte un sendero lleno de posibilidades."
+  },
+  {
+    nombre: "Los Enamorados",
+    slug: "los-enamorados",
+    mensaje: "Los lazos del corazón se hacen más fuertes. Déjate guiar por el amor, la lealtad y esa alegría de estar con quienes más quieres."
+  },
+  {
+    nombre: "El Mago",
+    slug: "el-mago",
+    mensaje: "Tienes dentro de ti la chispa para transformar lo cotidiano en algo extraordinario. Con valentía, ternura y un toque de magia, todo es posible."
+  },
+  {
+    nombre: "El Loco",
+    slug: "el-loco",
+    mensaje: "Una aventura inesperada mueve tu colita. Atrévete a dar el primer paso: hasta las patitas más pequeñas pueden descubrir mundos enormes."
+  },
+  {
+    nombre: "La Fuerza",
+    slug: "la-fuerza",
+    mensaje: "Tu verdadero poder está en el corazón noble con el que enfrentas la vida. La ternura también puede ser valiente, firme y luminosa."
+  },
+  {
+    nombre: "El Emperador",
+    slug: "el-emperador",
+    mensaje: "Es tiempo de cuidar tu reino, proteger lo que amas y mantenerte firme como guardián leal. Tu presencia inspira seguridad y confianza."
+  },
+  {
+    nombre: "La Templanza",
+    slug: "la-templanza",
+    mensaje: "Entre juegos, siestas y estrellas, todo encuentra su equilibrio. La paciencia y la calma mezclarán tu magia con el momento perfecto."
+  },
+  {
+    nombre: "El Mundo",
+    slug: "el-mundo",
+    mensaje: "El universo celebra cada huellita de tu camino. Un ciclo se completa con alegría y frente a ti se abre un horizonte inmenso y brillante."
+  }
+];
 
   let anterior = -1;
   let girando = false;
