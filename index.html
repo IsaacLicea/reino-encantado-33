@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Reino de los 33 | Isaac</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- INTRO / PORTAL -->
+    <section id="portal" class="portal">
+      <div class="portal-overlay"></div>
+
+      <div class="portal-content">
+        <p class="eyebrow">Has sido convocado</p>
+        <h1>El bosque te espera</h1>
+        <p class="portal-texto">
+          Una noche de magia, gemas, flores y antiguos encantamientos está por
+          despertar.
+        </p>
+
+        <div class="portal-preview">
+          <img src="assets/principe-base.png" alt="Príncipe feérico" />
+        </div>
+
+        <button id="abrirPortal">✦ Abrir el portal ✦</button>
+      </div>
+    </section>
+
+    <!-- SITIO -->
+    <main id="reino" hidden>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Una celebración encantada</p>
+            <h1>El Reino de los 33</h1>
+            <p class="subtitulo">
+              Isaac te invita a celebrar una noche mágica entre follaje,
+              pócimas, gemas y hechizos bajo la luz de un bosque ancestral.
+            </p>
+
+            <div class="hero-datos">
+              <div class="dato">
+                <span class="dato-label">Fecha</span>
+                <strong>28 de noviembre de 2026</strong>
+              </div>
+
+              <div class="dato">
+                <span class="dato-label">Hora</span>
+                <strong>3:33 p. m.</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-image-wrap">
+            <img
+              class="hero-image"
+              src="assets/principe-base.png"
+              alt="Isaac como príncipe feérico"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTADOR -->
+      <section class="seccion">
+        <p class="eyebrow">La profecía</p>
+        <h2>La magia despierta en...</h2>
+
+        <div class="contador">
+          <div><strong id="dias">00</strong><span>Días</span></div>
+          <div><strong id="horas">00</strong><span>Horas</span></div>
+          <div><strong id="minutos">00</strong><span>Min</span></div>
+          <div><strong id="segundos">00</strong><span>Seg</span></div>
+        </div>
+      </section>
+
+      <!-- UBICACIÓN -->
+      <section class="seccion">
+        <p class="eyebrow">Las coordenadas encantadas</p>
+        <h2>Encuentra el reino</h2>
+        <p class="texto-ancho">
+          Muy pronto colocaremos aquí la ubicación exacta del bosque encantado.
+        </p>
+      </section>
+
+      <!-- RSVP PERSONALIZADO -->
+      <section class="seccion seccion-rsvp">
+        <p class="eyebrow">El pacto encantado</p>
+        <h2>Tu presencia en el reino</h2>
+
+        <p class="texto-ancho">
+          Tu pase contiene los nombres de quienes han sido convocados al bosque.
+        </p>
+
+        <iframe
+          id="formulario-rsvp"
+          title="Confirmación de asistencia"
+          data-app-url="https://script.google.com/macros/s/AKfycbytmE2SmErYoTekebwzwHtdofgXxQemiTZKVqee0dzsQ82IRzFE9KbmqDVWJ_a0BSeRfQ/exec"
+          loading="lazy"
+        >
+        </iframe>
+
+        <p id="sin-pase" hidden>
+          Para confirmar tu asistencia necesitas un enlace personal de
+          invitación.
+        </p>
+
+        <p class="ayuda-rsvp">
+          ¿No aparece el formulario?
+          <a
+            id="abrir-rsvp"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            hidden
+          >
+            Abrir mi pase directamente
+          </a>
+        </p>
+      </section>
+
+      <footer>Que la magia nos encuentre juntos ✦</footer>
+    </main>
+  </body>
+</html>
