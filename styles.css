@@ -929,3 +929,189 @@ body.reino-aparece .hero-image-wrap {
     text-align: center;
   }
 }
+
+/* ==================================
+   LA CARTA DEL ORÁCULO
+================================== */
+
+.carta-oraculo {
+  width: min(360px, 100%);
+  background:
+    radial-gradient(circle at center, rgba(93, 78, 155, 0.22), transparent 75%),
+    #10182c;
+
+  border: 1px solid #82769e;
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.35),
+    0 0 32px rgba(114, 95, 194, 0.18);
+
+  transition:
+    border-color 0.4s,
+    box-shadow 0.4s;
+}
+
+.carta-oraculo summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  min-height: 340px;
+  padding: 28px;
+
+  cursor: pointer;
+  list-style: none;
+
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0 28px,
+    rgba(169, 177, 255, 0.025) 28px 29px
+  );
+}
+
+.carta-oraculo summary::-webkit-details-marker {
+  display: none;
+}
+
+.carta-oraculo summary:focus-visible {
+  outline: 2px solid #b7c6ff;
+  outline-offset: -5px;
+}
+
+.tarot-simbolo {
+  font-size: 3.5rem;
+  color: #b5b5ed;
+
+  text-shadow: 0 0 20px rgba(125, 142, 255, 0.7);
+
+  animation: brilloOraculo 4s ease-in-out infinite alternate;
+}
+
+.tarot-titulo {
+  font-family: "Cinzel", serif;
+  font-size: 1.7rem;
+  letter-spacing: 0.12em;
+  color: #e8d6b9;
+}
+
+.tarot-nombre {
+  color: #b9c4db;
+  font-size: 0.85rem;
+}
+
+.tarot-indicacion {
+  color: #b7c6ff;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+.tarot-revelacion {
+  padding: 0 25px 28px;
+  text-align: center;
+  animation: aparecer 0.5s ease;
+}
+
+.tarot-revelacion p + p {
+  margin-top: 15px;
+}
+
+.carta-oraculo[open] {
+  border-color: #b8a0db;
+  box-shadow: 0 0 45px rgba(121, 112, 222, 0.25);
+}
+
+.carta-oraculo[open] summary {
+  min-height: 220px;
+}
+
+@keyframes brilloOraculo {
+  from {
+    opacity: 0.65;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarot-simbolo,
+  .tarot-revelacion {
+    animation: none;
+  }
+
+  .carta-oraculo {
+    transition: none;
+  }
+}
+
+/* ==================================
+   MARCOS DEL REINO
+================================== */
+
+.seccion-dresscode,
+.seccion-tarot {
+  position: relative;
+}
+
+.seccion-dresscode::before,
+.seccion-tarot::before,
+.seccion-dresscode::after,
+.seccion-tarot::after {
+  content: "";
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.seccion-dresscode::before,
+.seccion-tarot::before {
+  top: 13px;
+  left: 13px;
+
+  border-top: 1px solid #b8a4d7;
+  border-left: 1px solid #b8a4d7;
+  border-top-left-radius: 14px;
+}
+
+.seccion-dresscode::after,
+.seccion-tarot::after {
+  bottom: 13px;
+  right: 13px;
+
+  border-bottom: 1px solid #b8a4d7;
+  border-right: 1px solid #b8a4d7;
+  border-bottom-right-radius: 14px;
+}
+
+/* Resplandor de las tarjetas del Dress Code */
+
+.dress-card {
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+@media (hover: hover) {
+  .dress-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(171, 192, 255, 0.4);
+
+    box-shadow: 0 10px 35px rgba(64, 97, 184, 0.13);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dress-card {
+    transition: none;
+  }
+}
