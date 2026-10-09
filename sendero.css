@@ -394,3 +394,243 @@
 @media (prefers-reduced-motion: reduce) {
   .emanacion-pocion, .ornamento-gema { animation: none !important; }
 }
+
+/* ================================
+   TAROT — fondo ilustrado
+================================ */
+#reino .seccion-tarot {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(8, 12, 24, 0.74), rgba(9, 12, 20, 0.88));
+  border-radius: 28px;
+}
+
+#reino .seccion-tarot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(6, 10, 18, 0.72), rgba(8, 10, 18, 0.9)),
+    url("assets/fondo-tarot.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.95;
+}
+
+#reino .seccion-tarot > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================
+   MAPA ANTIGUO MÁGICO
+================================ */
+#reino .seccion-mapa {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(224, 188, 118, 0.14), transparent 18%),
+    radial-gradient(circle at 82% 30%, rgba(116, 160, 136, 0.12), transparent 18%),
+    linear-gradient(180deg, rgba(53, 40, 25, 0.8), rgba(18, 18, 24, 0.9));
+}
+
+#reino .seccion-mapa::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.62;
+  background:
+    linear-gradient(180deg, rgba(91, 71, 42, 0.38), rgba(15, 18, 27, 0.55)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(232, 212, 173, 0.03) 0 2px,
+      rgba(0, 0, 0, 0) 2px 10px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(232, 212, 173, 0.025) 0 2px,
+      rgba(0, 0, 0, 0) 2px 14px
+    ),
+    radial-gradient(circle at 30% 55%, rgba(45, 73, 59, 0.22), transparent 18%),
+    radial-gradient(circle at 65% 32%, rgba(106, 88, 50, 0.22), transparent 17%),
+    linear-gradient(180deg, rgba(194, 166, 113, 0.22), rgba(67, 51, 31, 0.2));
+  filter: sepia(0.45);
+}
+
+#reino .seccion-mapa > * {
+  position: relative;
+  z-index: 1;
+}
+
+#reino #mapa-privado {
+  border: 1px solid rgba(207, 181, 131, 0.4);
+  box-shadow:
+    0 18px 48px rgba(10, 10, 16, 0.32),
+    0 0 0 8px rgba(255, 240, 211, 0.04);
+}
+
+/* ================================
+   DRESS CODE — pergamino
+================================ */
+#reino .seccion-dresscode {
+  position: relative;
+  overflow: hidden;
+}
+
+#reino .dresscode-grid {
+  position: relative;
+  gap: 0;
+  margin: 35px auto 0;
+  padding: 34px 22px;
+  background:
+    linear-gradient(180deg, rgba(239, 226, 191, 0.96), rgba(212, 189, 144, 0.95) 42%, rgba(184, 157, 113, 0.94) 100%);
+  border: 1px solid rgba(145, 111, 58, 0.35);
+  border-radius: 18px;
+  box-shadow:
+    0 22px 54px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 250, 236, 0.65),
+    inset 0 -1px 0 rgba(120, 90, 44, 0.3);
+  transform-origin: top center;
+  animation: desenrollarPergamino 0.95s ease both;
+  clip-path: none;
+}
+
+#reino .dresscode-grid::before,
+#reino .dresscode-grid::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  width: 22px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #d8c096, #b38f5f);
+  box-shadow: inset 0 0 0 1px rgba(112, 82, 41, 0.28);
+}
+
+#reino .dresscode-grid::before {
+  left: -10px;
+}
+
+#reino .dresscode-grid::after {
+  right: -10px;
+}
+
+#reino .dress-card {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 18px 20px;
+}
+
+#reino .dress-card + .dress-card {
+  border-left: 1px solid rgba(120, 92, 54, 0.22);
+}
+
+#reino .dress-card h3 {
+  color: #5a3d1e;
+}
+
+#reino .dress-card p,
+#reino .seccion-dresscode .texto-ancho {
+  color: #5a4a33;
+}
+
+#reino .seccion-dresscode .eyebrow {
+  color: #d6c5a6;
+}
+
+@keyframes desenrollarPergamino {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.2) translateY(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+  }
+}
+
+/* ================================
+   RSVP — receta de poción
+================================ */
+#reino .seccion-rsvp {
+  position: relative;
+  overflow: hidden;
+}
+
+#reino .receta-pocion {
+  max-width: 780px;
+  margin: 30px auto 0;
+  padding: 26px 22px 18px;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(233, 223, 198, 0.97), rgba(202, 186, 154, 0.94));
+  border: 1px solid rgba(126, 98, 53, 0.3);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 248, 232, 0.72);
+}
+
+#reino .receta-pocion-encabezado {
+  max-width: 620px;
+  margin: 0 auto 18px;
+  text-align: center;
+}
+
+#reino .receta-etiqueta {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: #7b5a2e;
+  margin-bottom: 10px;
+}
+
+#reino .receta-pocion-encabezado h3 {
+  margin: 0 0 10px;
+  font-family: "Cinzel", serif;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  color: #50371d;
+}
+
+#reino .receta-pocion-encabezado p {
+  color: #5c4a33;
+  line-height: 1.75;
+}
+
+#reino .receta-pocion #formulario-rsvp {
+  max-width: 100%;
+  margin-top: 12px;
+  border-radius: 18px;
+  background: rgba(255, 250, 241, 0.28);
+}
+
+@media (max-width: 900px) {
+  #reino .dress-card + .dress-card {
+    border-left: 0;
+    border-top: 1px solid rgba(120, 92, 54, 0.22);
+  }
+}
+
+@media (max-width: 600px) {
+  #reino .receta-pocion {
+    padding: 22px 16px 14px;
+  }
+
+  #reino .dresscode-grid {
+    padding: 28px 16px;
+  }
+
+  #reino .dresscode-grid::before,
+  #reino .dresscode-grid::after {
+    width: 16px;
+  }
+}
+
+
+
