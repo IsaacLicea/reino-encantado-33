@@ -169,7 +169,7 @@ function crearLuciernagas(idContenedor, cantidad) {
     const y = 5 + Math.random() * 90;
     const duracion = 4 + Math.random() * 5;
     const retraso = -Math.random() * 8;
-    const tamano = 2 + Math.random() * 3;
+    const tamano = 4 + Math.random() * 3;
 
     luz.style.left = x + "%";
     luz.style.top = y + "%";
@@ -186,5 +186,5 @@ function crearLuciernagas(idContenedor, cantidad) {
   contenedor.appendChild(fragmento);
 }
 
-crearLuciernagas("luciernagasPortal", 20);
-crearLuciernagas("luciernagasHero", 14);
+crearLuciernagas("luciernagasPortal", 22);
+crearLuciernagas("luciernagasHero", 16);
