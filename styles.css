@@ -401,3 +401,49 @@ footer {
     height: 940px;
   }
 }
+
+/* ==================================
+   COORDENADAS ENCANTADAS
+================================== */
+
+.seccion-mapa {
+  text-align: center;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(48, 89, 155, 0.16),
+      transparent 80%
+    ),
+    rgba(9, 16, 31, 0.85);
+}
+
+#mapa-privado {
+  display: block;
+  width: 100%;
+  max-width: 780px;
+  height: 530px;
+  margin: 28px auto 0;
+  border: 0;
+  background: transparent;
+}
+
+#mapa-privado[hidden] {
+  display: none !important;
+}
+
+#mapa-sin-pase {
+  margin: 35px auto;
+  max-width: 430px;
+  color: #c6b48b;
+  font-style: italic;
+}
+
+#mapa-sin-pase[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  #mapa-privado {
+    height: 560px;
+  }
+}

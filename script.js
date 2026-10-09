@@ -72,3 +72,28 @@ if (tokenValido) {
   marcoRSVP.hidden = true;
   mensajeSinPase.hidden = false;
 }
+
+// =====================================
+// MAPA EXCLUSIVO PARA INVITADOS
+// =====================================
+
+const mapaPrivado = document.getElementById("mapa-privado");
+
+const avisoMapa = document.getElementById("mapa-sin-pase");
+
+if (tokenValido) {
+  // Reutilizamos el enlace de Apps Script
+  // que ya está configurado en el RSVP.
+  const urlMapa = new URL(marcoRSVP.dataset.appUrl);
+
+  urlMapa.searchParams.set("inv", tokenInvitado);
+
+  urlMapa.searchParams.set("vista", "mapa");
+
+  mapaPrivado.src = urlMapa.toString();
+  mapaPrivado.hidden = false;
+  avisoMapa.hidden = true;
+} else {
+  mapaPrivado.hidden = true;
+  avisoMapa.hidden = false;
+}
