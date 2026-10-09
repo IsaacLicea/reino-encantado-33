@@ -1128,4 +1128,127 @@ body.reino-aparece .hero-image-wrap {
   }
 }
 
+/* ================================
+   CONTADOR MÁGICO
+================================ */
+
+#reino .hero-contador {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Polvo mágico flotando/cayendo */
+#reino .hero-contador::before,
+#reino .hero-contador::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.58;
+  background-repeat: repeat;
+}
+
+#reino .hero-contador::before {
+  background-image:
+    radial-gradient(circle, rgba(255, 239, 186, 0.85) 0 1.2px, transparent 1.8px),
+    radial-gradient(circle, rgba(214, 235, 255, 0.68) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(255, 214, 121, 0.65) 0 1px, transparent 1.8px);
+  background-size: 130px 130px, 180px 180px, 220px 220px;
+  animation: polvoMagicoCae 18s linear infinite;
+}
+
+#reino .hero-contador::after {
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.75) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(250, 223, 150, 0.5) 0 1px, transparent 1.6px);
+  background-size: 160px 160px, 240px 240px;
+  animation: polvoMagicoCae 26s linear infinite reverse;
+}
+
+@keyframes polvoMagicoCae {
+  0% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(48px);
+  }
+}
+
+#reino .hero-contador > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cada cajita */
+#reino .hero-contador .contador div {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Relleno estelar suave */
+#reino .hero-contador .contador div::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 0%;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.00), rgba(251, 229, 172, 0.18)),
+    radial-gradient(circle at 20% 70%, rgba(255,255,255,0.78) 0 1.2px, transparent 1.8px),
+    radial-gradient(circle at 70% 35%, rgba(255,234,183,0.72) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 58% 78%, rgba(197,226,255,0.55) 0 1px, transparent 1.6px);
+  background-repeat: no-repeat;
+  opacity: 0;
+}
+
+/* Destello al cambiar el número */
+#reino .hero-contador .contador div::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(255, 244, 210, 0.26), transparent 58%);
+  opacity: 0;
+  transform: scale(0.88);
+}
+
+/* Se activa desde JS */
+#reino .hero-contador .contador div.tick-magico::before {
+  animation: llenarConEstrellas 0.75s ease-out;
+}
+
+#reino .hero-contador .contador div.tick-magico::after {
+  animation: destelloMagico 0.75s ease-out;
+}
+
+@keyframes llenarConEstrellas {
+  0% {
+    height: 0%;
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes destelloMagico {
+  0% {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+
 
