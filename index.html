@@ -20,19 +20,41 @@
     <section id="portal" class="portal">
       <div class="portal-overlay"></div>
 
+      <!-- Luciérnagas animadas -->
+      <div
+        id="luciernagasPortal"
+        class="capa-luciernagas"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Destello de transición -->
+      <div class="flash-magico" aria-hidden="true"></div>
+
       <div class="portal-content">
         <p class="eyebrow">Has sido convocado</p>
+
         <h1>El bosque te espera</h1>
+
         <p class="portal-texto">
           Una noche de magia, gemas, flores y antiguos encantamientos está por
           despertar.
         </p>
 
         <div class="portal-preview">
-          <img src="assets/principe-base.png" alt="Príncipe feérico" />
+          <img
+            src="assets/principe-base.png"
+            alt="Príncipe feérico del Reino de los 33"
+          />
+
+          <!-- Magia que nace de la mano -->
+          <div class="orbe-hechizo" aria-hidden="true"></div>
         </div>
 
-        <button id="abrirPortal">✦ Abrir el portal ✦</button>
+        <button id="abrirPortal" type="button">✦ Abrir el portal ✦</button>
+
+        <button id="saltarIntro" class="boton-saltar" type="button">
+          Omitir animación
+        </button>
       </div>
     </section>
 
@@ -42,6 +64,13 @@
       <section class="hero">
         <div class="hero-glow hero-glow-1"></div>
         <div class="hero-glow hero-glow-2"></div>
+
+        <!-- Luces que permanecen en el reino -->
+        <div
+          id="luciernagasHero"
+          class="capa-luciernagas"
+          aria-hidden="true"
+        ></div>
 
         <div class="hero-grid">
           <div class="hero-copy">

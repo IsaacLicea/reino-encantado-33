@@ -1,15 +1,65 @@
+// =====================================
+// APERTURA DEL PORTAL ENCANTADO
+// =====================================
+
 const boton = document.getElementById("abrirPortal");
+const saltarIntro = document.getElementById("saltarIntro");
 const portal = document.getElementById("portal");
 const reino = document.getElementById("reino");
 
-boton.addEventListener("click", () => {
-  reino.hidden = false;
-  portal.style.opacity = "0";
-  portal.style.pointerEvents = "none";
+const reducirMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+let portalAbierto = false;
+
+function finalizarApertura() {
+  portal.hidden = true;
+
+  document.body.classList.remove("animando-portal");
+
+  document.body.classList.add("reino-aparece");
+
+  window.scrollTo(0, 0);
+}
+
+function abrirReino(conAnimacion = true) {
+  // Evita activar el hechizo dos veces.
+  if (portalAbierto) return;
+  portalAbierto = true;
+
+  boton.disabled = true;
+
+  // Preparamos el contenido de fondo.
+  reino.hidden = false;
+
+  const animar = conAnimacion && !reducirMovimiento.matches;
+
+  if (!animar) {
+    finalizarApertura();
+    return;
+  }
+
+  document.body.classList.add("animando-portal");
+
+  // Comienza el conjuro.
+  portal.classList.add("lanzando");
+
+  // La luz empieza a revelar el sitio.
   setTimeout(() => {
-    portal.hidden = true;
-  }, 1300);
+    portal.classList.add("saliendo");
+  }, 1050);
+
+  // Finaliza la transición.
+  setTimeout(() => {
+    finalizarApertura();
+  }, 2150);
+}
+
+boton.addEventListener("click", () => {
+  abrirReino(true);
+});
+
+saltarIntro.addEventListener("click", () => {
+  abrirReino(false);
 });
 
 // Fecha del evento
@@ -97,3 +147,44 @@ if (tokenValido) {
   mapaPrivado.hidden = true;
   avisoMapa.hidden = false;
 }
+
+// =====================================
+// LUCIÉRNAGAS DEL BOSQUE
+// =====================================
+
+function crearLuciernagas(idContenedor, cantidad) {
+  const contenedor = document.getElementById(idContenedor);
+
+  if (!contenedor || reducirMovimiento.matches) {
+    return;
+  }
+
+  const fragmento = document.createDocumentFragment();
+
+  for (let i = 0; i < cantidad; i++) {
+    const luz = document.createElement("span");
+    luz.className = "luciernaga";
+
+    const x = 5 + Math.random() * 90;
+    const y = 5 + Math.random() * 90;
+    const duracion = 4 + Math.random() * 5;
+    const retraso = -Math.random() * 8;
+    const tamano = 2 + Math.random() * 3;
+
+    luz.style.left = x + "%";
+    luz.style.top = y + "%";
+
+    luz.style.setProperty("--dur", duracion + "s");
+
+    luz.style.setProperty("--delay", retraso + "s");
+
+    luz.style.setProperty("--size", tamano + "px");
+
+    fragmento.appendChild(luz);
+  }
+
+  contenedor.appendChild(fragmento);
+}
+
+crearLuciernagas("luciernagasPortal", 18);
+crearLuciernagas("luciernagasHero", 24);

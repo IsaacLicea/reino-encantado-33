@@ -447,3 +447,262 @@ footer {
     height: 560px;
   }
 }
+
+/* ====================================
+   EL DESPERTAR DEL BOSQUE
+==================================== */
+
+/* Control de visibilidad */
+.portal[hidden],
+#reino[hidden] {
+  display: none !important;
+}
+
+body.animando-portal {
+  overflow: hidden;
+}
+
+/* Capas de luces ambientales */
+.portal,
+.hero {
+  isolation: isolate;
+}
+
+.portal-overlay {
+  z-index: 0;
+}
+
+.capa-luciernagas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.luciernaga {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: #c7ddff;
+  box-shadow:
+    0 0 8px 2px #91b4ff,
+    0 0 22px 5px rgba(94, 140, 255, 0.35);
+  opacity: 0.6;
+  animation: flotarLuz var(--dur) ease-in-out infinite alternate;
+  animation-delay: var(--delay);
+}
+
+@keyframes flotarLuz {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(12px, -35px, 0);
+    opacity: 0.25;
+  }
+}
+
+/* Personaje y hechizo */
+.portal-preview {
+  position: relative;
+  isolation: isolate;
+}
+
+.orbe-hechizo {
+  position: absolute;
+
+  /* Posición aproximada de la mano */
+  left: 77%;
+  top: 55%;
+
+  width: 19%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.1);
+
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #c7e7ff 16%,
+    #6aa5ff 32%,
+    rgba(91, 109, 246, 0.7) 48%,
+    transparent 72%
+  );
+
+  box-shadow:
+    0 0 30px rgba(132, 190, 255, 0.7),
+    0 0 75px rgba(90, 104, 255, 0.5);
+
+  mix-blend-mode: screen;
+}
+
+/* El hechizo se expande */
+.portal.lanzando .orbe-hechizo {
+  animation: lanzarHechizo 1.5s ease-out forwards;
+}
+
+@keyframes lanzarHechizo {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(2.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(12);
+  }
+}
+
+/* Acercamiento cinematográfico */
+.portal.lanzando .portal-preview {
+  animation: acercamientoMagico 1.8s ease-in forwards;
+}
+
+@keyframes acercamientoMagico {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  55% {
+    transform: scale(1.06);
+    filter: brightness(1.35);
+  }
+
+  100% {
+    transform: scale(1.15);
+    filter: brightness(1.8);
+  }
+}
+
+/* Luz que cubre toda la pantalla */
+.flash-magico {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(219, 237, 255, 0.9),
+    rgba(118, 158, 245, 0.6) 45%,
+    rgba(29, 45, 104, 0.4) 85%
+  );
+}
+
+.portal.lanzando .flash-magico {
+  animation: explosionMagica 1.8s ease-out forwards;
+}
+
+@keyframes explosionMagica {
+  0%,
+  35% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Desvanecer el portal */
+.portal.saliendo {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+/* Aparición del reino */
+body.reino-aparece .hero-copy {
+  animation: aparecerReino 1.2s ease-out both;
+}
+
+body.reino-aparece .hero-image-wrap {
+  animation: aparecerReino 1.5s ease-out both;
+}
+
+@keyframes aparecerReino {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Luces ambientales del sitio */
+.hero-glow-1 {
+  animation: respirarBosque 7s ease-in-out infinite alternate;
+}
+
+.hero-glow-2 {
+  animation: respirarBosque 9s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes respirarBosque {
+  from {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 0.9;
+    transform: scale(1.25);
+  }
+}
+
+/* Omitir introducción */
+.boton-saltar {
+  display: block;
+  margin: 12px auto 0;
+  padding: 8px 15px;
+  border: none;
+  background: transparent;
+  color: #aebddd;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+}
+
+.boton-saltar:hover {
+  background: transparent;
+  color: white;
+  box-shadow: none;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .luciernaga,
+  .portal-preview,
+  .orbe-hechizo,
+  .flash-magico,
+  .hero-glow {
+    animation: none !important;
+  }
+}
