@@ -1115,3 +1115,17 @@ body.reino-aparece .hero-image-wrap {
     transition: none;
   }
 }
+
+
+/* Más aire entre mapa y tarot */
+#reino .seccion-mapa {
+  margin-bottom: 42px;
+}
+
+@media (max-width: 768px) {
+  #reino .seccion-mapa {
+    margin-bottom: 28px;
+  }
+}
+
+
