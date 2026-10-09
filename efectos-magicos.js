@@ -95,11 +95,12 @@
   }
 
   // 5. Tarot de ocho arcanos ilustrados y reverso 3D real.
-  const carta = document.getElementById("cartaTarot");
-  const nombre = document.getElementById("tarotNombre");
-  const mensaje = document.getElementById("tarotMensaje");
-  const imagen = document.getElementById("tarotIlustracion");
-  if (!carta || !nombre || !mensaje || !imagen) return;
+    const carta = document.getElementById("cartaTarot");
+    const nombre = document.getElementById("tarotNombre");
+    const mensaje = document.getElementById("tarotMensaje");
+    const imagen = document.getElementById("tarotIlustracion");
+    const mensajeIsaac = document.getElementById("mensajeIsaac");
+    if (!carta || !nombre || !mensaje || !imagen) return;
 
   const cartas = [
     { nombre: "La Estrella", slug: "la-estrella", mensaje: "Una luz serena guía tu camino y te recuerda que aún hay magia esperándote." },
@@ -122,15 +123,45 @@
     anterior = i;
     return cartas[i];
   };
-  const revelar = async () => {
+    const revelar = async () => {
     if (girando) return;
     girando = true;
     carta.disabled = true;
+
+    if (mensajeIsaac) {
+      mensajeIsaac.hidden = true;
+    }
+
     if (visible) {
       carta.classList.remove("revelada");
       if (!quieto) await dormir(530);
       visible = false;
     }
+
+    const resultado = azar();
+    nombre.textContent = resultado.nombre;
+    mensaje.textContent = resultado.mensaje;
+    imagen.src = "assets/tarot/" + resultado.slug + ".svg";
+    imagen.alt = "Ilustración de " + resultado.nombre;
+
+    if (!quieto) await dormir(75);
+    carta.classList.add("revelada");
+    visible = true;
+
+    if (!quieto) await dormir(970);
+
+    if (mensajeIsaac) {
+      mensajeIsaac.hidden = false;
+    }
+
+    carta.setAttribute(
+      "aria-label",
+      "Carta revelada: " + resultado.nombre + ". Toca para descubrir otra carta."
+    );
+
+    carta.disabled = false;
+    girando = false;
+  };
     const resultado = azar();
     nombre.textContent = resultado.nombre;
     mensaje.textContent = resultado.mensaje;
