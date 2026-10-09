@@ -130,11 +130,6 @@
     mensaje: "Hay sabiduría en tu silencio y magia en tu mirada. Escucha con calma esa voz interior que mueve tus patitas con certeza."
   },
   {
-    nombre: "La Rueda de la Fortuna",
-    slug: "la-rueda",
-    mensaje: "El destino da vueltas como un perrito antes de acostarse. Algo nuevo se acomoda para abrirte un sendero lleno de posibilidades."
-  },
-  {
     nombre: "Los Enamorados",
     slug: "los-enamorados",
     mensaje: "Los lazos del corazón se hacen más fuertes. Déjate guiar por el amor, la lealtad y esa alegría de estar con quienes más quieres."
