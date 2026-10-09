@@ -186,5 +186,5 @@ function crearLuciernagas(idContenedor, cantidad) {
   contenedor.appendChild(fragmento);
 }
 
-crearLuciernagas("luciernagasPortal", 18);
-crearLuciernagas("luciernagasHero", 24);
+crearLuciernagas("luciernagasPortal", 100);
+crearLuciernagas("luciernagasHero", 120);
