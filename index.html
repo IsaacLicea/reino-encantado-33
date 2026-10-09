@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="styles.css?v=7" />
     <script src="script.js?v=5" defer></script>
 
-    <link rel="stylesheet" href="efectos-magicos.css?v=1" />
-    <script src="efectos-magicos.js?v=1" defer></script>
+    <link rel="stylesheet" href="efectos-magicos.css?v=2" />
+    <script src="efectos-magicos.js?v=2" defer></script>
   </head>
   <body>
     <!-- INTRO / PORTAL -->
@@ -118,6 +118,12 @@
           aria-hidden="true"
         />
 
+        <div class="cristales-vivos" aria-hidden="true">
+          <span class="cristal cristal-1"></span>
+          <span class="cristal cristal-2"></span>
+          <span class="cristal cristal-3"></span>
+        </div>
+
         <div class="contador">
           <div><strong id="dias">00</strong><span>Días</span></div>
           <div><strong id="horas">00</strong><span>Horas</span></div>
@@ -135,6 +141,11 @@
           Déjate envolver por la magia de la noche y ven con un look inspirado
           en el bosque encantado.
         </p>
+
+        <div class="enredaderas-marco" aria-hidden="true">
+          <span class="enredadera enredadera-izq"></span>
+          <span class="enredadera enredadera-der"></span>
+        </div>
 
         <div class="dresscode-grid">
           <div class="dress-card">
@@ -181,6 +192,14 @@
           alt=""
           aria-hidden="true"
         />
+
+        <div class="pocion-animada" aria-hidden="true">
+          <span class="burbuja burbuja-1"></span>
+          <span class="burbuja burbuja-2"></span>
+          <span class="burbuja burbuja-3"></span>
+          <span class="goteo goteo-1"></span>
+          <span class="goteo goteo-2"></span>
+        </div>
         <p class="texto-ancho">
           Sigue el resplandor de las estrellas hasta el corazón del bosque.
         </p>
@@ -219,25 +238,53 @@
           </div>
 
           <div class="tarot-imagen-wrap">
-            <details class="carta-oraculo">
-              <summary>
-                <span class="tarot-simbolo" aria-hidden="true"> ☾ ✧ ☽ </span>
+            <div class="tarot-interactivo">
+              <button
+                id="cartaTarot"
+                class="tarot-carta"
+                type="button"
+                aria-label="Revelar una carta del tarot"
+              >
+                <span class="tarot-carta-inner">
+                  <span class="tarot-cara tarot-cara-atras">
+                    <span class="tarot-simbolo-central">☾ ✧ ☽</span>
+                    <span class="tarot-dorso-titulo">EL ORÁCULO</span>
+                    <span class="tarot-dorso-subtitulo"
+                      >Toca para revelar tu carta</span
+                    >
+                  </span>
 
-                <span class="tarot-titulo"> EL ORÁCULO </span>
+                  <span class="tarot-cara tarot-cara-frente">
+                    <span id="tarotNombre" class="tarot-nombre-carta"
+                      >La Estrella</span
+                    >
+                    <span id="tarotMensaje" class="tarot-mensaje-carta">
+                      La luz vuelve a encontrar tu camino.
+                    </span>
+                  </span>
+                </span>
+              </button>
 
-                <span class="tarot-nombre"> Isaac · Invitado especial </span>
+              <p id="tarotAyuda" class="tarot-ayuda">
+                Toca la carta para consultar tu destino.
+              </p>
 
-                <span class="tarot-indicacion"> ✧ Toca para revelar ✧ </span>
-              </summary>
-
-              <div class="tarot-revelacion">
-                <p>Las cartas te esperan entre las sombras del bosque.</p>
+              <div id="mensajeIsaac" class="mensaje-isaac" hidden>
                 <p>
-                  Durante la celebración, nuestro oráculo invitado ofrecerá
-                  lecturas de tarot.
+                  Si quieres saber más sobre tu carta y tu destino,
+                  <strong>Isaac</strong> estará en el bosque dando lecturas de
+                  tarot. ✨
                 </p>
+
+                <button
+                  id="otraCarta"
+                  class="boton-tarot-secundario"
+                  type="button"
+                >
+                  Revelar otra carta
+                </button>
               </div>
-            </details>
+            </div>
           </div>
         </div>
       </section>

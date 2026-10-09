@@ -5,26 +5,489 @@
   height: auto;
   pointer-events: none;
   user-select: none;
-  filter: drop-shadow(0 0 18px rgba(113, 168, 248, .27));
+  filter: drop-shadow(0 0 18px rgba(113, 168, 248, 0.27));
   transform-origin: 50% 50%;
   animation: flotarReliquia 5.5s ease-in-out infinite alternate;
 }
-.ornamento-gema { width: clamp(62px, 10vw, 90px); }
-.ornamento-pocion { width: clamp(68px, 11vw, 100px); animation-delay: -2s; }
-.ornamento-flor { width: clamp(70px, 12vw, 100px); animation-delay: -3s; }
+.ornamento-gema {
+  width: clamp(62px, 10vw, 90px);
+}
+.ornamento-pocion {
+  width: clamp(68px, 11vw, 100px);
+  animation-delay: -2s;
+}
+.ornamento-flor {
+  width: clamp(70px, 12vw, 100px);
+  animation-delay: -3s;
+}
 @keyframes flotarReliquia {
-  0% { transform: translate3d(0, 5px, 0) rotate(-2deg); filter: drop-shadow(0 0 8px rgba(113,168,248,.18)); }
-  100% { transform: translate3d(0, -8px, 0) rotate(2deg); filter: drop-shadow(0 0 21px rgba(113,168,248,.55)); }
+  0% {
+    transform: translate3d(0, 5px, 0) rotate(-2deg);
+    filter: drop-shadow(0 0 8px rgba(113, 168, 248, 0.18));
+  }
+  100% {
+    transform: translate3d(0, -8px, 0) rotate(2deg);
+    filter: drop-shadow(0 0 21px rgba(113, 168, 248, 0.55));
+  }
 }
 /* Cada sección adquiere un halo una sola vez al entrar en pantalla. */
 main .seccion {
-  transition: border-color 1.1s ease, box-shadow 1.1s ease;
+  transition:
+    border-color 1.1s ease,
+    box-shadow 1.1s ease;
 }
 main .seccion.bosque-despierto {
-  border-color: rgba(142, 175, 239, .32);
-  box-shadow: 0 0 42px rgba(76, 105, 186, .10), inset 0 0 35px rgba(80, 113, 183, .055);
+  border-color: rgba(142, 175, 239, 0.32);
+  box-shadow:
+    0 0 42px rgba(76, 105, 186, 0.1),
+    inset 0 0 35px rgba(80, 113, 183, 0.055);
 }
 @media (prefers-reduced-motion: reduce) {
-  .ornamento-magico { animation: none !important; }
-  main .seccion { transition: none !important; }
+  .ornamento-magico {
+    animation: none !important;
+  }
+  main .seccion {
+    transition: none !important;
+  }
+}
+
+/* ==========================================
+   CONECTORES ENTRE SECCIONES
+========================================== */
+
+main .seccion {
+  position: relative;
+  overflow: visible;
+}
+
+main .seccion + .seccion::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -44px;
+  width: 2px;
+  height: 44px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    rgba(127, 169, 255, 0),
+    rgba(127, 169, 255, 0.45),
+    rgba(127, 169, 255, 0)
+  );
+  box-shadow: 0 0 18px rgba(127, 169, 255, 0.2);
+  pointer-events: none;
+}
+
+main .seccion + .seccion::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  width: 12px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, #c6dbff 0%, #6e97ff 65%, transparent 75%);
+  box-shadow: 0 0 16px rgba(121, 169, 255, 0.4);
+  pointer-events: none;
+}
+
+/* ==========================================
+   CRISTALES VIVOS
+========================================== */
+
+.cristales-vivos {
+  position: relative;
+  width: 150px;
+  height: 34px;
+  margin: 6px auto 10px;
+  pointer-events: none;
+}
+
+.cristal {
+  position: absolute;
+  bottom: 0;
+  width: 18px;
+  height: 28px;
+  clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 18% 100%, 0% 35%);
+  background: linear-gradient(180deg, #dff2ff 0%, #7bb6ff 45%, #4a71d7 100%);
+  box-shadow:
+    0 0 10px rgba(123, 182, 255, 0.35),
+    0 0 22px rgba(82, 126, 255, 0.18);
+  animation: destelloCristal 4.5s ease-in-out infinite;
+}
+
+.cristal-1 {
+  left: 28px;
+  transform: rotate(-8deg);
+  animation-delay: -1s;
+}
+
+.cristal-2 {
+  left: 64px;
+  width: 22px;
+  height: 34px;
+}
+
+.cristal-3 {
+  left: 102px;
+  transform: rotate(9deg);
+  animation-delay: -2.2s;
+}
+
+@keyframes destelloCristal {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.04);
+    filter: brightness(1.22);
+  }
+}
+
+/* ==========================================
+   ENREDADERAS
+========================================== */
+
+.enredaderas-marco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.enredadera {
+  position: absolute;
+  top: 18px;
+  width: 78px;
+  height: 78%;
+  opacity: 0.42;
+}
+
+.enredadera::before,
+.enredadera::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 60px;
+}
+
+.enredadera::before {
+  border-left: 1px solid rgba(149, 210, 180, 0.38);
+  border-top: 1px solid rgba(149, 210, 180, 0.2);
+}
+
+.enredadera::after {
+  inset: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50% 10% 50% 10%;
+  background: rgba(124, 194, 160, 0.28);
+  box-shadow:
+    0 40px 0 rgba(124, 194, 160, 0.18),
+    8px 82px 0 rgba(124, 194, 160, 0.24),
+    -4px 120px 0 rgba(124, 194, 160, 0.18),
+    10px 160px 0 rgba(124, 194, 160, 0.22),
+    -2px 210px 0 rgba(124, 194, 160, 0.18);
+}
+
+.enredadera-izq {
+  left: -8px;
+  animation:
+    crecerEnredadera 2.8s ease-out both,
+    ondular 7s ease-in-out infinite alternate;
+}
+
+.enredadera-der {
+  right: -8px;
+  transform: scaleX(-1);
+  animation:
+    crecerEnredadera 2.8s ease-out both,
+    ondular 8s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes crecerEnredadera {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+    transform-origin: top;
+  }
+  to {
+    opacity: 0.42;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+@keyframes ondular {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 3px 4px;
+  }
+}
+
+/* ==========================================
+   POCIÓN BURBUJEANDO
+========================================== */
+
+.pocion-animada {
+  position: relative;
+  width: 90px;
+  height: 46px;
+  margin: -4px auto 10px;
+  pointer-events: none;
+}
+
+.burbuja,
+.goteo {
+  position: absolute;
+  border-radius: 999px;
+}
+
+.burbuja {
+  bottom: 8px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ffffff,
+    #8ec4ff 58%,
+    rgba(90, 120, 220, 0.3)
+  );
+  box-shadow: 0 0 12px rgba(122, 179, 255, 0.35);
+  animation: burbujear 3.8s ease-in infinite;
+}
+
+.burbuja-1 {
+  left: 16px;
+  width: 8px;
+  height: 8px;
+  animation-delay: -0.3s;
+}
+
+.burbuja-2 {
+  left: 42px;
+  width: 12px;
+  height: 12px;
+  animation-delay: -1.4s;
+}
+
+.burbuja-3 {
+  left: 64px;
+  width: 7px;
+  height: 7px;
+  animation-delay: -2.2s;
+}
+
+@keyframes burbujear {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-28px) scale(1.08);
+    opacity: 0;
+  }
+}
+
+.goteo {
+  top: 2px;
+  width: 5px;
+  background: linear-gradient(
+    180deg,
+    rgba(145, 188, 255, 0.95),
+    rgba(101, 127, 222, 0.2)
+  );
+  animation: escurrir 2.8s ease-in-out infinite;
+}
+
+.goteo-1 {
+  left: 30px;
+  height: 18px;
+  animation-delay: -0.8s;
+}
+
+.goteo-2 {
+  left: 54px;
+  height: 24px;
+  animation-delay: -1.7s;
+}
+
+@keyframes escurrir {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scaleY(0.7);
+  }
+  45% {
+    opacity: 0.95;
+    transform: scaleY(1);
+  }
+  80% {
+    opacity: 0.45;
+    transform: translateY(6px) scaleY(0.9);
+  }
+}
+
+/* ==========================================
+   TAROT INTERACTIVO
+========================================== */
+
+.tarot-interactivo {
+  width: min(360px, 100%);
+  margin: 0 auto;
+}
+
+.tarot-carta {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1200px;
+  box-shadow: none;
+}
+
+.tarot-carta:hover {
+  transform: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.tarot-carta-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 430px;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.22, 0.75, 0.19, 1);
+}
+
+.tarot-carta.revelada .tarot-carta-inner {
+  transform: rotateY(180deg);
+}
+
+.tarot-cara {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 28px;
+  border-radius: 24px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.35),
+    0 0 32px rgba(121, 169, 255, 0.12);
+}
+
+.tarot-cara-atras {
+  background:
+    radial-gradient(circle at top, rgba(112, 134, 255, 0.18), transparent 62%),
+    linear-gradient(180deg, #11192e, #0a1020);
+  border: 1px solid rgba(145, 166, 255, 0.26);
+}
+
+.tarot-cara-frente {
+  background:
+    radial-gradient(circle at top, rgba(175, 155, 255, 0.18), transparent 62%),
+    linear-gradient(180deg, #151327, #0e1220);
+  border: 1px solid rgba(182, 160, 255, 0.26);
+  transform: rotateY(180deg);
+}
+
+.tarot-simbolo-central {
+  font-size: 3.5rem;
+  color: #b9c8ff;
+  text-shadow: 0 0 24px rgba(137, 161, 255, 0.45);
+}
+
+.tarot-dorso-titulo,
+.tarot-nombre-carta {
+  font-family: "Cinzel", serif;
+  font-size: 1.6rem;
+  color: #eadbbe;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.tarot-dorso-subtitulo,
+.tarot-mensaje-carta {
+  color: #c4d0e8;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 220px;
+}
+
+.tarot-ayuda {
+  margin-top: 16px;
+  color: #b7c6ff;
+  font-size: 0.85rem;
+}
+
+.mensaje-isaac {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(18, 24, 42, 0.72);
+  border: 1px solid rgba(165, 145, 255, 0.18);
+  color: #dce6f8;
+}
+
+.boton-tarot-secundario {
+  margin-top: 14px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 180, 255, 0.3);
+  background: rgba(28, 34, 57, 0.78);
+  color: #eadbbe;
+  font-family: "Cinzel", serif;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.boton-tarot-secundario:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(163, 146, 255, 0.18);
+}
+
+/* ==========================================
+   MÓVIL
+========================================== */
+
+@media (max-width: 640px) {
+  main .seccion + .seccion::before {
+    height: 34px;
+    top: -34px;
+  }
+
+  .tarot-carta-inner {
+    min-height: 390px;
+  }
+
+  .enredadera {
+    width: 58px;
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cristal,
+  .enredadera-izq,
+  .enredadera-der,
+  .burbuja,
+  .goteo,
+  .tarot-carta-inner {
+    animation: none !important;
+    transition: none !important;
+  }
 }
