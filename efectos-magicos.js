@@ -102,52 +102,75 @@
   const mensajeIsaac = document.getElementById("mensajeIsaac");
   if (!carta || !nombre || !mensaje || !imagen) return;
 
-  const cartas = [
-    { nombre: "La Estrella", slug: "la-estrella", mensaje: "Una luz serena guía tu camino y te recuerda que aún hay magia esperándote." },
-    { nombre: "La Luna", slug: "la-luna", mensaje: "Escucha tu intuición: no todo se revela a simple vista." },
-    { nombre: "El Sol", slug: "el-sol", mensaje: "La alegría y la calidez se acercan; deja que tu luz encuentre a los demás." },
-    { nombre: "La Emperatriz", slug: "la-emperatriz", mensaje: "La belleza y la creatividad florecen a tu alrededor." },
-    { nombre: "La Sacerdotisa", slug: "la-sacerdotisa", mensaje: "El conocimiento oculto se mueve en silencio. Confía en lo que sientes." },
-    { nombre: "La Rueda de la Fortuna", slug: "la-rueda", mensaje: "El destino gira y abre un nuevo sendero en el bosque." },
-    { nombre: "Los Enamorados", slug: "los-enamorados", mensaje: "Los vínculos y decisiones cobran fuerza; el corazón también habla." },
-    { nombre: "El Mago", slug: "el-mago", mensaje: "Tienes las herramientas para transformar lo que imaginas en realidad." }
-  ];
+  
+   const cartas = [
+     {
+       nombre: "La Estrella",
+       slug: "la-estrella",
+       mensaje: "Una luz serena guía tu camino y te recuerda que aún hay magia esperándote."
+     },
+     {
+       nombre: "La Luna",
+       slug: "la-luna",
+       mensaje: "Escucha tu intuición: no todo se revela a simple vista."
+     },
+     {
+       nombre: "El Sol",
+       slug: "el-sol",
+       mensaje: "La alegría y la calidez se acercan; deja que tu luz encuentre a los demás."
+     },
+     {
+       nombre: "La Emperatriz",
+       slug: "la-emperatriz",
+       mensaje: "La belleza y la creatividad florecen a tu alrededor."
+     },
+     {
+       nombre: "La Sacerdotisa",
+       slug: "la-sacerdotisa",
+       mensaje: "El conocimiento oculto se mueve en silencio. Confía en lo que sientes."
+     },
+     {
+       nombre: "La Rueda de la Fortuna",
+       slug: "la-rueda",
+       mensaje: "El destino gira y abre un nuevo sendero en el bosque."
+     },
+     {
+       nombre: "Los Enamorados",
+       slug: "los-enamorados",
+       mensaje: "Los vínculos y decisiones cobran fuerza; el corazón también habla."
+     },
+     {
+       nombre: "El Mago",
+       slug: "el-mago",
+       mensaje: "Tienes las herramientas para transformar lo que imaginas en realidad."
+     },
+     {
+       nombre: "El Loco",
+       slug: "el-loco",
+       mensaje: "Una aventura inesperada te llama. Atrévete a dar el primer paso: incluso la patita más pequeña puede descubrir mundos extraordinarios."
+     },
+     {
+       nombre: "La Fuerza",
+       slug: "la-fuerza",
+       mensaje: "Tu mayor poder no está en rugir, sino en la ternura con la que enfrentas lo difícil. Confía en tu corazón valiente."
+     },
+     {
+       nombre: "El Emperador",
+       slug: "el-emperador",
+       mensaje: "Ha llegado el momento de construir sobre tierra firme. Protege lo que amas, confía en tus decisiones y gobierna tu propio destino."
+     },
+     {
+       nombre: "La Templanza",
+       slug: "la-templanza",
+       mensaje: "Entre el sol y la luna existe un equilibrio hecho para ti. Deja que la paciencia mezcle tus sueños con la magia del presente."
+     },
+     {
+       nombre: "El Mundo",
+       slug: "el-mundo",
+       mensaje: "El universo celebra el camino que has recorrido. Un ciclo florece por completo y, tras él, te espera un horizonte lleno de posibilidades."
+     }
+   ];
 
-  // Próximos cinco arcanos: sus lecturas ya están listas.
-  // Por ahora permanecen fuera del sorteo porque las cinco imágenes
-  // todavía no están publicadas en assets/tarot/. Se integrarán después.
-  const cartasPendientes = [
-    {
-      nombre: "El Loco",
-      slug: "el-loco",
-      protagonista: "Totopo",
-      mensaje: "Una aventura inesperada te llama. Atrévete a dar el primer paso: incluso la patita más pequeña puede descubrir mundos extraordinarios."
-    },
-    {
-      nombre: "La Fuerza",
-      slug: "la-fuerza",
-      protagonista: "Ónix",
-      mensaje: "Tu mayor poder no está en rugir, sino en la ternura con la que enfrentas lo difícil. Confía en tu corazón valiente."
-    },
-    {
-      nombre: "El Emperador",
-      slug: "el-emperador",
-      protagonista: "Ónix",
-      mensaje: "Ha llegado el momento de construir sobre tierra firme. Protege lo que amas, confía en tus decisiones y gobierna tu propio destino."
-    },
-    {
-      nombre: "La Templanza",
-      slug: "la-templanza",
-      protagonista: "Lana",
-      mensaje: "Entre el sol y la luna existe un equilibrio hecho para ti. Deja que la paciencia mezcle tus sueños con la magia del presente."
-    },
-    {
-      nombre: "El Mundo",
-      slug: "el-mundo",
-      protagonista: "Lana",
-      mensaje: "El universo celebra el camino que has recorrido. Un ciclo florece por completo y, tras él, te espera un horizonte lleno de posibilidades."
-    }
-  ];
 
   let anterior = -1;
   let girando = false;
@@ -178,7 +201,7 @@
       const resultado = azar();
       nombre.textContent = resultado.nombre;
       mensaje.textContent = resultado.mensaje;
-      imagen.src = "assets/tarot/" + resultado.slug + ".svg";
+      imagen.src = "assets/tarot/" + resultado.slug + ".png";
       imagen.alt = "Ilustración de " + resultado.nombre;
 
       if (!quieto) await dormir(75);
