@@ -233,6 +233,45 @@
         </div>
       </section>
 
+      div class="tarot-imagen-wrap">
+  <div class="tarot-interactivo">
+    <button
+      id="cartaTarot"
+      class="tarot-carta"
+      type="button"
+      aria-label="Revelar una carta del tarot"
+    >
+      <span class="tarot-carta-inner">
+        <span class="tarot-cara tarot-cara-atras">
+          <span class="tarot-simbolo-central">☾ ✧ ☽</span>
+          <span class="tarot-dorso-titulo">EL ORÁCULO</span>
+          <span class="tarot-dorso-subtitulo">Toca para revelar tu carta</span>
+        </span>
+
+        <span class="tarot-cara tarot-cara-frente">
+          <span class="tarot-arte">
+            <img
+              id="tarotIlustracion"
+              class="ilustracion-tarot"
+              src="assets/tarot/la-estrella.svg"
+              alt="Ilustración de La Estrella"
+            />
+          </span>
+          <span id="tarotNombre" class="tarot-nombre-carta">La Estrella</span>
+          <span id="tarotMensaje" class="tarot-mensaje-carta">
+            La luz vuelve a encontrar tu camino.
+          </span>
+        </span>
+      </span>
+    </button>
+
+    <div id="mensajeIsaac" class="mensaje-isaac" hidden>
+      <p>
+        Si quieres saber más sobre tu carta y lo que tienen para decirte,
+        <strong>Isaac</strong> estará leyendo el tarot.
+      </p>
+    </div>
+
       <!-- RSVP PERSONALIZADO -->
       <section class="seccion seccion-rsvp">
         <p class="eyebrow">El pacto encantado</p>
@@ -244,16 +283,30 @@
           aria-hidden="true"
         />
         <p class="texto-ancho">
-          Tu pase contiene los nombres de quienes han sido convocados al bosque.
+          Antes de sellar tu pase, comparte unas cuantas señales para que el bosque
+          prepare aquello que ha sido dispuesto en tu nombre y reconozca tu esencia
+          al cruzar el umbral.
         </p>
+        
+        <div class="receta-pocion">
+          <div class="receta-pocion-encabezado">
+            <p class="receta-etiqueta">Receta del alquimista</p>
+            <h3>El elixir de tu presencia</h3>
+            <p>
+              Cada ingrediente del conjuro se ordena con intención. Deja aquí tus
+              señales para que el cáliz, las ofrendas y los pequeños detalles del reino
+              sepan a quién deben esperar.
+            </p>
+          </div>
 
-        <iframe
-          id="formulario-rsvp"
-          title="Confirmación de asistencia"
-          data-app-url="https://script.google.com/macros/s/AKfycbytmE2SmErYoTekebwzwHtdofgXxQemiTZKVqee0dzsQ82IRzFE9KbmqDVWJ_a0BSeRfQ/exec"
-          loading="lazy"
-        >
-        </iframe>
+  <iframe
+    id="formulario-rsvp"
+    title="Confirmación de asistencia"
+    data-app-url="https://script.google.com/macros/s/AKfycbytmE2SmErYoTekebwzwHtdofgXxQemiTZKVqee0dzsQ82IRzFE9KbmqDVWJ_a0BSeRfQ/exec"
+    loading="lazy"
+  >
+  </iframe>
+</div>
 
         <p id="sin-pase" hidden>
           Para confirmar tu asistencia necesitas un enlace personal de
