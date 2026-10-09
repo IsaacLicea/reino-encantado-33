@@ -41,46 +41,23 @@
   luces.appendChild(frag);
   document.body.appendChild(luces);
 
-  // 3. Sendero central y enredaderas laterales, dibujados según el scroll.
+  // 3. Sendero luminoso único, sin enredaderas laterales.
   const NS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(NS, "svg");
   svg.setAttribute("class", "sendero-svg");
   svg.setAttribute("viewBox", "0 0 1000 1000");
   svg.setAttribute("preserveAspectRatio", "none");
   svg.setAttribute("aria-hidden", "true");
-  const crearPath = (d, clase) => {
-    const p = document.createElementNS(NS, "path");
-    p.setAttribute("class", clase);
-    p.setAttribute("d", d);
-    svg.appendChild(p);
-    return p;
-  };
-  const trazos = [
-    crearPath("M500 0 C405 75 650 125 510 215 S410 320 525 410 S620 550 492 615 S418 820 510 1000", "trazo-sendero"),
-    crearPath("M48 0 C92 70 17 100 53 190 S96 310 55 390 S20 590 73 685 S35 830 62 1000", "trazo-rama"),
-    crearPath("M952 0 C905 75 987 145 942 220 S905 365 962 450 S980 650 931 715 S984 875 945 1000", "trazo-rama")
-  ];
-  const longitudes = trazos.map(p => {
-    const len = p.getTotalLength();
-    p.style.strokeDasharray = String(len);
-    p.style.strokeDashoffset = quieto ? "0" : String(len);
-    return len;
-  });
-  const brotes = [];
-  for (let i = 1; i <= 18; i++) {
-    const y = i * 51;
-    const izquierda = i % 2 === 0;
-    const x = izquierda ? (i % 4 ? 54 : 75) : (i % 3 ? 942 : 918);
-    const g = document.createElementNS(NS, "g");
-    g.setAttribute("class", "brote");
-    g.setAttribute("transform", `translate(${x} ${y}) rotate(${izquierda ? -35 : 35})`);
-    const leaf = document.createElementNS(NS, "path");
-    leaf.setAttribute("d", "M0 0 Q-11 -14 0 -24 Q13 -12 0 0Z M0 0 Q12 5 20 -7 Q7 -8 0 0Z");
-    g.appendChild(leaf);
-    svg.appendChild(g);
-    brotes.push({ el: g, at: i / 19 });
-  }
+
+  const camino = document.createElementNS(NS, "path");
+  camino.setAttribute("class", "trazo-sendero");
+  camino.setAttribute("d", "M500 0 C405 75 650 125 510 215 S410 320 525 410 S620 550 492 615 S418 820 510 1000");
+  svg.appendChild(camino);
   main.insertBefore(svg, main.firstChild);
+
+  const longitud = camino.getTotalLength();
+  camino.style.strokeDasharray = String(longitud);
+  camino.style.strokeDashoffset = quieto ? "0" : String(longitud);
 
   let pending = false;
   const pintarSendero = () => {
@@ -88,8 +65,7 @@
     const top = main.getBoundingClientRect().top + window.scrollY;
     const recorrido = Math.max(1, main.offsetHeight - window.innerHeight * .65);
     const avance = quieto ? 1 : Math.max(0, Math.min(1, (window.scrollY - top + window.innerHeight * .25) / recorrido));
-    trazos.forEach((p, i) => { p.style.strokeDashoffset = String(longitudes[i] * (1 - avance)); });
-    brotes.forEach(({el, at}) => el.classList.toggle("nacido", quieto || avance >= at));
+    camino.style.strokeDashoffset = String(longitud * (1 - avance));
   };
   const pedirPintura = () => {
     if (pending) return;
@@ -123,9 +99,6 @@
   const nombre = document.getElementById("tarotNombre");
   const mensaje = document.getElementById("tarotMensaje");
   const imagen = document.getElementById("tarotIlustracion");
-  const ayuda = document.getElementById("tarotAyuda");
-  const mensajeIsaac = document.getElementById("mensajeIsaac");
-  const otraCarta = document.getElementById("otraCarta");
   if (!carta || !nombre || !mensaje || !imagen) return;
 
   const cartas = [
@@ -153,7 +126,6 @@
     if (girando) return;
     girando = true;
     carta.disabled = true;
-    mensajeIsaac.hidden = true;
     if (visible) {
       carta.classList.remove("revelada");
       if (!quieto) await dormir(530);
@@ -168,12 +140,9 @@
     carta.classList.add("revelada");
     visible = true;
     if (!quieto) await dormir(970);
-    mensajeIsaac.hidden = false;
-    ayuda.textContent = "Tu arcano ha sido revelado.";
-    carta.setAttribute("aria-label", "Carta revelada: " + resultado.nombre);
+    carta.setAttribute("aria-label", "Carta revelada: " + resultado.nombre + ". Toca para descubrir otra carta.");
     carta.disabled = false;
     girando = false;
   };
   carta.addEventListener("click", revelar);
-  if (otraCarta) otraCarta.addEventListener("click", revelar);
 })();

@@ -30,9 +30,9 @@
 }
 #reino .seccion {
   width: min(1050px, 100%);
-  min-height: 53vh;
+  min-height: 0;
   margin: 0 auto;
-  padding: clamp(105px, 12vw, 165px) clamp(22px, 7vw, 90px);
+  padding: clamp(42px, 5.2vw, 64px) clamp(22px, 7vw, 90px);
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -64,7 +64,6 @@
 
 /* Eliminamos los decorados que daban sensación de plantilla. */
 .cristales-vivos,
-.enredaderas-marco,
 .pocion-animada { display: none !important; }
 .ornamento-magico {
   opacity: .75;
@@ -101,13 +100,70 @@
 #reino .dress-card h3 { color: #d6c5a6; font-size: 1rem; }
 #reino .color-chip { box-shadow: none; width: 24px; height: 24px; }
 
+/* Portada: fecha y hora a la izquierda; contador en lugar de la ilustración. */
+#reino .hero {
+  min-height: clamp(540px, 80svh, 790px);
+  padding: clamp(72px, 8vw, 110px) 24px clamp(34px, 4vw, 60px);
+}
+#reino .hero-grid {
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  gap: clamp(28px, 4vw, 66px);
+}
+#reino .hero-contador {
+  width: 100%;
+  max-width: 480px;
+  justify-self: center;
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid rgba(194,173,133,.3);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(24,33,54,.75), rgba(10,16,29,.58));
+  box-shadow: 0 20px 60px rgba(0,0,0,.20), inset 0 1px rgba(245,228,190,.08);
+  backdrop-filter: blur(8px);
+}
+#reino .hero-contador .eyebrow {
+  margin-bottom: 9px;
+  color: #d1bb93;
+}
+#reino .hero-contador h2 {
+  font-size: clamp(1.13rem, 2.3vw, 1.55rem);
+  line-height: 1.35;
+  color: #eadbbe;
+  margin-bottom: 0;
+}
+#reino .hero-contador .contador {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 22px;
+  gap: 12px;
+}
+#reino .hero-contador .contador div {
+  min-width: 0;
+  padding: 16px 8px 14px;
+  text-align: center;
+  background: rgba(12,19,34,.56);
+  border: 1px solid rgba(193,174,141,.22);
+  border-radius: 14px;
+}
+#reino .hero-contador .contador strong {
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  color: #e8dbc4;
+}
+#reino .hero-contador .contador span {
+  margin-top: 5px;
+}
+
 /* La carta del tarot parece un objeto antiguo, no una ficha de interfaz. */
-#reino .tarot-grid { gap: clamp(25px,5vw,75px); }
-#reino .tarot-copy { max-width: 520px; }
-#reino .tarot-copy p + p { margin-top: 18px; }
+#reino .tarot-imagen-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 26px;
+}
+#reino .tarot-interactivo { width: min(335px, 100%); }
 #reino .tarot-carta {
   display: block;
-  width: min(320px, 100%);
+  width: 100%;
   margin: 0 auto;
   border: 0;
   border-radius: 0;
@@ -116,7 +172,10 @@
   box-shadow: none;
   perspective: 1200px;
 }
-#reino .tarot-carta-inner { min-height: 490px; }
+#reino .tarot-carta-inner {
+  height: 500px;
+  min-height: 0;
+}
 #reino .tarot-cara {
   justify-content: center;
   padding: 14px;
@@ -133,17 +192,50 @@
     repeating-linear-gradient(42deg, rgba(196,166,119,.027) 0 2px,transparent 2px 14px),
     #0c1423;
 }
-#reino .tarot-cara-frente { gap: 8px; justify-content: flex-start; }
+#reino .tarot-cara-frente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 15px;
+}
+#reino .tarot-arte {
+  display: grid;
+  place-items: center;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgba(190,169,132,.20);
+  border-radius: 4px;
+  background: rgba(8,13,25,.32);
+  overflow: hidden;
+}
 #reino .ilustracion-tarot {
   display: block;
   width: 100%;
-  height: 345px;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
   object-fit: contain;
   border-radius: 3px;
   filter: saturate(.8);
 }
-#reino .tarot-nombre-carta { font-size: 1.08rem; letter-spacing: .05em; }
-#reino .tarot-mensaje-carta { font-size: .75rem; line-height: 1.4; max-width: 100%; }
+#reino .tarot-nombre-carta {
+  flex: 0 0 auto;
+  max-width: 100%;
+  font-size: 1.08rem;
+  line-height: 1.25;
+  letter-spacing: .05em;
+}
+#reino .tarot-mensaje-carta {
+  flex: 0 0 auto;
+  max-width: 100%;
+  font-size: .79rem;
+  line-height: 1.4;
+  padding: 0 3px;
+}
 #reino .tarot-carta:focus-visible { outline: 2px solid #d2bf91; outline-offset: 5px; }
 #reino .tarot-ayuda { color: #b6bdd1; }
 #reino .mensaje-isaac {
@@ -174,16 +266,6 @@
   stroke-linecap: round;
   filter: drop-shadow(0 0 3px rgba(170,166,211,.35));
 }
-.sendero-svg .trazo-rama {
-  stroke: rgba(130,162,138,.57);
-  stroke-width: 1.65;
-  vector-effect: non-scaling-stroke;
-  fill: none;
-  stroke-linecap: round;
-}
-.sendero-svg .brote { opacity: 0; transition: opacity 1s ease; }
-.sendero-svg .brote.nacido { opacity: .78; }
-.sendero-svg .brote path { fill: #567965; stroke: #8b9f8b; stroke-width: .24; }
 
 /* Luces visibles durante TODO el recorrido, sin interceptar toques. */
 .luciernagas-continuas {
@@ -222,10 +304,19 @@
 #reino .seccion::marker { color: #b7a982; }
 
 @media (max-width: 900px) {
-  #reino .seccion { min-height: 45vh; padding: 85px 21px; }
+  #reino .seccion { min-height: 0; padding: 44px 21px; }
+  #reino .hero {
+    min-height: 0;
+    padding: 66px 22px 36px;
+  }
+  #reino .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  #reino .hero-contador { width: min(460px, 100%); }
   #reino .dress-card + .dress-card { border-left: 0; border-top: 1px solid rgba(190,174,137,.15); }
   #reino .dresscode-grid { max-width: 600px; }
-  #reino .tarot-carta-inner { min-height: 470px; }
+  #reino .tarot-carta-inner { height: 480px; min-height: 0; }
   #reino .sendero-svg { opacity: .4; }
   #reino::before {
     background-image: linear-gradient(180deg,rgba(4,8,20,.45),rgba(5,9,22,.9)), url("assets/bosque-nocturno-movil.webp");
@@ -233,14 +324,17 @@
   }
 }
 @media (max-width: 600px) {
-  #reino .tarot-carta { width: min(285px,100%); }
-  #reino .tarot-carta-inner { min-height: 435px; }
-  #reino .ilustracion-tarot { height: 300px; }
+  #reino .hero { padding: 54px 18px 20px; }
+  #reino .hero-contador { padding: 20px 18px; }
+  #reino .seccion { padding: 38px 21px; }
+  #reino .tarot-interactivo { width: min(300px,100%); }
+  #reino .tarot-carta-inner { height: 455px; min-height: 0; }
+  #reino .tarot-cara-frente { padding: 12px; gap: 8px; }
+  #reino .tarot-mensaje-carta { font-size: .77rem; }
   .sendero-svg .trazo-sendero { stroke-width: .8; }
 }
 @media (prefers-reduced-motion: reduce) {
   .luciernaga-continua { animation: none; opacity: .32; }
-  .sendero-svg .brote { transition: none; }
   #reino .seccion.bosque-despierto h2,
   #reino .seccion.bosque-despierto .eyebrow { animation: none; }
   #reino .tarot-carta-inner { transition: none !important; }

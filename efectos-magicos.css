@@ -150,88 +150,6 @@ main .seccion + .seccion::after {
 }
 
 /* ==========================================
-   ENREDADERAS
-========================================== */
-
-.enredaderas-marco {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.enredadera {
-  position: absolute;
-  top: 18px;
-  width: 78px;
-  height: 78%;
-  opacity: 0.42;
-}
-
-.enredadera::before,
-.enredadera::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 60px;
-}
-
-.enredadera::before {
-  border-left: 1px solid rgba(149, 210, 180, 0.38);
-  border-top: 1px solid rgba(149, 210, 180, 0.2);
-}
-
-.enredadera::after {
-  inset: auto;
-  width: 10px;
-  height: 10px;
-  border-radius: 50% 10% 50% 10%;
-  background: rgba(124, 194, 160, 0.28);
-  box-shadow:
-    0 40px 0 rgba(124, 194, 160, 0.18),
-    8px 82px 0 rgba(124, 194, 160, 0.24),
-    -4px 120px 0 rgba(124, 194, 160, 0.18),
-    10px 160px 0 rgba(124, 194, 160, 0.22),
-    -2px 210px 0 rgba(124, 194, 160, 0.18);
-}
-
-.enredadera-izq {
-  left: -8px;
-  animation:
-    crecerEnredadera 2.8s ease-out both,
-    ondular 7s ease-in-out infinite alternate;
-}
-
-.enredadera-der {
-  right: -8px;
-  transform: scaleX(-1);
-  animation:
-    crecerEnredadera 2.8s ease-out both,
-    ondular 8s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes crecerEnredadera {
-  from {
-    opacity: 0;
-    transform: scaleY(0.2);
-    transform-origin: top;
-  }
-  to {
-    opacity: 0.42;
-    transform: scaleY(1);
-    transform-origin: top;
-  }
-}
-
-@keyframes ondular {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 3px 4px;
-  }
-}
-
-/* ==========================================
    POCIÓN BURBUJEANDO
 ========================================== */
 
@@ -474,16 +392,10 @@ main .seccion + .seccion::after {
     min-height: 390px;
   }
 
-  .enredadera {
-    width: 58px;
-    opacity: 0.25;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cristal,
-  .enredadera-izq,
-  .enredadera-der,
   .burbuja,
   .goteo,
   .tarot-carta-inner {

@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="styles.css?v=7" />
     <script src="script.js?v=6" defer></script>
 
-    <link rel="stylesheet" href="efectos-magicos.css?v=2" />
-    <script src="efectos-magicos.js?v=3" defer></script>
-    <link rel="stylesheet" href="sendero.css?v=1" />
+    <link rel="stylesheet" href="efectos-magicos.css?v=3" />
+    <script src="efectos-magicos.js?v=4" defer></script>
+    <link rel="stylesheet" href="sendero.css?v=2" />
   </head>
   <body>
     <!-- INTRO / PORTAL -->
@@ -98,38 +98,16 @@
             </div>
           </div>
 
-          <div class="hero-image-wrap">
-            <img
-              class="hero-image"
-              src="assets/principe-base.png"
-              alt="Isaac como príncipe feérico"
-            />
+          <div class="hero-contador">
+            <p class="eyebrow">La profecía</p>
+            <h2>La magia despierta en...</h2>
+            <div class="contador" role="timer" aria-label="Tiempo restante para la celebración" aria-live="off">
+              <div><strong id="dias">00</strong><span>Días</span></div>
+              <div><strong id="horas">00</strong><span>Horas</span></div>
+              <div><strong id="minutos">00</strong><span>Min</span></div>
+              <div><strong id="segundos">00</strong><span>Seg</span></div>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <!-- CONTADOR -->
-      <section class="seccion">
-        <p class="eyebrow">La profecía</p>
-        <h2>La magia despierta en...</h2>
-        <img
-          class="ornamento-magico ornamento-gema"
-          src="assets/gema-lunar.svg"
-          alt=""
-          aria-hidden="true"
-        />
-
-        <div class="cristales-vivos" aria-hidden="true">
-          <span class="cristal cristal-1"></span>
-          <span class="cristal cristal-2"></span>
-          <span class="cristal cristal-3"></span>
-        </div>
-
-        <div class="contador">
-          <div><strong id="dias">00</strong><span>Días</span></div>
-          <div><strong id="horas">00</strong><span>Horas</span></div>
-          <div><strong id="minutos">00</strong><span>Min</span></div>
-          <div><strong id="segundos">00</strong><span>Seg</span></div>
         </div>
       </section>
 
@@ -143,10 +121,6 @@
           en el bosque encantado.
         </p>
 
-        <div class="enredaderas-marco" aria-hidden="true">
-          <span class="enredadera enredadera-izq"></span>
-          <span class="enredadera enredadera-der"></span>
-        </div>
 
         <div class="dresscode-grid">
           <div class="dress-card">
@@ -221,78 +195,40 @@
 
       <!-- TAROT -->
       <section class="seccion seccion-tarot">
-        <p class="eyebrow">Invitado especial</p>
+        <p class="eyebrow">Una carta para ti</p>
         <h2>Un oráculo en el bosque</h2>
 
-        <div class="tarot-grid">
-          <div class="tarot-copy">
-            <p>
-              Como invitado especial de la noche, <strong>Isaac</strong> estará
-              compartiendo lecturas de tarot para quienes deseen recibir un
-              mensaje entre la magia del bosque.
-            </p>
-
-            <p>
-              Entre hechizos, gemas y follaje, también habrá espacio para
-              escuchar lo que las cartas tengan que decir.
-            </p>
-          </div>
-
-          <div class="tarot-imagen-wrap">
-            <div class="tarot-interactivo">
-              <button
-                id="cartaTarot"
-                class="tarot-carta"
-                type="button"
-                aria-label="Revelar una carta del tarot"
-              >
-                <span class="tarot-carta-inner">
-                  <span class="tarot-cara tarot-cara-atras">
-                    <span class="tarot-simbolo-central">☾ ✧ ☽</span>
-                    <span class="tarot-dorso-titulo">EL ORÁCULO</span>
-                    <span class="tarot-dorso-subtitulo"
-                      >Toca para revelar tu carta</span
-                    >
-                  </span>
-
-                  <span class="tarot-cara tarot-cara-frente">
-                    <span id="tarotNombre" class="tarot-nombre-carta"
-                      >La Estrella</span
-                    >
-                    <span id="tarotMensaje" class="tarot-mensaje-carta">
-                      La luz vuelve a encontrar tu camino.
-                    </span>
-                  </span>
-
-                  <img
-                    id="tarotIlustracion"
-                    class="ilustracion-tarot"
-                    src="assets/tarot/la-estrella.svg"
-                    alt="Ilustración de La Estrella"
-                  />
+        <div class="tarot-imagen-wrap">
+          <div class="tarot-interactivo">
+            <button
+              id="cartaTarot"
+              class="tarot-carta"
+              type="button"
+              aria-label="Revelar una carta del tarot"
+            >
+              <span class="tarot-carta-inner">
+                <span class="tarot-cara tarot-cara-atras">
+                  <span class="tarot-simbolo-central">☾ ✧ ☽</span>
+                  <span class="tarot-dorso-titulo">EL ORÁCULO</span>
+                  <span class="tarot-dorso-subtitulo">Toca para revelar tu carta</span>
                 </span>
-              </button>
 
-              <p id="tarotAyuda" class="tarot-ayuda">
-                Toca la carta para consultar tu destino.
-              </p>
-
-              <div id="mensajeIsaac" class="mensaje-isaac" hidden>
-                <p>
-                  Si quieres saber más sobre tu carta y tu destino,
-                  <strong>Isaac</strong> estará en el bosque dando lecturas de
-                  tarot. ✨
-                </p>
-
-                <button
-                  id="otraCarta"
-                  class="boton-tarot-secundario"
-                  type="button"
-                >
-                  Revelar otra carta
-                </button>
-              </div>
-            </div>
+                <span class="tarot-cara tarot-cara-frente">
+                  <span class="tarot-arte">
+                    <img
+                      id="tarotIlustracion"
+                      class="ilustracion-tarot"
+                      src="assets/tarot/la-estrella.svg"
+                      alt="Ilustración de La Estrella"
+                    />
+                  </span>
+                  <span id="tarotNombre" class="tarot-nombre-carta">La Estrella</span>
+                  <span id="tarotMensaje" class="tarot-mensaje-carta">
+                    La luz vuelve a encontrar tu camino.
+                  </span>
+                </span>
+              </span>
+            </button>
           </div>
         </div>
       </section>
