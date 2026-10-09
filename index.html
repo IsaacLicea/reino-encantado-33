@@ -14,6 +14,9 @@
 
     <link rel="stylesheet" href="styles.css?v=7" />
     <script src="script.js?v=5" defer></script>
+
+    <link rel="stylesheet" href="efectos-magicos.css?v=1" />
+    <script src="efectos-magicos.js?v=1" defer></script>
   </head>
   <body>
     <!-- INTRO / PORTAL -->
@@ -108,6 +111,12 @@
       <section class="seccion">
         <p class="eyebrow">La profecía</p>
         <h2>La magia despierta en...</h2>
+        <img
+          class="ornamento-magico ornamento-gema"
+          src="assets/gema-lunar.svg"
+          alt=""
+          aria-hidden="true"
+        />
 
         <div class="contador">
           <div><strong id="dias">00</strong><span>Días</span></div>
@@ -117,12 +126,61 @@
         </div>
       </section>
 
+      <!-- DRESS CODE -->
+      <section class="seccion seccion-dresscode">
+        <p class="eyebrow">El atuendo del bosque</p>
+        <h2>Dress Code</h2>
+
+        <p class="texto-ancho">
+          Déjate envolver por la magia de la noche y ven con un look inspirado
+          en el bosque encantado.
+        </p>
+
+        <div class="dresscode-grid">
+          <div class="dress-card">
+            <h3>Paleta del reino</h3>
+            <div class="paleta-colores">
+              <span class="color-chip chip-azul"></span>
+              <span class="color-chip chip-negro"></span>
+              <span class="color-chip chip-verde"></span>
+              <span class="color-chip chip-plata"></span>
+              <span class="color-chip chip-vino"></span>
+            </div>
+            <p>
+              Azul nocturno, negro, verde profundo, plata, vino y tonos joya.
+            </p>
+          </div>
+
+          <div class="dress-card">
+            <h3>Texturas y detalles</h3>
+            <p>
+              Telas fluidas, terciopelo, satín, transparencias sutiles, brillo
+              delicado, joyería mística y detalles inspirados en hadas, elfos o
+              magia nocturna.
+            </p>
+          </div>
+
+          <div class="dress-card">
+            <h3>El mood ideal</h3>
+            <p>
+              Elegante, misterioso y encantado. La idea es que parezca que
+              vienes a una celebración dentro de un reino del bosque.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <!-- UBICACIÓN PRIVADA -->
       <section class="seccion seccion-mapa">
         <p class="eyebrow">Las coordenadas encantadas</p>
 
         <h2>Encuentra el reino</h2>
-
+        <img
+          class="ornamento-magico ornamento-flor"
+          src="assets/flor-luminosa.svg"
+          alt=""
+          aria-hidden="true"
+        />
         <p class="texto-ancho">
           Sigue el resplandor de las estrellas hasta el corazón del bosque.
         </p>
@@ -141,11 +199,45 @@
         </p>
       </section>
 
+      <!-- TAROT -->
+      <section class="seccion seccion-tarot">
+        <p class="eyebrow">Invitado especial</p>
+        <h2>Un oráculo en el bosque</h2>
+
+        <div class="tarot-grid">
+          <div class="tarot-copy">
+            <p>
+              Como invitado especial de la noche, <strong>Isaac</strong> estará
+              compartiendo lecturas de tarot para quienes deseen recibir un
+              mensaje entre la magia del bosque.
+            </p>
+
+            <p>
+              Entre hechizos, gemas y follaje, también habrá espacio para
+              escuchar lo que las cartas tengan que decir.
+            </p>
+          </div>
+
+          <div class="tarot-imagen-wrap">
+            <img
+              class="tarot-imagen"
+              src="assets/tarot-isaac.png"
+              alt="Isaac, lector de tarot del bosque encantado"
+            />
+          </div>
+        </div>
+      </section>
+
       <!-- RSVP PERSONALIZADO -->
       <section class="seccion seccion-rsvp">
         <p class="eyebrow">El pacto encantado</p>
         <h2>Tu presencia en el reino</h2>
-
+        <img
+          class="ornamento-magico ornamento-pocion"
+          src="assets/pocion-astral.svg"
+          alt=""
+          aria-hidden="true"
+        />
         <p class="texto-ancho">
           Tu pase contiene los nombres de quienes han sido convocados al bosque.
         </p>

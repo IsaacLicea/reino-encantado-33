@@ -1,0 +1,30 @@
+/* EL REINO DE LOS 33 — ornamentos independientes */
+.ornamento-magico {
+  display: block;
+  margin: 10px auto 18px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 0 18px rgba(113, 168, 248, .27));
+  transform-origin: 50% 50%;
+  animation: flotarReliquia 5.5s ease-in-out infinite alternate;
+}
+.ornamento-gema { width: clamp(62px, 10vw, 90px); }
+.ornamento-pocion { width: clamp(68px, 11vw, 100px); animation-delay: -2s; }
+.ornamento-flor { width: clamp(70px, 12vw, 100px); animation-delay: -3s; }
+@keyframes flotarReliquia {
+  0% { transform: translate3d(0, 5px, 0) rotate(-2deg); filter: drop-shadow(0 0 8px rgba(113,168,248,.18)); }
+  100% { transform: translate3d(0, -8px, 0) rotate(2deg); filter: drop-shadow(0 0 21px rgba(113,168,248,.55)); }
+}
+/* Cada sección adquiere un halo una sola vez al entrar en pantalla. */
+main .seccion {
+  transition: border-color 1.1s ease, box-shadow 1.1s ease;
+}
+main .seccion.bosque-despierto {
+  border-color: rgba(142, 175, 239, .32);
+  box-shadow: 0 0 42px rgba(76, 105, 186, .10), inset 0 0 35px rgba(80, 113, 183, .055);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ornamento-magico { animation: none !important; }
+  main .seccion { transition: none !important; }
+}

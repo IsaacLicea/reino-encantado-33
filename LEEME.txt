@@ -1,0 +1,15 @@
+REINO DE LOS 33 - PAQUETE DE DETALLES MAGICOS
+
+1) Copia los 3 archivos .svg a /assets/ dentro de tu proyecto.
+2) Copia efectos-magicos.css y efectos-magicos.js al mismo nivel que index.html.
+3) Agrega al <head> de index.html:
+   <link rel="stylesheet" href="efectos-magicos.css?v=1">
+   <script src="efectos-magicos.js?v=1" defer></script>
+4) Inserta en la seccion del contador, despues de su <h2>:
+   <img class="ornamento-magico ornamento-gema" src="assets/gema-lunar.svg" alt="" aria-hidden="true">
+5) Inserta en la seccion del mapa, despues de su <h2>:
+   <img class="ornamento-magico ornamento-flor" src="assets/flor-luminosa.svg" alt="" aria-hidden="true">
+6) Inserta en la seccion RSVP, despues de su <h2>:
+   <img class="ornamento-magico ornamento-pocion" src="assets/pocion-astral.svg" alt="" aria-hidden="true">
+7) Prueba primero con Live Server, luego sube todos los archivos a GitHub.
+No es necesario modificar Apps Script ni script.js.
