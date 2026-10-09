@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 225" role="img" aria-label="Pócima astral en un frasco">
+ <defs>
+  <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efe4bd"/><stop offset=".47" stop-color="#9b81b6"/><stop offset="1" stop-color="#d8b77e"/></linearGradient>
+  <linearGradient id="vidrio" x1="0" x2="1" y2="1"><stop stop-color="#496baf" stop-opacity=".54"/><stop offset=".4" stop-color="#18234f" stop-opacity=".69"/><stop offset="1" stop-color="#9ed7f1" stop-opacity=".26"/></linearGradient>
+  <linearGradient id="liquido" x1="0" x2="1" y2="1"><stop stop-color="#93e8f8"/><stop offset=".5" stop-color="#4754bd"/><stop offset="1" stop-color="#8c64d8"/></linearGradient>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
+ </defs>
+ <path d="M67 48 L67 78 C60 89 34 106 33 138 C31 183 59 204 91 204 C123 204 149 183 147 138 C146 105 120 89 113 78 L113 48" fill="url(#vidrio)" stroke="url(#oro)" stroke-width="3.4"/>
+ <path d="M48 145 Q90 132 132 145 C137 169 120 189 90 192 C61 191 45 169 48 145Z" fill="url(#liquido)" opacity=".92"/>
+ <path d="M48 145 Q90 133 132 145" stroke="#ddf8ff" stroke-width="2" fill="none"/>
+ <path d="M61 126 Q42 161 72 182" stroke="#d4eaff" opacity=".42" stroke-width="4" fill="none"/>
+ <path d="M122 122 Q138 155 119 178" stroke="#d6e2ff" opacity=".22" stroke-width="2" fill="none"/>
+ <path d="M65 48 L115 48 L115 60 L65 60Z" fill="#1b2550" stroke="url(#oro)" stroke-width="3"/>
+ <path d="M74 25 L106 25 L110 48 L70 48Z" fill="#52416f" stroke="url(#oro)" stroke-width="2.7"/>
+ <path d="M71 23 L109 23 L109 31 L71 31Z" fill="#9f77a4" stroke="url(#oro)" stroke-width="2"/>
+ <path d="M90 10 L90 22" stroke="url(#oro)" stroke-width="2"/>
+ <path d="M83 11 Q90 -2 97 11 Q90 18 83 11Z" fill="#85c9fa" stroke="url(#oro)" stroke-width="2"/>
+ <path d="M64 64 L50 100 M116 64 L130 100" stroke="url(#oro)" stroke-width="1.4" stroke-dasharray="3 5"/>
+ <circle cx="89" cy="147" r="8" fill="#bdfbff" opacity=".9" filter="url(#glow)"/>
+ <path d="M89 115 L93 130 L108 134 L93 138 L89 154 L85 138 L70 134 L85 130Z" fill="#d4fbff" opacity=".82"/>
+ <circle cx="105" cy="161" r="4" fill="#e3f9ff" opacity=".9"/>
+ <circle cx="70" cy="166" r="3" fill="#eff9ff" opacity=".76"/>
+ <circle cx="106" cy="124" r="2" fill="#f6fbff"/>
+ <path d="M26 70 L30 81 L41 85 L30 89 L26 100 L22 89 L11 85 L22 81Z" fill="#9ce5ff"/>
+ <path d="M151 37 L154 46 L163 49 L154 52 L151 61 L148 52 L139 49 L148 46Z" fill="#d8c0ff"/>
+ <circle cx="149" cy="182" r="2" fill="#a7ccfa"/>
+ </svg>

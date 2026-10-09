@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 220" role="img" aria-label="Gema lunar azul">
+  <defs>
+    <linearGradient id="metal" x1="0" x2="1" y2="1"><stop stop-color="#f4e5c7"/><stop offset=".47" stop-color="#8b9cc6"/><stop offset="1" stop-color="#d1b782"/></linearGradient>
+    <linearGradient id="cristal" x1="0" x2=".86" y2="1"><stop stop-color="#d9f4ff"/><stop offset=".28" stop-color="#6dbfe9"/><stop offset=".65" stop-color="#334bb4"/><stop offset="1" stop-color="#0b153f"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#7fccff" stop-opacity=".55"/><stop offset="1" stop-color="#476aff" stop-opacity="0"/></radialGradient>
+    <filter id="sombra" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+  <ellipse cx="91" cy="114" rx="74" ry="87" fill="url(#halo)"/>
+  <path d="M90 3 L90 28" fill="none" stroke="url(#metal)" stroke-width="2"/>
+  <circle cx="90" cy="21" r="7" fill="none" stroke="url(#metal)" stroke-width="3"/>
+  <path d="M64 47 L90 28 L116 47 L145 86 L90 197 L35 86 Z" fill="url(#cristal)" stroke="url(#metal)" stroke-width="3.3"/>
+  <path d="M64 47 L90 28 L116 47 L106 87 L74 87 Z" fill="#aed9f5" fill-opacity=".75"/>
+  <path d="M35 86 L74 87 L90 197 Z" fill="#1a3b83" fill-opacity=".75"/>
+  <path d="M145 86 L106 87 L90 197 Z" fill="#18255d" fill-opacity=".76"/>
+  <path d="M74 87 L90 28 L106 87 L90 197 Z" fill="#73c5f6" fill-opacity=".26"/>
+  <path d="M35 86 L74 87 L90 197 L106 87 L145 86 M64 47 L74 87 M116 47 L106 87" stroke="#dceafa" stroke-opacity=".69" stroke-width="1.5" fill="none"/>
+  <path d="M61 48 Q90 57 119 48" stroke="url(#metal)" stroke-width="2" fill="none"/>
+  <path d="M53 67 L42 74 M127 67 L138 74" stroke="url(#metal)" stroke-width="2"/>
+  <path d="M90 30 L90 7 M86 12 L94 12" stroke="#fff4df" stroke-width="1"/>
+  <path d="M18 41 L21 51 L31 54 L21 57 L18 67 L15 57 L5 54 L15 51Z" fill="#d5efff"/>
+  <path d="M158 137 L161 146 L170 149 L161 152 L158 161 L155 152 L146 149 L155 146Z" fill="#b8d5ff"/>
+  <circle cx="90" cy="108" r="7" fill="#ddfaff" opacity=".35" filter="url(#sombra)"/>
+  <circle cx="156" cy="42" r="2.5" fill="#d5ebff"/>
+  <circle cx="34" cy="170" r="2" fill="#c0cfff"/>
+</svg>

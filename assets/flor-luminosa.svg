@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Flor azul luminosa">
+ <defs>
+  <radialGradient id="petalos" cx=".4" cy=".3" r=".9"><stop stop-color="#e0fcff"/><stop offset=".35" stop-color="#72bdee"/><stop offset=".75" stop-color="#4142ad"/><stop offset="1" stop-color="#2c285f"/></radialGradient>
+  <radialGradient id="centro"><stop stop-color="#fff7da"/><stop offset=".36" stop-color="#abf9f7"/><stop offset="1" stop-color="#597aff"/></radialGradient>
+  <filter id="neblina" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="7"/></filter>
+ </defs>
+ <circle cx="90" cy="91" r="48" fill="#6d8bf7" opacity=".15" filter="url(#neblina)"/>
+ <g fill="url(#petalos)" stroke="#b1d8ff" stroke-opacity=".66" stroke-width="1.8">
+  <path d="M90 86 Q55 31 90 12 Q125 31 90 86Z"/>
+  <path d="M94 89 Q127 35 162 61 Q158 104 94 89Z"/>
+  <path d="M96 96 Q157 94 149 139 Q111 161 96 96Z"/>
+  <path d="M87 100 Q101 156 58 163 Q29 123 87 100Z"/>
+  <path d="M82 90 Q22 115 16 71 Q45 39 82 90Z"/>
+ </g>
+ <g fill="none" stroke="#d3ecff" stroke-opacity=".64" stroke-width="1.3">
+  <path d="M90 88 L90 25 M94 89 L148 66 M95 95 L140 137 M86 98 L62 152 M84 89 L27 73"/>
+ </g>
+ <circle cx="90" cy="92" r="18" fill="url(#centro)" stroke="#e7f3f8" stroke-width="2"/>
+ <circle cx="85" cy="86" r="5" fill="#fffbe8" opacity=".75"/>
+ <path d="M20 21 L23 30 L32 33 L23 36 L20 45 L17 36 L8 33 L17 30Z" fill="#d3f8ff"/>
+ <path d="M155 17 L158 25 L166 28 L158 31 L155 39 L152 31 L144 28 L152 25Z" fill="#d1dcff"/>
+ <circle cx="160" cy="151" r="3" fill="#a7c8ff"/>
+</svg>
