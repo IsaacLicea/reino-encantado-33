@@ -212,3 +212,22 @@
 
   carta.addEventListener("click", revelar);
 })();
+
+
+const mapaEscena = document.getElementById("mapaEscena");
+
+if (mapaEscena) {
+  const obsMapa = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          mapaEscena.classList.add("activo");
+          obsMapa.disconnect();
+        }
+      });
+    },
+    { threshold: 0.28 }
+  );
+
+  obsMapa.observe(mapaEscena);
+}
