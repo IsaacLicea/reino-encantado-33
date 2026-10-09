@@ -632,5 +632,58 @@
   }
 }
 
-
-
+/* Ajustes de Safari/iPhone y fondos de las secciones. */
+#reino .seccion-tarot::before,
+#reino .seccion-mapa::before {
+  display: block !important;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  pointer-events: none;
+}
+#reino .tarot-carta {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-perspective: 1200px;
+  perspective: 1200px;
+  -webkit-tap-highlight-color: transparent;
+}
+#reino .tarot-carta-inner {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+#reino .tarot-carta.revelada .tarot-carta-inner {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+#reino .tarot-cara {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+#reino .tarot-cara-frente {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+#mensajeIsaac[hidden] { display: none !important; }
+#reino .mensaje-isaac {
+  margin-top: 22px;
+  padding: 16px 18px;
+  text-align: center;
+  border: 1px solid rgba(194, 173, 133, .28);
+  border-radius: 14px;
+  background: rgba(10, 15, 30, .64);
+}
+#reino .mensaje-isaac p { color: #e7dac6; }
+#reino .mensaje-isaac:not([hidden]) { animation: aparecerMensajeTarot .45s ease-out both; }
+@keyframes aparecerMensajeTarot {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+#reino .seccion-dresscode > .texto-ancho { color: #c9d3e0; }
+#reino .dresscode-grid .dress-card p { color: #5a432b; }
+#reino .receta-pocion .receta-pocion-encabezado p { color: #5c4a33; }
+#reino .receta-pocion .receta-etiqueta { color: #7b5a2e; }
+@media (prefers-reduced-motion: reduce) {
+  #reino .mensaje-isaac:not([hidden]) { animation: none; }
+}

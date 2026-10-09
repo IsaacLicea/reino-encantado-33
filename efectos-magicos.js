@@ -94,13 +94,13 @@
     }
   }
 
-  // 5. Tarot de ocho arcanos ilustrados y reverso 3D real.
-    const carta = document.getElementById("cartaTarot");
-    const nombre = document.getElementById("tarotNombre");
-    const mensaje = document.getElementById("tarotMensaje");
-    const imagen = document.getElementById("tarotIlustracion");
-    const mensajeIsaac = document.getElementById("mensajeIsaac");
-    if (!carta || !nombre || !mensaje || !imagen) return;
+  // 5. Un único arcano interactivo con su mensaje al revelarse.
+  const carta = document.getElementById("cartaTarot");
+  const nombre = document.getElementById("tarotNombre");
+  const mensaje = document.getElementById("tarotMensaje");
+  const imagen = document.getElementById("tarotIlustracion");
+  const mensajeIsaac = document.getElementById("mensajeIsaac");
+  if (!carta || !nombre || !mensaje || !imagen) return;
 
   const cartas = [
     { nombre: "La Estrella", slug: "la-estrella", mensaje: "Una luz serena guía tu camino y te recuerda que aún hay magia esperándote." },
@@ -112,10 +112,12 @@
     { nombre: "Los Enamorados", slug: "los-enamorados", mensaje: "Los vínculos y decisiones cobran fuerza; el corazón también habla." },
     { nombre: "El Mago", slug: "el-mago", mensaje: "Tienes las herramientas para transformar lo que imaginas en realidad." }
   ];
+
   let anterior = -1;
   let girando = false;
   let visible = false;
-  const dormir = ms => new Promise(res => setTimeout(res, ms));
+  const dormir = ms => new Promise(resolve => setTimeout(resolve, ms));
+
   const azar = () => {
     let i;
     do { i = Math.floor(Math.random() * cartas.length); }
@@ -123,57 +125,37 @@
     anterior = i;
     return cartas[i];
   };
-    const revelar = async () => {
+
+  const revelar = async () => {
     if (girando) return;
     girando = true;
     carta.disabled = true;
 
-    if (mensajeIsaac) {
-      mensajeIsaac.hidden = true;
+    try {
+      if (mensajeIsaac) mensajeIsaac.hidden = true;
+      if (visible) {
+        carta.classList.remove("revelada");
+        if (!quieto) await dormir(530);
+        visible = false;
+      }
+
+      const resultado = azar();
+      nombre.textContent = resultado.nombre;
+      mensaje.textContent = resultado.mensaje;
+      imagen.src = "assets/tarot/" + resultado.slug + ".svg";
+      imagen.alt = "Ilustración de " + resultado.nombre;
+
+      if (!quieto) await dormir(75);
+      carta.classList.add("revelada");
+      visible = true;
+      if (!quieto) await dormir(970);
+      if (mensajeIsaac) mensajeIsaac.hidden = false;
+      carta.setAttribute("aria-label", "Carta revelada: " + resultado.nombre + ". Toca para descubrir otra carta.");
+    } finally {
+      carta.disabled = false;
+      girando = false;
     }
-
-    if (visible) {
-      carta.classList.remove("revelada");
-      if (!quieto) await dormir(530);
-      visible = false;
-    }
-
-    const resultado = azar();
-    nombre.textContent = resultado.nombre;
-    mensaje.textContent = resultado.mensaje;
-    imagen.src = "assets/tarot/" + resultado.slug + ".svg";
-    imagen.alt = "Ilustración de " + resultado.nombre;
-
-    if (!quieto) await dormir(75);
-    carta.classList.add("revelada");
-    visible = true;
-
-    if (!quieto) await dormir(970);
-
-    if (mensajeIsaac) {
-      mensajeIsaac.hidden = false;
-    }
-
-    carta.setAttribute(
-      "aria-label",
-      "Carta revelada: " + resultado.nombre + ". Toca para descubrir otra carta."
-    );
-
-    carta.disabled = false;
-    girando = false;
   };
-    const resultado = azar();
-    nombre.textContent = resultado.nombre;
-    mensaje.textContent = resultado.mensaje;
-    imagen.src = "assets/tarot/" + resultado.slug + ".svg";
-    imagen.alt = "Ilustración de " + resultado.nombre;
-    if (!quieto) await dormir(75);
-    carta.classList.add("revelada");
-    visible = true;
-    if (!quieto) await dormir(970);
-    carta.setAttribute("aria-label", "Carta revelada: " + resultado.nombre + ". Toca para descubrir otra carta.");
-    carta.disabled = false;
-    girando = false;
-  };
+
   carta.addEventListener("click", revelar);
 })();
