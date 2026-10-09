@@ -687,3 +687,152 @@
 @media (prefers-reduced-motion: reduce) {
   #reino .mensaje-isaac:not([hidden]) { animation: none; }
 }
+
+
+/* ================================
+   MAPA ANTIGUO DESDOBLÁNDOSE
+================================ */
+
+#reino .mapa-escena {
+  position: relative;
+  width: min(980px, 100%);
+  margin: 30px auto 0;
+  padding: 28px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(20, 18, 16, 0.65), rgba(10, 10, 12, 0.78));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+#reino .mapa-fondo-antiguo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(35, 25, 18, 0.42), rgba(8, 10, 16, 0.50)),
+    url("assets/mapa-antiguo-fantasia.png");
+  background-size: cover;
+  background-position: center;
+  filter: sepia(0.35) brightness(0.8);
+  opacity: 0.42;
+  transform: scale(1.05);
+}
+
+#reino .mapa-pergamino {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(233, 219, 187, 0.92), rgba(196, 172, 128, 0.84));
+  border: 1px solid rgba(157, 121, 69, 0.35);
+  box-shadow:
+    0 20px 44px rgba(0, 0, 0, 0.30),
+    inset 0 1px 0 rgba(255, 246, 221, 0.58);
+  transform-origin: top center;
+  opacity: 0;
+  transform:
+    perspective(1400px)
+    rotateX(-82deg)
+    scaleY(0.12)
+    translateY(-18px);
+}
+
+#reino .mapa-escena.activo .mapa-pergamino {
+  animation: desdoblarMapa 1.45s cubic-bezier(.22, .88, .24, 1) forwards;
+}
+
+@keyframes desdoblarMapa {
+  0% {
+    opacity: 0;
+    transform:
+      perspective(1400px)
+      rotateX(-82deg)
+      scaleY(0.12)
+      translateY(-18px);
+  }
+  42% {
+    opacity: 1;
+    transform:
+      perspective(1400px)
+      rotateX(-24deg)
+      scaleY(0.58)
+      translateY(0);
+  }
+  72% {
+    opacity: 1;
+    transform:
+      perspective(1400px)
+      rotateX(8deg)
+      scaleY(1.03)
+      translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform:
+      perspective(1400px)
+      rotateX(0deg)
+      scaleY(1)
+      translateY(0);
+  }
+}
+
+#reino .mapa-pliegues {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(120, 93, 52, 0.06) 18%,
+      rgba(255, 244, 218, 0.12) 20%,
+      rgba(120, 93, 52, 0.06) 22%,
+      transparent 24%,
+      transparent 48%,
+      rgba(120, 93, 52, 0.06) 49%,
+      rgba(255, 244, 218, 0.12) 50%,
+      rgba(120, 93, 52, 0.06) 51%,
+      transparent 52%,
+      transparent 76%,
+      rgba(120, 93, 52, 0.06) 78%,
+      rgba(255, 244, 218, 0.12) 80%,
+      rgba(120, 93, 52, 0.06) 82%,
+      transparent 84%
+    ),
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(120, 93, 52, 0.06) 28%,
+      rgba(255, 244, 218, 0.10) 30%,
+      rgba(120, 93, 52, 0.06) 32%,
+      transparent 34%,
+      transparent 66%,
+      rgba(120, 93, 52, 0.06) 68%,
+      rgba(255, 244, 218, 0.10) 70%,
+      rgba(120, 93, 52, 0.06) 72%,
+      transparent 74%
+    );
+  mix-blend-mode: multiply;
+}
+
+#reino #mapa-privado {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  min-height: 420px;
+  border: 0;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.2);
+}
+
+@media (max-width: 768px) {
+  #reino .mapa-escena {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  #reino #mapa-privado {
+    min-height: 340px;
+  }
+}
