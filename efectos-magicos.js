@@ -208,70 +208,6 @@
     if (mensajeIsaac) mensajeIsaac.hidden = false;
   };
 
-  // Pequeño hechizo sonoro sintetizado: un giro de aire con tres destellos.
-  // No requiere descargar MP3 ni interrumpe la música ambiental del sitio.
-  const sonidoGiroMagico = () => {
-    const Audio = window.AudioContext || window.webkitAudioContext;
-    if (!Audio) return;
-    try {
-      const audio = new Audio();
-      const inicio = audio.currentTime + 0.012;
-      const master = audio.createGain();
-      master.gain.setValueAtTime(0.12, inicio);
-      master.connect(audio.destination);
-
-      const duracion = 0.62;
-      const longitud = Math.floor(audio.sampleRate * duracion);
-      const ruido = audio.createBuffer(1, longitud, audio.sampleRate);
-      const canal = ruido.getChannelData(0);
-      for (let i = 0; i < longitud; i++) {
-        canal[i] = (Math.random() * 2 - 1) * (1 - i / longitud);
-      }
-      const aire = audio.createBufferSource();
-      aire.buffer = ruido;
-      const filtro = audio.createBiquadFilter();
-      filtro.type = "bandpass";
-      filtro.Q.value = 0.65;
-      filtro.frequency.setValueAtTime(450, inicio);
-      filtro.frequency.exponentialRampToValueAtTime(2100, inicio + 0.35);
-      filtro.frequency.exponentialRampToValueAtTime(780, inicio + duracion);
-      const envolvente = audio.createGain();
-      envolvente.gain.setValueAtTime(0.0001, inicio);
-      envolvente.gain.exponentialRampToValueAtTime(0.65, inicio + 0.12);
-      envolvente.gain.exponentialRampToValueAtTime(0.0001, inicio + duracion);
-      aire.connect(filtro);
-      filtro.connect(envolvente);
-      envolvente.connect(master);
-      aire.start(inicio);
-      aire.stop(inicio + duracion);
-
-      // Campanillas suaves, como un brillo que aparece tras el giro.
-      [[880, 0.17, 0.17], [1318.5, 0.34, 0.13], [1760, 0.50, 0.09]]
-        .forEach(([frecuencia, demora, volumen]) => {
-          const t = inicio + demora;
-          const oscilador = audio.createOscillator();
-          const nota = audio.createGain();
-          oscilador.type = "sine";
-          oscilador.frequency.setValueAtTime(frecuencia, t);
-          nota.gain.setValueAtTime(0.0001, t);
-          nota.gain.exponentialRampToValueAtTime(volumen, t + 0.025);
-          nota.gain.exponentialRampToValueAtTime(0.0001, t + 0.46);
-          oscilador.connect(nota);
-          nota.connect(master);
-          oscilador.start(t);
-          oscilador.stop(t + 0.48);
-        });
-
-      // Se invoca dentro del toque del visitante (compatible con iPhone).
-      if (audio.state === "suspended") {
-        audio.resume().catch(() => {});
-      }
-      setTimeout(() => { audio.close().catch(() => {}); }, 1700);
-    } catch {
-      // Si un dispositivo bloquea Web Audio, el giro visual sigue funcionando.
-    }
-  };
-
   // Al regresar, se muestra la misma carta sin permitir un segundo sorteo.
   const guardada = leerGuardada();
   if (guardada) {
@@ -292,7 +228,7 @@
     pintarLectura(resultado);
     if (avisoUnico) avisoUnico.textContent = "✧ El oráculo está revelando tu destino...";
     // Debe iniciar directamente desde el gesto, antes de cualquier await.
-    sonidoGiroMagico();
+    window.SonidosDelReino?.girarTarot();
 
     try {
       if (!quieto) await dormir(75);

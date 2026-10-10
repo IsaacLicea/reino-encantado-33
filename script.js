@@ -45,6 +45,10 @@ function abrirReino() {
 
   document.body.classList.add("animando-portal");
 
+  // Crece hasta el destello (1.05 s) y desaparece al abrirse el portal.
+  // Se reproduce con este clic para cumplir las reglas de Safari/iPhone.
+  window.SonidosDelReino?.abrirPortal();
+
   // Comienza el conjuro.
   portal.classList.add("lanzando");
 
