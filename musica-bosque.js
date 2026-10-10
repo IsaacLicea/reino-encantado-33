@@ -1,7 +1,7 @@
-/* Reino de los 33 — "Luciérnagas al caer la tarde".
-   Suite original de fantasía luminosa: arpa pulsada, flauta aérea,
-   cuerdas cálidas, coro etéreo y destellos de celesta.
-   No necesita audio externo y solo suena al activar el botón. */
+/* Reino de los 33 — "La danza de las luciérnagas".
+   Fantasía instrumental original de 6/8: melodía tarareable,
+   pulso de madera, un secreto armónico y luces de arpa y flauta.
+   Reproducción voluntaria, sin grabaciones externas. */
 (() => {
   "use strict";
 
@@ -11,7 +11,7 @@
 
   const AudioAPI = window.AudioContext || window.webkitAudioContext;
   // Ritmo de 6/8 ligero, como un pequeño vals feérico entre luciérnagas.
-  const PULSO = 60 / 92;
+  const PULSO = 60 / 104; // 6/8 más vivo y danzante
   const CORCHEA = PULSO / 2;
   const COMPASES = 48;
   const DURACION_CICLO = COMPASES * 6 * CORCHEA;
@@ -28,119 +28,102 @@
   let ruido = null;
   const cuerdas = new Map();
 
-  // Armonía en Re mayor, con colores de Sol lidio y acordes add9.
-  // Evitamos la melancolía del modo menor: la tarde se ilumina poco a poco.
+
+  // Re mayor luminoso. El Cmaj7(#11) crea un destello de misterio
+  // antes del acorde de La que nos conduce otra vez a Re.
   const armonia = [
-    [55, 59, 62, 66, 69],  // Gmaj9
-    [50, 57, 62, 64, 66],  // Dadd9
-    [45, 52, 57, 59, 64],  // Aadd9
-    [47, 54, 59, 62, 66],  // Bm7
-    [55, 59, 62, 66, 69],  // Gmaj9
-    [54, 57, 62, 64, 69],  // D/F# add9
-    [52, 59, 62, 66, 71],  // Em9
-    [45, 52, 57, 61, 64]   // Amaj add9
+    [50,57,62,64,66], [55,59,62,66,69], [47,54,59,62,66],
+    [45,52,57,61,64], [52,59,62,66,71], [55,59,62,66,69],
+    [48,55,59,64,66], [45,52,57,61,64]
   ];
-
-  // Melodía original con ascensos esperanzadores y pausas para respirar.
-  // Paso, altura MIDI, duración en pulsos de negra.
-  const motivos = [
-    [[.6, 74, 1.30], [3.25, 78, 1.38]],
-    [[.45, 76, 1.14], [2.95, 74, 1.48]],
-    [[.62, 73, 1.22], [3.25, 76, 1.25]],
-    [[.46, 71, 1.25], [3.24, 74, 1.56]],
-    [[.60, 78, 1.32], [3.28, 81, 1.28]],
-    [[.48, 79, 1.20], [3.12, 78, 1.51]],
-    [[.75, 76, 1.20], [3.10, 74, 1.30]],
-    [[.52, 73, 1.15], [3.04, 76, 1.52]]
+  // Tema principal de cinco notas; vuelve con cambios de intensidad.
+  const tema = [
+    [78,81,78,76,74], [79,81,83,81,78],
+    [78,74,76,78,81], [76,73,76,78,81],
+    [79,78,76,79,83], [83,81,79,78,76],
+    [76,79,83,78,79], [76,73,76,78,74]
   ];
-
-  // Una pequeña historia musical de 48 compases:
-  // 0–7: ocaso cálido; 8–19: despiertan las hadas;
-  // 20–35: celebración luminosa; 36–47: cielo estrellado.
   const eventos = [];
+  // Ocaso (0-7), baile (8-15), sendero secreto (16-23),
+  // fiesta luminosa (24-39), últimas estrellas (40-47).
   for (let compas = 0; compas < COMPASES; compas++) {
-    const acorde = armonia[compas % armonia.length];
+    const acorde = armonia[compas % 8];
+    const frase = tema[compas % 8];
     const base = compas * 6;
-    const inicio = compas < 8;
-    const despertar = compas >= 8 && compas < 20;
-    const esplendor = compas >= 20 && compas < 36;
-    const noche = compas >= 36;
-    const intensidad = inicio ? .72 : esplendor ? 1.02 : noche ? .77 : .91;
+    const intro = compas < 4;
+    const misterio = compas >= 16 && compas < 24;
+    const fiesta = compas >= 24 && compas < 40;
+    const final = compas >= 40;
+    const energia = intro ? .58 : misterio ? .76 : fiesta ? 1 : final ? .72 : .89;
 
-    if (compas % 2 === 0 || esplendor) {
-      eventos.push({
-        pulso: base + .04, tipo: "cuerdas",
-        notas: [acorde[1], acorde[2], acorde[3]],
-        intensidad: esplendor ? .9 : noche ? .57 : .68
-      });
+    // Pulso físico y orgánico en dos grupos de tres (no batería electrónica).
+    if (!intro) {
+      [0.06,3.08].forEach((p,i) => eventos.push({
+        pulso:base+p, tipo:"paso", nota:acorde[0]-(i===0?12:0),
+        intensidad:energia*(i===0?.83:.66)
+      }));
+      [1.94,4.9].forEach((p,i) => eventos.push({
+        pulso:base+p, tipo:"madera", intensidad:energia*(fiesta?.80:.61),
+        paneo:i===0?-.22:.22
+      }));
+      if (fiesta || misterio) {
+        [1.07,2.09,4.06,5.09].forEach((p,i) => eventos.push({
+          pulso:base+p, tipo:"hojas", intensidad:misterio?.20:.31,
+          paneo:i%2?.2:-.2
+        }));
+      }
     }
-    if (compas % 4 === 0 && compas >= 4) {
-      eventos.push({
-        pulso: base + .08, tipo: "coro",
-        notas: [acorde[2] + 12, acorde[3] + 12],
-        intensidad: esplendor ? .88 : .56
-      });
-    }
-    if (esplendor && compas % 4 === 0) {
-      eventos.push({
-        pulso: base + .17, tipo: "violonchelo",
-        nota: acorde[0] - 12, intensidad: .42
-      });
-    }
+    // Arpa de cuerda física, con síncopas diminutas y paneo suave.
+    const notasArpa=[0,2,4,1,3,4];
+    const arpegio=intro?[.11,1.6,3.09,4.62]:[.11,1.07,2.05,3.11,4.07,5.07];
+    arpegio.forEach((p,i) => eventos.push({
+      pulso:base+p+((i+compas)%3-1)*.018, tipo:"arpa",
+      nota:acorde[notasArpa[i]]+12,
+      intensidad:energia*((i===0||i===3)?1.04:.78),
+      paneo:((compas+i)%5-2)*.12
+    }));
 
-    // El arpa tiene un vaivén de 6/8 con ligeras inflexiones humanas.
-    const pasos = inicio || noche ?
-      [.10, 1.44, 3.06, 4.52] :
-      [.10, 1.07, 2.08, 3.13, 4.09, 5.06];
-    const patron = [0, 2, 4, 3, 2, 4];
-    pasos.forEach((paso, i) => {
-      eventos.push({
-        pulso: base + paso + ((compas + i) % 3 - 1) * .025,
-        tipo: "arpa",
-        nota: acorde[patron[i]] + (i === 0 ? 12 : 12),
-        intensidad: intensidad * (i === 0 ? 1 : .80),
-        paneo: ((compas + i) % 5 - 2) * .13
-      });
-    });
-
-    if (!inicio || compas === 6) {
-      motivos[compas % 8].forEach(([paso, nota, largo], i) => {
-        const segundaVoz = esplendor && i === 1 && compas % 4 === 1;
+    // Motivo tarareable: siempre reaparece, primero en susurros,
+    // luego con más fuerza. Pausas intencionadas entre frases.
+    const ataques=misterio?[.35,1.33,2.28,3.7,4.65]:[.24,1.13,2.14,3.33,4.69];
+    const largos=[.38,.46,.51,.58,.85];
+    if (!intro || compas>=2) {
+      frase.forEach((nota,i) => {
+        if (final && i===2 && compas%2===0) return;
         eventos.push({
-          pulso: base + paso,
-          tipo: "flauta",
-          nota: segundaVoz ? nota + 2 : nota,
-          largo,
-          intensidad: despertar ? .71 : esplendor ? .94 : noche ? .62 : .49
+          pulso:base+ataques[i], tipo:"flauta", nota, largo:largos[i],
+          intensidad:(fiesta?.96:misterio?.73:final?.70:.85)*(i===4?1.1:1)
         });
       });
     }
-
-    // Destellos de celesta: más alegres en el tramo de celebración.
-    if (compas % 2 === 1 || esplendor) {
-      eventos.push({
-        pulso: base + (esplendor ? 2.6 : 4.43),
-        tipo: "campanilla",
-        nota: acorde[4] + (esplendor ? 12 : 7),
-        intensidad: esplendor ? .72 : .52
-      });
+    if (!intro && (fiesta||compas%2===1)) {
+      [2.72,5.42].forEach((p,i) => eventos.push({
+        pulso:base+p, tipo:"destello", nota:frase[i===0?2:0]+12,
+        intensidad:fiesta?.61:misterio?.34:.43, paneo:i===0?-.36:.36
+      }));
     }
-    if (compas % 4 === 3 && compas < 44) {
-      eventos.push({
-        pulso: base + 5.24, tipo: "destello",
-        nota: acorde[3] + 12,
-        intensidad: esplendor ? .9 : .55,
-        paneo: compas % 8 < 4 ? -.38 : .38
-      });
-    }
-    if (compas % 8 === 0 || compas === 19 || compas === 35) {
-      eventos.push({
-        pulso: base + .02, tipo: "brisa",
-        intensidad: esplendor ? .53 : .35
-      });
-    }
+    // El misterio se sostiene con cuerdas suaves; el clímax las eleva.
+    if (compas%2===0 || fiesta) eventos.push({
+      pulso:base+.04, tipo:"cuerdas", notas:[acorde[1],acorde[2],acorde[3]],
+      intensidad:fiesta?.88:misterio?.54:final?.52:.68
+    });
+    if (compas%4===0 && compas>=4) eventos.push({
+      pulso:base+.08, tipo:"coro", notas:[acorde[2]+12,acorde[3]+12],
+      intensidad:fiesta?.75:misterio?.37:.53
+    });
+    if (fiesta && compas%4===0) eventos.push({
+      pulso:base+.13, tipo:"violonchelo",nota:acorde[0]-12,intensidad:.42
+    });
+    if (compas%2===1 || fiesta) eventos.push({
+      pulso:base+(misterio?4.3:2.66), tipo:"campanilla",
+      nota:acorde[4]+(fiesta?12:7),
+      intensidad:fiesta?.64:misterio?.34:.47
+    });
+    if (compas%8===0||compas===23||compas===39) eventos.push({
+      pulso:base+.02,tipo:"brisa",intensidad:misterio?.45:.3
+    });
   }
-  eventos.sort((a, b) => a.pulso - b.pulso);
+  eventos.sort((a,b)=>a.pulso-b.pulso);
 
   function conectarConPan(nodo, paneo) {
     if (audio.createStereoPanner) {
@@ -288,12 +271,12 @@
   }
 
   function flauta(nota, cuando, largo, intensidad) {
-    const duracion = largo * PULSO + .5;
+    const duracion = largo * PULSO + .23;
     const salida = audio.createGain();
-    const ataque = Math.min(.31, duracion * .26);
+    const ataque = Math.min(.105, duracion * .24);
     salida.gain.setValueAtTime(.0001, cuando);
     salida.gain.linearRampToValueAtTime(.060 * intensidad, cuando + ataque);
-    salida.gain.setValueAtTime(.054 * intensidad, cuando + Math.max(ataque + .05, duracion - .42));
+    salida.gain.setValueAtTime(.054 * intensidad, cuando + Math.max(ataque + .04, duracion - .18));
     salida.gain.exponentialRampToValueAtTime(.0001, cuando + duracion);
     conectarConPan(salida, .12);
 
@@ -415,12 +398,67 @@
     fuente.stop(cuando + duracion + .02);
   }
 
+
+  // Dos pisadas sedosas de 6/8, con tono de madera y resonancia cálida.
+  function paso(nota, cuando, intensidad) {
+    const osc=audio.createOscillator();
+    const salida=audio.createGain();
+    osc.type="sine";
+    const f=Math.max(49,frecuencia(nota));
+    osc.frequency.setValueAtTime(f*1.26,cuando);
+    osc.frequency.exponentialRampToValueAtTime(f*.8,cuando+.19);
+    salida.gain.setValueAtTime(.0001,cuando);
+    salida.gain.linearRampToValueAtTime(.060*intensidad,cuando+.013);
+    salida.gain.exponentialRampToValueAtTime(.0001,cuando+.29);
+    osc.connect(salida);
+    conectarConPan(salida,0);
+    osc.start(cuando);
+    osc.stop(cuando+.31);
+  }
+
+  // Golpe apagado que sugiere un tambor de marco hecho a mano.
+  function madera(cuando,intensidad,paneo) {
+    const osc=audio.createOscillator();
+    const salida=audio.createGain();
+    osc.type="triangle";
+    osc.frequency.setValueAtTime(430,cuando);
+    osc.frequency.exponentialRampToValueAtTime(240,cuando+.095);
+    salida.gain.setValueAtTime(.0001,cuando);
+    salida.gain.linearRampToValueAtTime(.023*intensidad,cuando+.007);
+    salida.gain.exponentialRampToValueAtTime(.0001,cuando+.14);
+    osc.connect(salida);
+    conectarConPan(salida,paneo);
+    osc.start(cuando);
+    osc.stop(cuando+.15);
+  }
+
+  // Hojas de plata: una pulsación suave de aire filtrado.
+  function hojas(cuando,intensidad,paneo) {
+    const fuente=audio.createBufferSource();
+    fuente.buffer=ruido;
+    const filtro=audio.createBiquadFilter();
+    filtro.type="highpass";
+    filtro.frequency.value=2700;
+    const salida=audio.createGain();
+    salida.gain.setValueAtTime(.0001,cuando);
+    salida.gain.linearRampToValueAtTime(.008*intensidad,cuando+.006);
+    salida.gain.exponentialRampToValueAtTime(.0001,cuando+.09);
+    fuente.connect(filtro);
+    filtro.connect(salida);
+    conectarConPan(salida,paneo);
+    fuente.start(cuando);
+    fuente.stop(cuando+.1);
+  }
+
   function tocar(evento, cuando) {
     if (evento.tipo === "arpa") arpa(evento.nota, cuando, evento.intensidad, evento.paneo);
     else if (evento.tipo === "flauta") flauta(evento.nota, cuando, evento.largo, evento.intensidad);
     else if (evento.tipo === "campanilla") campanilla(evento.nota, cuando, evento.intensidad);
     else if (evento.tipo === "destello") destello(evento.nota, cuando, evento.intensidad, evento.paneo);
     else if (evento.tipo === "brisa") brisa(cuando, evento.intensidad);
+    else if (evento.tipo === "paso") paso(evento.nota, cuando, evento.intensidad);
+    else if (evento.tipo === "madera") madera(cuando, evento.intensidad, evento.paneo);
+    else if (evento.tipo === "hojas") hojas(cuando, evento.intensidad, evento.paneo);
     else if (evento.tipo === "coro") coroEtéreo(evento.notas, cuando, evento.intensidad);
     else if (evento.tipo === "cuerdas") {
       evento.notas.forEach((nota, i) =>
@@ -454,7 +492,7 @@
     boton.setAttribute("aria-pressed", String(tocando));
     boton.setAttribute(
       "aria-label",
-      tocando ? "Pausar Luciérnagas al caer la tarde" : "Activar Luciérnagas al caer la tarde"
+      tocando ? "Pausar la danza de las luciérnagas" : "Activar la danza de las luciérnagas"
     );
     estado.textContent = tocando ? "Pausar música" : "Activar música";
   }
