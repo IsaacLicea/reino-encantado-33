@@ -228,11 +228,20 @@ const lucesMoviles = window.matchMedia("(max-width: 700px)").matches;
 crearLuciernagas("luciernagasPortal", lucesMoviles ? 12 : 22);
 crearLuciernagas("luciernagasHero", lucesMoviles ? 8 : 16);
 
+// Solo Apps Script puede activar el sello después de guardar una respuesta.
 window.addEventListener("message", (event) => {
-  if (!event.data || event.data.type !== "rsvp-enviado") return;
+  const origenValido =
+    event.origin === "https://script.google.com" ||
+    /^https:\/\/(?:[a-z0-9-]+\.)*googleusercontent\.com$/i.test(event.origin);
+  if (!origenValido || !event.data || event.data.type !== "rsvp-enviado") return;
 
   const sello = document.getElementById("selloConfirmacion");
-  if (!sello) return;
+  const formulario = document.getElementById("formulario-rsvp");
+  if (!sello || !formulario || formulario.hidden) return;
 
-  sello.classList.add("activo");
+  sello.hidden = false;
+  // Deja que el navegador lo muestre antes de iniciar la animación.
+  requestAnimationFrame(() => {
+    sello.classList.add("activo");
+  });
 });

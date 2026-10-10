@@ -1722,7 +1722,18 @@
 }
 
 
-/* Sello de lacre al pie de la receta: ornamental, no confirma envío. */
+/* Sello de lacre: aparece únicamente cuando Apps Script confirma el guardado. */
+#reino .receta-pocion .cierre-reino[hidden] {
+  display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  #reino .receta-pocion .cierre-reino {
+    transition: none !important;
+  }
+  #reino .receta-pocion .cierre-reino.activo .sello-lacre {
+    animation: none !important;
+  }
+}
 #reino .receta-pocion .cierre-reino {
   display: grid;
   justify-items: center;
