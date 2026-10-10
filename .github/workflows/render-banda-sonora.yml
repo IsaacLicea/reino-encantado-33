@@ -2,7 +2,7 @@ name: Renderizar banda sonora orquestal
 on:
   push:
     branches:
-      - feature/banda-sonora-orquestal-grabada
+      - feature/armonica-de-cristal-reino
     paths:
       - '.github/workflows/render-banda-sonora.yml'
       - 'scripts/render_banda_sonora.py'
@@ -35,17 +35,17 @@ jobs:
         run: python scripts/render_banda_sonora.py
       - name: Verificar el MP3 generado
         run: |
-          test -s assets/danza-luciernagas-cinematica.mp3
-          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 assets/danza-luciernagas-cinematica.mp3
+          test -s assets/danza-luciernagas-cristal.mp3
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 assets/danza-luciernagas-cristal.mp3
       - name: Guardar solo la grabación final
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/danza-luciernagas-cinematica.mp3
+          git add assets/danza-luciernagas-cristal.mp3
           if git diff --cached --quiet; then
             echo "La banda sonora ya estaba actualizada."
           else
-            git commit -m "Añadir banda sonora orquestal grabada para la invitación"
+            git commit -m "Añadir versión con armónica de cristal de la banda sonora"
             git fetch origin "${{ github.ref_name }}"
             git rebase "origin/${{ github.ref_name }}"
             git push origin HEAD:"${{ github.ref_name }}"
