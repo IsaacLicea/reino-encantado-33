@@ -50,7 +50,7 @@ def main() -> None:
             print("Intentando MP3 directo del sitio oficial PeriTune...", flush=True)
             fetch(OFFICIAL, OUTPUT)
             seconds = duration(OUTPUT)
-            if not (180 < seconds < 285 and OUTPUT.stat().st_size > 2_000_000):
+            if not (115 < seconds < 140 and OUTPUT.stat().st_size > 2_000_000):
                 raise ValueError(f"MP3 oficial inesperado: {seconds}s")
             print("SOURCE: PeriTune oficial (MP3 intacto)", flush=True)
         except (requests.RequestException, ValueError, subprocess.CalledProcessError, OSError) as exc:
@@ -71,7 +71,7 @@ def main() -> None:
                   "convertido de Opus a MP3 con fundidos cortos", flush=True)
 
         final_duration = duration(OUTPUT)
-        if not 180 < final_duration < 285 or OUTPUT.stat().st_size < 2_000_000:
+        if not 115 < final_duration < 140 or OUTPUT.stat().st_size < 2_000_000:
             raise ValueError("World_OP2 está vacío, mal recortado o truncado")
         print(f"WORLD_OP2_VALIDADO: duration={final_duration:.3f}s; "
               f"bytes={OUTPUT.stat().st_size}", flush=True)
