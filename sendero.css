@@ -1097,3 +1097,106 @@
     border-radius: 10px;
   }
 }
+
+
+/* ================================================
+   EL PACTO ENCANTADO — FORMULARIO SIN ESPACIO VACÍO
+   El contenido es de Apps Script (otro dominio): la
+   altura es una estimación y puede desplazar dentro
+   del iframe si un pase tiene más campos.
+================================================ */
+#reino .receta-pocion {
+  padding-bottom: 12px;
+}
+#reino .receta-pocion #formulario-rsvp {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  height: 520px;
+  min-height: 0;
+  max-height: none;
+  margin: 12px auto 0;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+}
+#reino .receta-pocion #formulario-rsvp[hidden] {
+  display: none !important;
+}
+@media (max-width: 640px) {
+  #reino .receta-pocion {
+    padding-bottom: 10px;
+  }
+  #reino .receta-pocion #formulario-rsvp {
+    height: 610px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+}
+
+/* ================================================
+   LA MODA DEL BOSQUE — MARCO DE ORO ANTIGUO
+   El tablero sólo aparece después de proporcionar
+   su URL pública, para no mostrar un cuadro vacío.
+================================================ */
+#reino .marco-tablero-pinterest[hidden] {
+  display: none !important;
+}
+#reino .marco-tablero-pinterest {
+  position: relative;
+  width: min(790px, 100%);
+  margin: 28px auto 0;
+  padding: clamp(11px, 2.4vw, 23px);
+  border: 4px ridge #caa566;
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, #6b4c24 0%, #f8e3ae 16%, #94692e 38%, #d6ae67 68%, #5e401e 100%);
+  box-shadow:
+    0 0 0 2px rgba(56, 33, 10, .85),
+    0 0 0 6px rgba(197, 158, 91, .22),
+    0 22px 44px rgba(0, 0, 0, .34),
+    inset 0 1px 2px rgba(255, 247, 202, .55);
+}
+#reino .marco-tablero-pinterest::before,
+#reino .marco-tablero-pinterest::after {
+  content: "❦";
+  position: absolute;
+  z-index: 2;
+  top: -13px;
+  color: #f8df99;
+  font-size: 28px;
+  line-height: 1;
+  text-shadow: 0 2px 1px #503016, 0 0 8px rgba(239, 205, 137, .45);
+}
+#reino .marco-tablero-pinterest::before { left: 12px; }
+#reino .marco-tablero-pinterest::after { right: 12px; transform: scaleX(-1); }
+#reino .marco-tablero-interior {
+  min-width: 0;
+  padding: clamp(12px, 2vw, 22px);
+  border: 2px solid rgba(127, 86, 33, .67);
+  border-radius: 8px;
+  background: linear-gradient(160deg, #efe4c8, #c9b58b);
+  box-shadow: inset 0 0 18px rgba(82, 53, 26, .18);
+}
+#reino .marco-tablero-etiqueta {
+  margin: 0 0 16px;
+  color: #5b3d1d;
+  font-family: "Cinzel", serif;
+  font-size: clamp(.88rem, 2vw, 1.1rem);
+  letter-spacing: .08em;
+}
+#reino .contenido-tablero-pinterest {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-align: center;
+}
+#reino .contenido-tablero-pinterest iframe {
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  #reino .marco-tablero-pinterest { margin-top: 20px; padding: 9px; }
+  #reino .marco-tablero-interior { padding: 10px; }
+}

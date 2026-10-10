@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="efectos-magicos.css?v=20261009-mapa2" />
     <script src="efectos-magicos.js?v=20261009-mapa2" defer></script>
-    <link rel="stylesheet" href="sendero.css?v=20261009-compact-map" />
+    <link rel="stylesheet" href="sendero.css?v=20261009-rsvp-pinterest" />
   </head>
   <body>
     <!-- INTRO / PORTAL -->
@@ -122,9 +122,12 @@
         </p>
 
 
-        <div class="dresscode-grid">
-          <div class="dress-card">
-            
+        <!-- Tablero público de Pinterest. Se activa al proporcionar
+             su enlace; mientras tanto no se muestra un recuadro vacío. -->
+        <div id="marcoTableroPinterest" class="marco-tablero-pinterest" hidden>
+          <div class="marco-tablero-interior">
+            <p class="marco-tablero-etiqueta">El grimorio de los atuendos</p>
+            <div id="contenidoTableroPinterest" class="contenido-tablero-pinterest"></div>
           </div>
         </div>
       </section>
