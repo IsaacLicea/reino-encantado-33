@@ -220,7 +220,7 @@ def main():
     subprocess.run([
         "ffmpeg","-y","-hide_banner","-loglevel","error",
         "-i",str(RAW),
-        "-af","highpass=f=45,lowpass=f=14500,aecho=0.72:0.25:65|155:0.13|0.11,acompressor=threshold=0.50:ratio=2.0:attack=18:release=200,loudnorm=I=-19:TP=-1.5:LRA=10",
+        "-af","atrim=duration=112.0,asetpts=PTS-STARTPTS,highpass=f=45,lowpass=f=14500,aecho=0.72:0.25:65|155:0.13|0.11,acompressor=threshold=0.50:ratio=2.0:attack=18:release=200,loudnorm=I=-19:TP=-1.5:LRA=10,afade=t=in:st=0:d=0.55,afade=t=out:st=109.8:d=2.2",
         "-codec:a","libmp3lame","-qscale:a","4",
         "-ar","44100",str(OUTPUT)
     ],check=True)
