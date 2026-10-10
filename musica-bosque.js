@@ -492,7 +492,7 @@
     boton.setAttribute("aria-pressed", String(tocando));
     boton.setAttribute(
       "aria-label",
-      tocando ? "Pausar La danza de las luciérnagas" : "Activar La danza de las luciérnagas"
+      tocando ? "Pausar la danza de las luciérnagas" : "Activar la danza de las luciérnagas"
     );
     estado.textContent = tocando ? "Pausar música" : "Activar música";
   }
