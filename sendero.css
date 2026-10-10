@@ -1251,6 +1251,29 @@
   text-shadow: 0 1px 8px rgba(0,0,0,0.20);
 }
 
+/* Invitación a descansar después de la fiesta, sin un recuadro extra. */
+#reino .seccion-mapa .mapa-hospedaje {
+  width: min(660px, 100%);
+  margin: 26px auto 6px;
+  padding: 15px clamp(10px, 3vw, 22px) 0;
+  border-top: 1px solid rgba(225, 201, 152, .38);
+  color: #f1eadf;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: clamp(.94rem, 2vw, 1.03rem);
+  line-height: 1.7;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .2);
+}
+#reino .seccion-mapa .mapa-hospedaje strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #e9d2a5;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(.91rem, 2vw, 1.04rem);
+  font-weight: 500;
+  letter-spacing: .035em;
+}
+
 /* El mapa compacto de Apps Script pasa a 300px en iPhone. */
 @media (max-width: 640px) {
   #reino .seccion-mapa {
@@ -1281,7 +1304,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
-  height: 480px;
+  height: 535px;
   min-height: 0;
   max-height: none;
   margin: 12px auto 0;
@@ -1298,7 +1321,7 @@
     padding-bottom: 10px;
   }
   #reino .receta-pocion #formulario-rsvp {
-    height: 560px;
+    height: 625px;
     margin-top: 10px;
     border-radius: 10px;
   }
@@ -1674,7 +1697,7 @@
 #reino .receta-pocion #formulario-rsvp {
   width: 100%;
   max-width: 100%;
-  height: 480px;
+  height: 535px;
   margin: 5px auto 0;
   border: 0;
   border-radius: 4px;
@@ -1693,7 +1716,7 @@
     margin-top: 14px;
   }
   #reino .receta-pocion #formulario-rsvp {
-    height: 560px;
+    height: 625px;
     margin-top: 0;
   }
 }
