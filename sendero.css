@@ -709,7 +709,7 @@
   inset: 0;
   background:
     linear-gradient(180deg, rgba(35, 25, 18, 0.42), rgba(8, 10, 16, 0.50)),
-    url("assets/mapa-antiguo-fantasia.png");
+    url("assets/Mapa%20Fanta%CC%81stico%20de%20Mares%20Encantados.png");
   background-size: cover;
   background-position: center;
   filter: sepia(0.35) brightness(0.8);
@@ -834,5 +834,82 @@
 
   #reino #mapa-privado {
     min-height: 340px;
+  }
+}
+
+/* ============================================
+   Ajustes finales: separación entre los CUADROS
+   y mapa fantástico accesible en Safari.
+============================================ */
+#reino .seccion-mapa {
+  margin: 0 auto clamp(46px, 8vw, 90px);
+}
+#reino .seccion-tarot {
+  margin: 0 auto;
+}
+#reino .mapa-escena {
+  padding: clamp(12px, 2.8vw, 25px);
+}
+#reino .mapa-fondo-antiguo {
+  opacity: .76;
+  filter: saturate(.82) sepia(.14) brightness(.92);
+  pointer-events: none;
+}
+#reino .mapa-pergamino {
+  padding: clamp(10px, 2vw, 22px);
+  background:
+    linear-gradient(180deg, rgba(244,226,187,.93), rgba(183,149,103,.87));
+}
+#reino .mapa-cartografia {
+  position: relative;
+  height: clamp(125px, 20vw, 230px);
+  border: 1px solid rgba(97,71,36,.35);
+  border-radius: 12px;
+  background-image:
+    linear-gradient(180deg, rgba(26,24,21,.08), rgba(28,23,16,.15)),
+    url("assets/Mapa%20Fanta%CC%81stico%20de%20Mares%20Encantados.png");
+  background-size: cover;
+  background-position: center 49%;
+  box-shadow: inset 0 0 35px rgba(42,26,12,.20);
+}
+#reino #mapa-privado {
+  width: 100%;
+  max-width: 780px;
+  height: 440px;
+  min-height: 0;
+  margin: 12px auto 0;
+  background: #e6d6ba;
+  border: 1px solid rgba(128,91,50,.36);
+  border-radius: 12px;
+}
+#reino #mapa-privado[hidden] {
+  display: none !important;
+}
+#reino .mapa-escena .mapa-pliegues {
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  #reino .seccion-mapa {
+    margin-bottom: 50px;
+  }
+  #reino .mapa-cartografia {
+    height: 125px;
+  }
+  #reino #mapa-privado {
+    height: 350px;
+    min-height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #reino .mapa-pergamino {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+  #reino .hero-contador::before,
+  #reino .hero-contador::after,
+  #reino .contador .tick-magico::before,
+  #reino .contador .tick-magico::after {
+    animation: none !important;
   }
 }

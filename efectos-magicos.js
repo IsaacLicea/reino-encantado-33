@@ -214,20 +214,19 @@
 })();
 
 
+// Desdoblar el mapa al llegar a él, sin dejarlo invisible en iPhone.
 const mapaEscena = document.getElementById("mapaEscena");
-
 if (mapaEscena) {
-  const obsMapa = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          mapaEscena.classList.add("activo");
-          obsMapa.disconnect();
-        }
-      });
-    },
-    { threshold: 0.28 }
-  );
-
-  obsMapa.observe(mapaEscena);
+  const movimientoReducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (movimientoReducido || !("IntersectionObserver" in window)) {
+    mapaEscena.classList.add("activo");
+  } else {
+    const obsMapa = new IntersectionObserver((entries) => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        mapaEscena.classList.add("activo");
+        obsMapa.disconnect();
+      }
+    }, { threshold: 0.12 });
+    obsMapa.observe(mapaEscena);
+  }
 }

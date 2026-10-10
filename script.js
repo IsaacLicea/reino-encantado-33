@@ -65,25 +65,36 @@ saltarIntro.addEventListener("click", () => {
 // Fecha del evento
 const fechaEvento = new Date("2026-11-28T15:33:00-06:00").getTime();
 
-function actualizarContador() {
-  const ahora = Date.now();
-  const diferencia = Math.max(0, fechaEvento - ahora);
+function actualizarUnidad(id, valor) {
+  const numero = document.getElementById(id);
+  if (!numero || numero.textContent === valor) return;
 
+  const animacionActiva = numero.dataset.iniciado === "1" &&
+    !reducirMovimiento.matches;
+  numero.textContent = valor;
+  numero.dataset.iniciado = "1";
+
+  if (animacionActiva) {
+    const caja = numero.parentElement;
+    if (caja) {
+      caja.classList.remove("tick-magico");
+      void caja.offsetWidth;
+      caja.classList.add("tick-magico");
+    }
+  }
+}
+
+function actualizarContador() {
+  const diferencia = Math.max(0, fechaEvento - Date.now());
   const dias = Math.floor(diferencia / 86400000);
   const horas = Math.floor(diferencia / 3600000) % 24;
   const minutos = Math.floor(diferencia / 60000) % 60;
   const segundos = Math.floor(diferencia / 1000) % 60;
 
-  document.getElementById("dias").textContent = String(dias).padStart(2, "0");
-  document.getElementById("horas").textContent = String(horas).padStart(2, "0");
-  document.getElementById("minutos").textContent = String(minutos).padStart(
-    2,
-    "0",
-  );
-  document.getElementById("segundos").textContent = String(segundos).padStart(
-    2,
-    "0",
-  );
+  actualizarUnidad("dias", String(dias).padStart(2, "0"));
+  actualizarUnidad("horas", String(horas).padStart(2, "0"));
+  actualizarUnidad("minutos", String(minutos).padStart(2, "0"));
+  actualizarUnidad("segundos", String(segundos).padStart(2, "0"));
 }
 
 actualizarContador();
@@ -188,27 +199,3 @@ function crearLuciernagas(idContenedor, cantidad) {
 
 crearLuciernagas("luciernagasPortal", 22);
 crearLuciernagas("luciernagasHero", 16);
-
-
-function actualizarUnidad(id, nuevoValor) {
-  const numero = document.getElementById(id);
-  if (!numero) return;
-
-  const caja = numero.closest("div");
-  const valorActual = numero.textContent;
-
-  if (valorActual !== nuevoValor) {
-    numero.textContent = nuevoValor;
-
-    if (caja) {
-      caja.classList.remove("tick-magico");
-      void caja.offsetWidth; // reinicia animación
-      caja.classList.add("tick-magico");
-    }
-  }
-}
-
-actualizarUnidad("dias", diasTexto);
-actualizarUnidad("horas", horasTexto);
-actualizarUnidad("minutos", minutosTexto);
-actualizarUnidad("segundos", segundosTexto);

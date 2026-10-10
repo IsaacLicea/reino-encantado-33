@@ -12,12 +12,12 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles.css?v=20261009-fix3" />
-    <script src="script.js?v=20261009-fix3" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20261009-mapa2" />
+    <script src="script.js?v=20261009-mapa2" defer></script>
 
-    <link rel="stylesheet" href="efectos-magicos.css?v=20261009-fix3" />
-    <script src="efectos-magicos.js?v=20261009-lecturas" defer></script>
-    <link rel="stylesheet" href="sendero.css?v=20261009-fix3" />
+    <link rel="stylesheet" href="efectos-magicos.css?v=20261009-mapa2" />
+    <script src="efectos-magicos.js?v=20261009-mapa2" defer></script>
+    <link rel="stylesheet" href="sendero.css?v=20261009-mapa2" />
   </head>
   <body>
     <!-- INTRO / PORTAL -->
@@ -114,7 +114,7 @@
       <!-- DRESS CODE -->
       <section class="seccion seccion-dresscode">
         <p class="eyebrow">El atuendo del bosque</p>
-        <h2>La Moda del Bosque/h2>
+        <h2>La Moda del Bosque</h2>
 
         <p class="texto-ancho">
           Déjate envolver por la magia y ven con un look inspirado
@@ -129,6 +129,33 @@
         </div>
       </section>
 
+
+      <!-- UBICACIÓN PRIVADA: solo los pases válidos ven las coordenadas -->
+      <section class="seccion seccion-mapa">
+        <p class="eyebrow">Las coordenadas encantadas</p>
+        <h2>Encuentra el reino</h2>
+        <p class="texto-ancho">
+          Consulta el mapa antiguo del reino y sigue sus rutas encantadas
+          hasta el claro donde la celebración cobrará vida.
+        </p>
+        <div class="mapa-escena" id="mapaEscena">
+          <div class="mapa-fondo-antiguo" aria-hidden="true"></div>
+          <div class="mapa-pergamino" id="mapaPergamino">
+            <div class="mapa-cartografia" aria-hidden="true"></div>
+            <div class="mapa-pliegues" aria-hidden="true"></div>
+            <iframe
+              id="mapa-privado"
+              title="Mapa privado del Reino de los 33"
+              loading="lazy"
+              hidden
+            ></iframe>
+          </div>
+        </div>
+        <p id="mapa-sin-pase">
+          Las coordenadas del bosque están reservadas para quienes poseen un
+          pase encantado.
+        </p>
+      </section>
 
       <!-- TAROT -->
       <section class="seccion seccion-tarot">
@@ -152,7 +179,7 @@
                 <span class="tarot-cara tarot-cara-frente">
                   <span class="tarot-arte">
                     <img id="tarotIlustracion" class="ilustracion-tarot"
-                      src="assets/tarot/la-estrella.svg"
+                      src="assets/tarot/la-estrella.png"
                       alt="Ilustración de La Estrella" />
                   </span>
                   <span id="tarotNombre" class="tarot-nombre-carta">La Estrella</span>
@@ -171,63 +198,6 @@
             </div>
           </div>
         </div>
-      </section>
-
-      
-
-      <!-- UBICACIÓN PRIVADA -->
-      <section class="seccion seccion-mapa">
-        <p class="eyebrow">Las coordenadas encantadas</p>
-
-        <h2>Encuentra el reino</h2>
-        <img
-          class="ornamento-magico ornamento-flor"
-          src="assets/flor-luminosa.svg"
-          alt=""
-          aria-hidden="true"
-        />
-
-        <div class="pocion-animada" aria-hidden="true">
-          <span class="burbuja burbuja-1"></span>
-          <span class="burbuja burbuja-2"></span>
-          <span class="burbuja burbuja-3"></span>
-          <span class="goteo goteo-1"></span>
-          <span class="goteo goteo-2"></span>
-        </div>
-        <p class="texto-ancho">
-          Sigue el resplandor de las estrellas hasta el corazón del bosque.
-        </p>
-
-        <section class="seccion seccion-mapa">
-          <p class="eyebrow">El sendero encantado</p>
-          <h2>Encuentra el claro del reino</h2>
-        
-          <p class="texto-ancho">
-            Consulta el mapa antiguo del reino y sigue sus rutas encantadas hasta el
-            claro donde la celebración cobrará vida.
-          </p>
-        
-          <div class="mapa-escena" id="mapaEscena">
-            <div class="mapa-fondo-antiguo"></div>
-        
-            <div class="mapa-pergamino" id="mapaPergamino">
-              <div class="mapa-pliegues"></div>
-        
-              <iframe
-                id="mapa-privado"
-                src="TU_LINK_DEL_MAPA"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </div>
-        </section>
-
-        <p id="mapa-sin-pase">
-          Las coordenadas del bosque están reservadas para quienes poseen un
-          pase encantado.
-        </p>
       </section>
 
       <!-- RSVP PERSONALIZADO -->
