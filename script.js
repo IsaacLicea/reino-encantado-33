@@ -31,6 +31,12 @@ function abrirReino(conAnimacion = true) {
   // Preparamos el contenido de fondo.
   reino.hidden = false;
 
+  // La galería se crea ahora, cuando el reino ya tiene anchura visible.
+  // Evita que Pinterest dibuje un tablero de 0px dentro de un main oculto.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(cargarPinterestDelBosque);
+  });
+
   const animar = conAnimacion && !reducirMovimiento.matches;
 
   if (!animar) {
@@ -61,6 +67,33 @@ boton.addEventListener("click", () => {
 saltarIntro.addEventListener("click", () => {
   abrirReino(false);
 });
+
+// =====================================
+// TABLERO DE PINTEREST — MODA DEL BOSQUE
+// =====================================
+
+// Sólo una carga de la librería oficial y únicamente al abrir el portal.
+let pinterestIniciado = false;
+
+function cargarPinterestDelBosque() {
+  if (pinterestIniciado) return;
+  const marco = document.getElementById("marcoTableroPinterest");
+  if (!marco || marco.hidden) return;
+
+  pinterestIniciado = true;
+  const pinterestScript = document.createElement("script");
+  pinterestScript.src = "https://assets.pinterest.com/js/pinit.js";
+  pinterestScript.async = true;
+  pinterestScript.onload = () => {
+    // La librería construye el widget de manera automática; si ofrece
+    // build(), también puede procesar el enlace al tablero al terminar.
+    if (window.PinUtils && typeof window.PinUtils.build === "function") {
+      window.PinUtils.build();
+    }
+  };
+  // Si una extensión bloquea Pinterest, permanece el enlace alternativo.
+  document.body.appendChild(pinterestScript);
+}
 
 // Fecha del evento
 const fechaEvento = new Date("2026-11-28T15:33:00-06:00").getTime();

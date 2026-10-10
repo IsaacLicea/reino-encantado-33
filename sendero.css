@@ -1200,3 +1200,41 @@
   #reino .marco-tablero-pinterest { margin-top: 20px; padding: 9px; }
   #reino .marco-tablero-interior { padding: 10px; }
 }
+
+
+/* Pinterest: tablero de ancho automático, integrado dentro del marco dorado.
+   Pinterest aporta sus propios mosaicos; no se requieren iframes manuales. */
+#reino .marco-tablero-pinterest .marco-tablero-etiqueta {
+  color: #5b3d1d;
+}
+#reino .contenido-tablero-pinterest {
+  width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#reino .contenido-tablero-pinterest > span,
+#reino .contenido-tablero-pinterest > a {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+#reino .contenido-tablero-pinterest iframe {
+  display: block;
+  max-width: 100% !important;
+  margin: auto;
+}
+#reino .marco-tablero-pinterest .marco-tablero-enlace {
+  margin: 15px 0 0;
+  font-size: .82rem;
+  color: #5b3d1d;
+}
+#reino .marco-tablero-pinterest .marco-tablero-enlace a {
+  color: #5d3b12;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+#reino .marco-tablero-pinterest .marco-tablero-enlace a:hover {
+  color: #986c2d;
+}

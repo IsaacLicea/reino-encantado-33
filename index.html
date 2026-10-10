@@ -13,11 +13,11 @@
     />
 
     <link rel="stylesheet" href="styles.css?v=20261009-mapa2" />
-    <script src="script.js?v=20261009-mapa2" defer></script>
+    <script src="script.js?v=20261009-pinterest-board" defer></script>
 
     <link rel="stylesheet" href="efectos-magicos.css?v=20261009-mapa2" />
     <script src="efectos-magicos.js?v=20261009-mapa2" defer></script>
-    <link rel="stylesheet" href="sendero.css?v=20261009-rsvp-pinterest" />
+    <link rel="stylesheet" href="sendero.css?v=20261009-pinterest-board" />
   </head>
   <body>
     <!-- INTRO / PORTAL -->
@@ -122,12 +122,27 @@
         </p>
 
 
-        <!-- Tablero público de Pinterest. Se activa al proporcionar
-             su enlace; mientras tanto no se muestra un recuadro vacío. -->
-        <div id="marcoTableroPinterest" class="marco-tablero-pinterest" hidden>
+        <!-- Galería de inspiración: el script oficial se carga al abrir el portal
+             para que Pinterest mida el ancho real del marco. -->
+        <div id="marcoTableroPinterest" class="marco-tablero-pinterest">
           <div class="marco-tablero-interior">
             <p class="marco-tablero-etiqueta">El grimorio de los atuendos</p>
-            <div id="contenidoTableroPinterest" class="contenido-tablero-pinterest"></div>
+            <div id="contenidoTableroPinterest" class="contenido-tablero-pinterest">
+              <a
+                data-pin-do="embedBoard"
+                data-pin-scale-height="390"
+                data-pin-scale-width="94"
+                href="https://www.pinterest.com/isaaclicea77/moda-del-bosque/"
+              ></a>
+            </div>
+            <p class="marco-tablero-enlace">
+              ¿Buscas más inspiración?
+              <a
+                href="https://mx.pinterest.com/isaaclicea77/moda-del-bosque/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Explora el tablero completo</a>
+            </p>
           </div>
         </div>
       </section>
