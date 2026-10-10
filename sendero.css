@@ -903,98 +903,6 @@
 }
 
 
-/* ============================================
-   TÍTULO CRISTAL — EL REINO DE LOS 33
-============================================ */
-#reino .hero h1.titulo-cristal {
-  position: relative;
-  display: inline-block;
-  color: transparent;
-  background:
-    linear-gradient(
-      180deg,
-      #f9fcff 0%,
-      #dff1ff 18%,
-      #ffffff 34%,
-      #a9d9ff 52%,
-      #eef7ff 70%,
-      #88afe0 100%
-    );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-stroke: 1px rgba(214, 235, 255, 0.46);
-  text-shadow:
-    0 0 18px rgba(150, 206, 255, 0.15),
-    0 2px 18px rgba(5, 12, 24, 0.42);
-  filter: drop-shadow(0 0 10px rgba(173, 216, 255, 0.12));
-}
-
-#reino .hero h1.titulo-cristal::before {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  color: transparent;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.9) 0%,
-      rgba(255,255,255,0.35) 24%,
-      rgba(176,224,255,0.15) 42%,
-      rgba(255,255,255,0.78) 52%,
-      rgba(130,180,255,0.12) 68%,
-      rgba(255,255,255,0.4) 100%
-    );
-  -webkit-background-clip: text;
-  background-clip: text;
-  opacity: 0.72;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-#reino .hero h1.titulo-cristal::after {
-  content: "";
-  position: absolute;
-  inset: 6% -6%;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      115deg,
-      transparent 0%,
-      transparent 34%,
-      rgba(255,255,255,0.08) 42%,
-      rgba(255,255,255,0.72) 49%,
-      rgba(255,255,255,0.10) 56%,
-      transparent 64%,
-      transparent 100%
-    );
-  transform: translateX(-130%) skewX(-18deg);
-  animation: brilloCristalTitulo 7s ease-in-out infinite;
-}
-
-@keyframes brilloCristalTitulo {
-  0%, 72%, 100% {
-    transform: translateX(-130%) skewX(-18deg);
-    opacity: 0;
-  }
-  12% {
-    opacity: 1;
-  }
-  24% {
-    transform: translateX(130%) skewX(-18deg);
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #reino .hero h1.titulo-cristal::after {
-    animation: none;
-    opacity: 0.35;
-    transform: translateX(0) skewX(-18deg);
-  }
-}
-
-
-
 #reino .mapa-pergamino::before {
   content: "";
   position: absolute;
@@ -1012,119 +920,6 @@
   background: rgba(12, 22, 48, 0.18);
 }
 
-
-/* =========================================================
-   AJUSTE FINAL — MAPA COMO FONDO DE TODA LA SECCIÓN
-   + TÍTULO DE CRISTAL REAL
-========================================================= */
-
-/* =========================
-   TÍTULO DE CRISTAL REAL
-========================= */
-/* ============================================
-   TÍTULO DE CRISTAL — LETRAS DE CRISTAL REAL
-============================================ */
-#reino .hero h1.titulo-cristal {
-  position: relative;
-  display: inline-block;
-  color: transparent;
-  font-weight: 600;
-
-  /* Base del cristal */
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,0.96) 0%,
-      rgba(225,241,255,0.95) 16%,
-      rgba(176,214,245,0.88) 34%,
-      rgba(248,252,255,0.96) 48%,
-      rgba(141,190,232,0.86) 64%,
-      rgba(229,243,255,0.92) 80%,
-      rgba(113,160,210,0.85) 100%
-    );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  /* Bordes suaves tipo vidrio */
-  -webkit-text-stroke: 1px rgba(220, 240, 255, 0.34);
-
-  /* Profundidad */
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.22),
-    0 0 10px rgba(170,210,255,0.10),
-    0 2px 16px rgba(6, 16, 34, 0.30);
-
-  filter: drop-shadow(0 2px 8px rgba(150, 205, 255, 0.12));
-
-  background:
-  linear-gradient(
-    180deg,
-    rgba(255,255,255,0.96) 0%,
-    rgba(225,241,255,0.95) 16%,
-    rgba(176,214,245,0.88) 34%,
-    rgba(248,252,255,0.96) 48%,
-    rgba(141,190,232,0.86) 64%,
-    rgba(229,243,255,0.92) 80%,
-    rgba(113,160,210,0.85) 100%
-  );
-}
-
-/* Facetas internas */
-#reino .hero h1.titulo-cristal::before {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  color: transparent;
-  pointer-events: none;
-  opacity: 0.82;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.85) 0%,
-      rgba(255,255,255,0.08) 18%,
-      rgba(180,220,255,0.18) 30%,
-      rgba(255,255,255,0.72) 44%,
-      rgba(160,205,245,0.12) 58%,
-      rgba(255,255,255,0.32) 76%,
-      rgba(255,255,255,0.12) 100%
-    );
-
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  mix-blend-mode: screen;
-}
-
-/* Pequeños reflejos internos del cristal */
-#reino .hero h1.titulo-cristal::after {
-  content: "";
-  position: absolute;
-  inset: 12% 2%;
-  pointer-events: none;
-  opacity: 0.65;
-
-  background:
-    linear-gradient(
-      115deg,
-      transparent 0%,
-      transparent 24%,
-      rgba(255,255,255,0.10) 30%,
-      rgba(255,255,255,0.45) 38%,
-      rgba(255,255,255,0.08) 48%,
-      transparent 58%
-    ),
-    linear-gradient(
-      70deg,
-      transparent 0%,
-      transparent 60%,
-      rgba(255,255,255,0.16) 68%,
-      rgba(255,255,255,0.05) 76%,
-      transparent 84%
-    );
-}
 
 /* =========================
    MAPA: TODA LA SECCIÓN ES EL MAPA
@@ -1244,26 +1039,24 @@
   mix-blend-mode: multiply;
 }
 
-/* El iframe queda directo sobre el mapa, sin subpaneles */
+/* Mapa privado: anchura fluida y mayor altura para ver mapa y botón
+   de Google Apps Script sin recortar el contenido en la mayoría de pantallas. */
 #reino #mapa-privado {
   position: relative;
   z-index: 3;
   display: block;
   width: 100%;
-  max-width: 820px;
-  height: 440px;
-  min-height: 0;
-  margin: 34px auto 0;
-  border: 1px solid rgba(228, 206, 170, 0.40);
-  border-radius: 18px;
-  background: rgba(255, 250, 242, 0.08);
-  box-shadow:
-    0 16px 36px rgba(20, 14, 9, 0.24),
-    0 0 0 1px rgba(255,255,255,0.04) inset;
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
+  max-width: 100%;
+  box-sizing: border-box;
+  height: clamp(780px, 92svh, 940px);
+  min-height: 780px;
+  margin: 24px auto 0;
+  padding: 0;
+  border: 1px solid rgba(228, 206, 170, .40);
+  border-radius: 16px;
+  background: rgba(255, 250, 242, .08);
+  box-shadow: 0 16px 36px rgba(20, 14, 9, .24);
 }
-
 #reino #mapa-privado[hidden] {
   display: none !important;
 }
@@ -1286,14 +1079,17 @@
   text-shadow: 0 1px 8px rgba(0,0,0,0.20);
 }
 
-/* Ajustes móviles */
+/* En iPhone, adaptamos el ancho sin sacrificar la altura del contenido. */
 @media (max-width: 640px) {
   #reino .seccion-mapa {
     margin-bottom: 50px;
+    padding-inline: clamp(12px, 4vw, 24px);
   }
-
   #reino #mapa-privado {
-    height: 350px;
-    margin-top: 24px;
+    width: 100%;
+    height: clamp(760px, 105svh, 920px);
+    min-height: 760px;
+    margin-top: 20px;
+    border-radius: 12px;
   }
 }
