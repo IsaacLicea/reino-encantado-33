@@ -21,6 +21,8 @@ jobs:
           python-version: '3.12'
       - name: Preparar herramientas de verificación
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
           python -m pip install --disable-pip-version-check requests beautifulsoup4
           ffprobe -version | head -n 1
       - name: Descargar y verificar MP3 oficial Wonder6
