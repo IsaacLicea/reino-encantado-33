@@ -1,0 +1,52 @@
+name: Renderizar banda sonora orquestal
+on:
+  push:
+    branches:
+      - feature/banda-sonora-orquestal-grabada
+    paths:
+      - '.github/workflows/render-banda-sonora.yml'
+      - 'scripts/render_banda_sonora.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+
+jobs:
+  renderizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar instrumento virtual y renderizador
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fluidsynth ffmpeg
+          python -m pip install --disable-pip-version-check mido
+      - name: Descargar biblioteca de instrumentos muestreados (GeneralUser GS)
+        run: |
+          curl -fL --retry 3 --silent --show-error \
+            "https://raw.githubusercontent.com/mrbumpy409/GeneralUser-GS/main/GeneralUser-GS.sf2" \
+            -o /tmp/GeneralUser-GS.sf2
+          test "$(stat -c%s /tmp/GeneralUser-GS.sf2)" -gt 5000000
+      - name: Componer y mezclar la banda sonora
+        run: python scripts/render_banda_sonora.py
+      - name: Verificar el MP3 generado
+        run: |
+          test -s assets/danza-luciernagas-cinematica.mp3
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 assets/danza-luciernagas-cinematica.mp3
+      - name: Guardar solo la grabación final
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/danza-luciernagas-cinematica.mp3
+          if git diff --cached --quiet; then
+            echo "La banda sonora ya estaba actualizada."
+          else
+            git commit -m "Añadir banda sonora orquestal grabada para la invitación"
+            git fetch origin "${{ github.ref_name }}"
+            git rebase "origin/${{ github.ref_name }}"
+            git push origin HEAD:"${{ github.ref_name }}"
+          fi
