@@ -1,0 +1,127 @@
+/* =============================================================
+   LA MELODÍA DEL REINO — CONTROL FLOTANTE ORO VIEJO
+   Discreto, accesible y sin bloquear el contenido.
+============================================================= */
+.musica-reino {
+  position: fixed;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: auto;
+  max-width: calc(100vw - 24px);
+  min-height: 54px;
+  margin: 0;
+  padding: 10px 16px 10px 11px;
+  border: 1px solid rgba(201, 169, 112, .58);
+  border-radius: 40px;
+  background:
+    radial-gradient(ellipse at 30% 0%, rgba(176, 137, 77, .20), transparent 82%),
+    linear-gradient(135deg, rgba(19, 28, 45, .96), rgba(33, 29, 35, .96));
+  color: #f2dfbd;
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, .36),
+    inset 0 1px 0 rgba(245, 217, 163, .17),
+    0 0 0 3px rgba(46, 37, 32, .14);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  text-align: left;
+  font-family: "Cinzel", Georgia, serif;
+  cursor: pointer;
+  transition: background .24s ease, border-color .24s ease, transform .24s ease;
+}
+.musica-reino:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(39, 42, 53, .98), rgba(47, 38, 39, .98));
+  border-color: rgba(226, 192, 130, .84);
+  transform: translateY(-2px);
+}
+.musica-reino:focus-visible {
+  outline: 2px solid #f2d59a;
+  outline-offset: 4px;
+}
+.musica-reino:disabled { opacity: .55; cursor: default; }
+
+.musica-reino-nota {
+  position: relative;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(220, 186, 118, .44);
+  border-radius: 50%;
+  background: rgba(140, 105, 54, .18);
+  color: #e9cd94;
+  font: 23px Georgia, serif;
+}
+.musica-reino-nota::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgba(228, 195, 126, .35);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(.85);
+}
+.musica-reino.sonando .musica-reino-nota::after {
+  animation: pulsoMusicaReino 2.5s ease-out infinite;
+}
+.musica-reino-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.musica-reino-titulo {
+  display: block;
+  color: #f1dfbc;
+  font-size: .68rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  letter-spacing: .045em;
+}
+.musica-reino-estado {
+  color: #d2c1a4;
+  font-family: Georgia, serif;
+  font-size: .75rem;
+  line-height: 1.3;
+}
+.musica-reino.sonando .musica-reino-estado {
+  color: #efd39b;
+}
+.musica-reino-senal {
+  color: #d1b27a;
+  font: 17px Georgia, serif;
+  transition: transform .2s ease;
+}
+.musica-reino.sonando .musica-reino-senal {
+  transform: rotate(90deg);
+}
+@keyframes pulsoMusicaReino {
+  0% { opacity: .55; transform: scale(.9); }
+  75%, 100% { opacity: 0; transform: scale(1.45); }
+}
+@media (max-width: 640px) {
+  .musica-reino {
+    right: max(10px, env(safe-area-inset-right));
+    bottom: calc(9px + env(safe-area-inset-bottom));
+    min-height: 48px;
+    padding: 8px 11px 8px 8px;
+    gap: 9px;
+  }
+  .musica-reino-nota {
+    flex-basis: 30px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+  }
+  .musica-reino-titulo { font-size: .61rem; }
+  .musica-reino-estado { font-size: .69rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .musica-reino, .musica-reino-senal { transition: none !important; }
+  .musica-reino.sonando .musica-reino-nota::after { animation: none !important; }
+}
