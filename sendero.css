@@ -2095,3 +2095,60 @@
     animation: none !important;
   }
 }
+
+/* ==========================================================
+   PINTEREST — MARCO EN ORO VIEJO
+========================================================== */
+
+#reino .marco-tablero-pinterest {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(104, 78, 36, 0.94),
+      rgba(145, 114, 58, 0.90) 22%,
+      rgba(95, 71, 33, 0.94) 48%,
+      rgba(167, 135, 73, 0.88) 72%,
+      rgba(88, 65, 30, 0.95)
+    );
+  border: 1px solid rgba(188, 156, 93, 0.62);
+  box-shadow:
+    0 16px 34px rgba(22, 12, 5, 0.26),
+    0 0 0 2px rgba(82, 58, 24, 0.34),
+    inset 0 1px 0 rgba(236, 215, 159, 0.26),
+    inset 0 0 0 5px rgba(122, 92, 43, 0.48),
+    inset 0 0 18px rgba(255, 227, 164, 0.07);
+}
+
+#reino .marco-tablero-interior {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(244, 233, 206, 0.95),
+      rgba(226, 208, 170, 0.92)
+    );
+  border: 1px solid rgba(150, 116, 56, 0.34);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 242, 201, 0.35),
+    inset 0 0 0 6px rgba(139, 106, 50, 0.08);
+}
+
+#reino .marco-tablero-pinterest .marco-tablero-etiqueta {
+  color: #8e6a32;
+}
+
+#reino .marco-tablero-pinterest h3,
+#reino .marco-tablero-pinterest .marco-tablero-titulo {
+  color: #5f451f;
+}
+
+#reino .marco-tablero-pinterest p {
+  color: #6c4f28;
+}
+
+#reino .marco-tablero-pinterest .marco-tablero-enlace {
+  color: #7b5a29;
+}
+
+#reino .marco-tablero-pinterest .marco-tablero-enlace:hover {
+  color: #9a7640;
+}
