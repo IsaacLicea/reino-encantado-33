@@ -2153,3 +2153,22 @@
 #reino .marco-tablero-pinterest .marco-tablero-enlace:hover {
   color: #9a7640;
 }
+
+
+/* Una lectura para cada invitado: aviso discreto bajo la carta. */
+#reino .tarot-aviso-unico {
+  max-width: 370px;
+  margin: 15px auto 0;
+  color: #e6d1a6;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(.77rem, 1.9vw, .89rem);
+  font-weight: 400;
+  letter-spacing: .015em;
+  line-height: 1.65;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .56);
+}
+#reino .tarot-carta:disabled {
+  opacity: 1;
+  cursor: default;
+}
