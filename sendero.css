@@ -729,7 +729,7 @@
 
   background:
     linear-gradient(180deg, rgba(34, 25, 15, 0.14), rgba(24, 18, 10, 0.18)),
-    url("assets/Mapa%20Fanta%CC%81stico%20de%20Mares%20Encantados.png");
+    url("assets/mapa-fantastico.webp");
   background-size: cover;
   background-position: center;
 }
@@ -932,7 +932,7 @@
   border-radius: 28px;
   background:
     linear-gradient(180deg, rgba(8, 10, 16, 0.40), rgba(10, 12, 20, 0.58)),
-    url("assets/Mapa%20Fanta%CC%81stico%20de%20Mares%20Encantados.png");
+    url("assets/mapa-fantastico.webp");
   background-size: cover;
   background-position: center;
 }
@@ -1396,7 +1396,7 @@
    Las capas suaves ayudan a mantener la legibilidad del formulario.
 ================================================================ */
 #reino .receta-pocion {
-  --fondo-ilustrado-receta: url("assets/receta-pocion-antigua.png");
+  --fondo-ilustrado-receta: url("assets/receta-pocion-antigua.webp");
   position: relative;
   isolation: isolate;
   width: min(820px, 100%);

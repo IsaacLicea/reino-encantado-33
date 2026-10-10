@@ -195,7 +195,7 @@
       const resultado = azar();
       nombre.textContent = resultado.nombre;
       mensaje.textContent = resultado.mensaje;
-      imagen.src = "assets/tarot/" + resultado.slug + ".png";
+      imagen.src = "assets/tarot/" + resultado.slug + ".webp";
       imagen.alt = "Ilustración de " + resultado.nombre;
 
       if (!quieto) await dormir(75);
