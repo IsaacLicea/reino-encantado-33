@@ -1724,9 +1724,71 @@
 
 /* Sello de lacre al pie de la receta: ornamental, no confirma envío. */
 #reino .receta-pocion .cierre-reino {
-  display: grid; justify-items: center; gap: 9px;
-  max-width: 480px; margin: 8px auto 5px;
-  padding: 0 8px; text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  max-width: 480px;
+  margin: 8px auto 5px;
+  padding: 0 8px;
+  text-align: center;
+
+  opacity: 0;
+  transform: translateY(12px) scale(.92);
+  pointer-events: none;
+  transition:
+    opacity .45s ease,
+    transform .55s cubic-bezier(.2, .9, .24, 1.15);
+}
+
+#reino .receta-pocion .cierre-reino.activo {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#reino .receta-pocion .cierre-reino.activo .sello-lacre {
+  animation:
+    aparecerSello .7s cubic-bezier(.18, .92, .2, 1.2),
+    pulsoSello 1.5s ease-out .7s 1;
+}
+
+@keyframes aparecerSello {
+  0% {
+    opacity: 0;
+    transform: translateY(-18px) scale(.75) rotate(-10deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(2px) scale(1.08) rotate(4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes pulsoSello {
+  0% {
+    box-shadow:
+      inset 0 2px 6px rgba(255, 222, 178, .46),
+      inset 0 -8px 11px rgba(39, 8, 18, .66),
+      0 3px 0 rgba(68, 19, 24, .75),
+      0 8px 16px rgba(40, 22, 12, .31);
+  }
+  50% {
+    box-shadow:
+      inset 0 2px 6px rgba(255, 222, 178, .56),
+      inset 0 -8px 11px rgba(39, 8, 18, .66),
+      0 3px 0 rgba(68, 19, 24, .75),
+      0 8px 24px rgba(126, 41, 49, .45),
+      0 0 22px rgba(255, 207, 144, .26);
+  }
+  100% {
+    box-shadow:
+      inset 0 2px 6px rgba(255, 222, 178, .46),
+      inset 0 -8px 11px rgba(39, 8, 18, .66),
+      0 3px 0 rgba(68, 19, 24, .75),
+      0 8px 16px rgba(40, 22, 12, .31);
+  }
 }
 #reino .receta-pocion #formulario-rsvp[hidden] + .cierre-reino { display: none !important; }
 #reino .receta-pocion .cierre-reino-filigrana {
@@ -1907,7 +1969,9 @@
     drop-shadow(0 0 8px rgba(255, 227, 162, 0.34))
     drop-shadow(0 0 14px rgba(170, 210, 255, 0.18));
 
-   @media (max-width: 640px) {
+}
+
+@media (max-width: 640px) {
   #reino .hada-voladora {
     width: 38px;
     height: 38px;
@@ -1915,8 +1979,6 @@
     margin-top: -19px;
   }
 }
-}
-
 #reino .hada-voladora::before {
   content: "";
   position: absolute;
