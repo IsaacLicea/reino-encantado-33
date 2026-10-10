@@ -1039,23 +1039,27 @@
   mix-blend-mode: multiply;
 }
 
-/* Mapa privado: anchura fluida y mayor altura para ver mapa y botón
-   de Google Apps Script sin recortar el contenido en la mayoría de pantallas. */
+/* El contenido de Mapa.html en Apps Script ya muestra únicamente
+   el mapa: 350px en escritorio y 300px en móvil. Alineamos el marco
+   externo a esas alturas para no dejar espacio vacío ni barras internas. */
 #reino #mapa-privado {
   position: relative;
   z-index: 3;
   display: block;
+  box-sizing: border-box;
   width: 100%;
   max-width: 100%;
-  box-sizing: border-box;
-  height: clamp(780px, 92svh, 940px);
-  min-height: 780px;
-  margin: 24px auto 0;
+  height: 350px;
+  min-height: 0;
+  max-height: none;
+  margin: 18px auto 0;
   padding: 0;
-  border: 1px solid rgba(228, 206, 170, .40);
-  border-radius: 16px;
-  background: rgba(255, 250, 242, .08);
-  box-shadow: 0 16px 36px rgba(20, 14, 9, .24);
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 #reino #mapa-privado[hidden] {
   display: none !important;
@@ -1079,7 +1083,7 @@
   text-shadow: 0 1px 8px rgba(0,0,0,0.20);
 }
 
-/* En iPhone, adaptamos el ancho sin sacrificar la altura del contenido. */
+/* El mapa compacto de Apps Script pasa a 300px en iPhone. */
 @media (max-width: 640px) {
   #reino .seccion-mapa {
     margin-bottom: 50px;
@@ -1087,9 +1091,9 @@
   }
   #reino #mapa-privado {
     width: 100%;
-    height: clamp(760px, 105svh, 920px);
-    min-height: 760px;
-    margin-top: 20px;
-    border-radius: 12px;
+    height: 300px;
+    min-height: 0;
+    margin-top: 14px;
+    border-radius: 10px;
   }
 }
