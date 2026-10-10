@@ -1,7 +1,7 @@
-/* Reino de los 33 — "El susurro del bosque".
-   Banda sonora original con instrumentos modelados con Web Audio:
-   arpa de cuerda pulsada, flauta con aire, cuerdas suaves y campanillas.
-   No hay reproducción automática, ni audio externo, ni anuncios. */
+/* Reino de los 33 — "Luciérnagas al caer la tarde".
+   Suite original de fantasía luminosa: arpa pulsada, flauta aérea,
+   cuerdas cálidas, coro etéreo y destellos de celesta.
+   No necesita audio externo y solo suena al activar el botón. */
 (() => {
   "use strict";
 
@@ -10,9 +10,11 @@
   if (!boton || !estado) return;
 
   const AudioAPI = window.AudioContext || window.webkitAudioContext;
-  const PULSO = 60 / 74;
-  const COMPASES = 32;
-  const DURACION_CICLO = COMPASES * 4 * PULSO;
+  // Ritmo de 6/8 ligero, como un pequeño vals feérico entre luciérnagas.
+  const PULSO = 60 / 92;
+  const CORCHEA = PULSO / 2;
+  const COMPASES = 48;
+  const DURACION_CICLO = COMPASES * 6 * CORCHEA;
   const frecuencia = nota => 440 * Math.pow(2, (nota - 69) / 12);
 
   let audio = null;
@@ -26,73 +28,115 @@
   let ruido = null;
   const cuerdas = new Map();
 
-  // Armonía original en re menor/dórico: antiguos caminos y bosque luminoso.
+  // Armonía en Re mayor, con colores de Sol lidio y acordes add9.
+  // Evitamos la melancolía del modo menor: la tarde se ilumina poco a poco.
   const armonia = [
-    [50, 53, 57, 64], [46, 53, 57, 62],
-    [41, 53, 57, 60], [48, 55, 60, 62],
-    [43, 50, 58, 62], [46, 53, 57, 62],
-    [41, 53, 57, 60], [45, 52, 57, 62]
-  ];
-  // Motivo melódico compuesto para la invitación: sin muestras ni obras ajenas.
-  const melodia = [
-    [[0.48, 69, 1.45], [2.34, 72, 1.26]],
-    [[0.42, 74, 1.68], [2.43, 72, 1.22]],
-    [[0.38, 69, 1.42], [2.35, 67, 1.18]],
-    [[0.45, 67, 1.35], [2.25, 64, 1.55]],
-    [[0.4, 70, 1.53], [2.34, 74, 1.2]],
-    [[0.5, 72, 1.5], [2.3, 74, 1.32]],
-    [[0.44, 76, 1.48], [2.38, 72, 1.22]],
-    [[0.4, 69, 1.5], [2.38, 74, 1.44]]
+    [55, 59, 62, 66, 69],  // Gmaj9
+    [50, 57, 62, 64, 66],  // Dadd9
+    [45, 52, 57, 59, 64],  // Aadd9
+    [47, 54, 59, 62, 66],  // Bm7
+    [55, 59, 62, 66, 69],  // Gmaj9
+    [54, 57, 62, 64, 69],  // D/F# add9
+    [52, 59, 62, 66, 71],  // Em9
+    [45, 52, 57, 61, 64]   // Amaj add9
   ];
 
-  // Cuatro movimientos: despertar, encuentro, vuelo y regreso al claro.
+  // Melodía original con ascensos esperanzadores y pausas para respirar.
+  // Paso, altura MIDI, duración en pulsos de negra.
+  const motivos = [
+    [[.6, 74, 1.30], [3.25, 78, 1.38]],
+    [[.45, 76, 1.14], [2.95, 74, 1.48]],
+    [[.62, 73, 1.22], [3.25, 76, 1.25]],
+    [[.46, 71, 1.25], [3.24, 74, 1.56]],
+    [[.60, 78, 1.32], [3.28, 81, 1.28]],
+    [[.48, 79, 1.20], [3.12, 78, 1.51]],
+    [[.75, 76, 1.20], [3.10, 74, 1.30]],
+    [[.52, 73, 1.15], [3.04, 76, 1.52]]
+  ];
+
+  // Una pequeña historia musical de 48 compases:
+  // 0–7: ocaso cálido; 8–19: despiertan las hadas;
+  // 20–35: celebración luminosa; 36–47: cielo estrellado.
   const eventos = [];
   for (let compas = 0; compas < COMPASES; compas++) {
-    const acorde = armonia[compas % 8];
-    const base = compas * 4;
-    const apertura = compas < 4;
-    const esplendor = compas >= 16 && compas < 25;
-    const despedida = compas >= 28;
-    const energia = apertura ? 0.63 : esplendor ? 1.02 : despedida ? 0.63 : 0.84;
+    const acorde = armonia[compas % armonia.length];
+    const base = compas * 6;
+    const inicio = compas < 8;
+    const despertar = compas >= 8 && compas < 20;
+    const esplendor = compas >= 20 && compas < 36;
+    const noche = compas >= 36;
+    const intensidad = inicio ? .72 : esplendor ? 1.02 : noche ? .77 : .91;
 
-    if (compas >= 2 && !despedida || compas === 28 || compas === 30) {
+    if (compas % 2 === 0 || esplendor) {
       eventos.push({
-        pulso: base, tipo: "cuerdas", notas: acorde.slice(1),
-        intensidad: esplendor ? 1.0 : 0.73
+        pulso: base + .04, tipo: "cuerdas",
+        notas: [acorde[1], acorde[2], acorde[3]],
+        intensidad: esplendor ? .9 : noche ? .57 : .68
       });
     }
-    if (esplendor && compas % 2 === 0) {
-      eventos.push({ pulso: base + 0.1, tipo: "violonchelo", nota: acorde[0] - 12 });
+    if (compas % 4 === 0 && compas >= 4) {
+      eventos.push({
+        pulso: base + .08, tipo: "coro",
+        notas: [acorde[2] + 12, acorde[3] + 12],
+        intensidad: esplendor ? .88 : .56
+      });
+    }
+    if (esplendor && compas % 4 === 0) {
+      eventos.push({
+        pulso: base + .17, tipo: "violonchelo",
+        nota: acorde[0] - 12, intensidad: .42
+      });
     }
 
-    const arpegio = [0, 2, 3, 1, 2, 3];
-    const pasos = apertura || despedida ?
-      [0.10, 1.11, 2.10, 3.12] :
-      [0.10, 0.79, 1.54, 2.21, 2.93, 3.55];
+    // El arpa tiene un vaivén de 6/8 con ligeras inflexiones humanas.
+    const pasos = inicio || noche ?
+      [.10, 1.44, 3.06, 4.52] :
+      [.10, 1.07, 2.08, 3.13, 4.09, 5.06];
+    const patron = [0, 2, 4, 3, 2, 4];
     pasos.forEach((paso, i) => {
       eventos.push({
-        pulso: base + paso, tipo: "arpa",
-        nota: acorde[arpegio[i]] + 12,
-        intensidad: energia * (i === 0 ? 1.0 : 0.84),
-        paneo: ((compas + i) % 5 - 2) * .16
+        pulso: base + paso + ((compas + i) % 3 - 1) * .025,
+        tipo: "arpa",
+        nota: acorde[patron[i]] + (i === 0 ? 12 : 12),
+        intensidad: intensidad * (i === 0 ? 1 : .80),
+        paneo: ((compas + i) % 5 - 2) * .13
       });
     });
 
-    if (!apertura && !despedida || compas === 28 || compas === 30) {
-      melodia[compas % 8].forEach(([paso, nota, largo], i) => {
-        let registro = nota;
-        if (esplendor && i === 1 && compas % 4 === 2) registro += 2;
+    if (!inicio || compas === 6) {
+      motivos[compas % 8].forEach(([paso, nota, largo], i) => {
+        const segundaVoz = esplendor && i === 1 && compas % 4 === 1;
         eventos.push({
-          pulso: base + paso, tipo: "flauta", nota: registro,
-          largo, intensidad: esplendor ? .94 : despedida ? .56 : .75
+          pulso: base + paso,
+          tipo: "flauta",
+          nota: segundaVoz ? nota + 2 : nota,
+          largo,
+          intensidad: despertar ? .71 : esplendor ? .94 : noche ? .62 : .49
         });
       });
     }
-    if (compas % 2 === 1 && compas < 29) {
+
+    // Destellos de celesta: más alegres en el tramo de celebración.
+    if (compas % 2 === 1 || esplendor) {
       eventos.push({
-        pulso: base + 3.3, tipo: "campanilla",
-        nota: acorde[2] + (esplendor ? 24 : 19),
-        intensidad: esplendor ? .85 : .53
+        pulso: base + (esplendor ? 2.6 : 4.43),
+        tipo: "campanilla",
+        nota: acorde[4] + (esplendor ? 12 : 7),
+        intensidad: esplendor ? .72 : .52
+      });
+    }
+    if (compas % 4 === 3 && compas < 44) {
+      eventos.push({
+        pulso: base + 5.24, tipo: "destello",
+        nota: acorde[3] + 12,
+        intensidad: esplendor ? .9 : .55,
+        paneo: compas % 8 < 4 ? -.38 : .38
+      });
+    }
+    if (compas % 8 === 0 || compas === 19 || compas === 35) {
+      eventos.push({
+        pulso: base + .02, tipo: "brisa",
+        intensidad: esplendor ? .53 : .35
       });
     }
   }
@@ -110,7 +154,7 @@
   }
 
   function crearReverberacion() {
-    const largo = 2.55;
+    const largo = 3.15;
     const cantidad = Math.floor(audio.sampleRate * largo);
     const impulso = audio.createBuffer(2, cantidad, audio.sampleRate);
     let semilla = 58124;
@@ -139,7 +183,7 @@
     master = audio.createGain();
 
     seco.gain.value = .79;
-    rever.gain.value = .23;
+    rever.gain.value = .29;
     compresor.threshold.value = -25;
     compresor.knee.value = 18;
     compresor.ratio.value = 2.8;
@@ -202,9 +246,9 @@
     fuente.playbackRate.value = 1 + (Math.random() - .5) * .003;
     const filtro = audio.createBiquadFilter();
     filtro.type = "lowpass";
-    filtro.frequency.value = 4600;
+    filtro.frequency.value = 5400;
     const salida = audio.createGain();
-    salida.gain.value = .20 * intensidad;
+    salida.gain.value = .185 * intensidad;
     fuente.connect(filtro);
     filtro.connect(salida);
     conectarConPan(salida, paneo);
@@ -217,9 +261,9 @@
     const filtro = audio.createBiquadFilter();
     filtro.type = "lowpass";
     filtro.Q.value = .43;
-    filtro.frequency.setValueAtTime(520, cuando);
-    filtro.frequency.linearRampToValueAtTime(1680, cuando + 1.8);
-    filtro.frequency.linearRampToValueAtTime(760, cuando + duracion);
+    filtro.frequency.setValueAtTime(680, cuando);
+    filtro.frequency.linearRampToValueAtTime(2060, cuando + 1.25);
+    filtro.frequency.linearRampToValueAtTime(930, cuando + duracion);
 
     const ganancia = audio.createGain();
     ganancia.gain.setValueAtTime(.0001, cuando);
@@ -235,7 +279,7 @@
       oscilador.type = onda;
       oscilador.frequency.value = frecuencia(nota);
       oscilador.detune.value = cents;
-      nivel.gain.value = i === 0 ? .87 : .21;
+      nivel.gain.value = i === 0 ? .93 : .10;
       oscilador.connect(nivel);
       nivel.connect(filtro);
       oscilador.start(cuando);
@@ -284,7 +328,7 @@
     filtro.frequency.value = frecuencia(nota) * 1.55;
     filtro.Q.value = .55;
     const susurro = audio.createGain();
-    susurro.gain.value = .0035 * intensidad;
+    susurro.gain.value = .0032 * intensidad;
     aire.connect(filtro);
     filtro.connect(susurro);
     susurro.connect(salida);
@@ -308,16 +352,82 @@
     });
   }
 
+  // Coro sin palabras: una capa de luz, no una voz grabada.
+  function coroEtéreo(notas, cuando, intensidad) {
+    notas.forEach((nota, i) => {
+      const duracion = 8.5 * PULSO;
+      const salida = audio.createGain();
+      salida.gain.setValueAtTime(.0001, cuando);
+      salida.gain.linearRampToValueAtTime(.018 * intensidad, cuando + 1.15);
+      salida.gain.setValueAtTime(.016 * intensidad, cuando + duracion - 1.4);
+      salida.gain.exponentialRampToValueAtTime(.0001, cuando + duracion);
+      conectarConPan(salida, i === 0 ? -.4 : .4);
+      [1, 2.004].forEach((multiplo, n) => {
+        const oscilador = audio.createOscillator();
+        const nivel = audio.createGain();
+        oscilador.type = "sine";
+        oscilador.frequency.value = frecuencia(nota) * multiplo;
+        nivel.gain.value = n ? .16 : 1;
+        oscilador.connect(nivel);
+        nivel.connect(salida);
+        oscilador.start(cuando);
+        oscilador.stop(cuando + duracion + .01);
+      });
+    });
+  }
+
+  // Pequeñas gotas de luz, un cristal musical con armónicos suaves.
+  function destello(nota, cuando, intensidad, paneo) {
+    [1, 2.01, 2.99].forEach((multiplo, i) => {
+      const oscilador = audio.createOscillator();
+      const salida = audio.createGain();
+      oscilador.type = "sine";
+      oscilador.frequency.value = frecuencia(nota) * multiplo;
+      const duracion = i === 0 ? 2.35 : 1.25;
+      salida.gain.setValueAtTime(.0001, cuando);
+      salida.gain.linearRampToValueAtTime((i ? .006 : .015) * intensidad, cuando + .012);
+      salida.gain.exponentialRampToValueAtTime(.0001, cuando + duracion);
+      oscilador.connect(salida);
+      conectarConPan(salida, paneo);
+      oscilador.start(cuando);
+      oscilador.stop(cuando + duracion + .02);
+    });
+  }
+
+  // Susurro del bosque: aire filtrado casi imperceptible que abraza el arpa.
+  function brisa(cuando, intensidad) {
+    const fuente = audio.createBufferSource();
+    fuente.buffer = ruido;
+    fuente.loop = true;
+    const filtro = audio.createBiquadFilter();
+    filtro.type = "bandpass";
+    filtro.frequency.value = 850;
+    filtro.Q.value = .48;
+    const salida = audio.createGain();
+    const duracion = 6 * PULSO;
+    salida.gain.setValueAtTime(.0001, cuando);
+    salida.gain.linearRampToValueAtTime(.006 * intensidad, cuando + 1.0);
+    salida.gain.exponentialRampToValueAtTime(.0001, cuando + duracion);
+    fuente.connect(filtro);
+    filtro.connect(salida);
+    conectarConPan(salida, -.18);
+    fuente.start(cuando);
+    fuente.stop(cuando + duracion + .02);
+  }
+
   function tocar(evento, cuando) {
     if (evento.tipo === "arpa") arpa(evento.nota, cuando, evento.intensidad, evento.paneo);
     else if (evento.tipo === "flauta") flauta(evento.nota, cuando, evento.largo, evento.intensidad);
     else if (evento.tipo === "campanilla") campanilla(evento.nota, cuando, evento.intensidad);
+    else if (evento.tipo === "destello") destello(evento.nota, cuando, evento.intensidad, evento.paneo);
+    else if (evento.tipo === "brisa") brisa(cuando, evento.intensidad);
+    else if (evento.tipo === "coro") coroEtéreo(evento.notas, cuando, evento.intensidad);
     else if (evento.tipo === "cuerdas") {
       evento.notas.forEach((nota, i) =>
-        cuerdasSuaves(nota, cuando + i * .07, 4.5 * PULSO, evento.intensidad, (i - 1) * .3)
+        cuerdasSuaves(nota, cuando + i * .05, 4.65 * PULSO, evento.intensidad, (i - 1) * .32)
       );
     } else if (evento.tipo === "violonchelo") {
-      cuerdasSuaves(evento.nota, cuando, 7.5 * PULSO, .66, -.1);
+      cuerdasSuaves(evento.nota, cuando, 7.5 * PULSO, evento.intensidad, -.1);
     }
   }
 
@@ -325,9 +435,9 @@
     if (!tocando || !audio) return;
     const horizonte = audio.currentTime + .36;
     let revisados = 0;
-    while (inicioCiclo + eventos[siguienteEvento].pulso * PULSO < horizonte && revisados++ < 400) {
+    while (inicioCiclo + eventos[siguienteEvento].pulso * CORCHEA < horizonte && revisados++ < 400) {
       const evento = eventos[siguienteEvento];
-      const cuando = inicioCiclo + evento.pulso * PULSO;
+      const cuando = inicioCiclo + evento.pulso * CORCHEA;
       if (cuando >= audio.currentTime + .005) {
         tocar(evento, cuando);
       }
@@ -344,7 +454,7 @@
     boton.setAttribute("aria-pressed", String(tocando));
     boton.setAttribute(
       "aria-label",
-      tocando ? "Pausar la sinfonía del bosque" : "Activar la sinfonía del bosque"
+      tocando ? "Pausar Luciérnagas al caer la tarde" : "Activar Luciérnagas al caer la tarde"
     );
     estado.textContent = tocando ? "Pausar música" : "Activar música";
   }
@@ -367,7 +477,7 @@
       siguienteEvento = 0;
       master.gain.cancelScheduledValues(audio.currentTime);
       master.gain.setValueAtTime(Math.max(.0001, master.gain.value), audio.currentTime);
-      master.gain.linearRampToValueAtTime(.72, audio.currentTime + 1.55);
+      master.gain.linearRampToValueAtTime(.66, audio.currentTime + 1.55);
       programar();
       intervalo = setInterval(programar, 95);
       reflejarEstado();
