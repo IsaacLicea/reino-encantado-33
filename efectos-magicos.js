@@ -26,7 +26,7 @@
   const luces = document.createElement("div");
   luces.className = "luciernagas-continuas";
   luces.setAttribute("aria-hidden", "true");
-  const cantidad = quieto ? 0 : (window.innerWidth <= 700 ? 22 : 38);
+  const cantidad = quieto ? 0 : (window.innerWidth <= 700 ? 12 : 38);
   const frag = document.createDocumentFragment();
   for (let i = 0; i < cantidad; i++) {
     const l = document.createElement("span");

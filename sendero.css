@@ -1529,3 +1529,57 @@
     margin-top: 0;
   }
 }
+
+
+/* Sello de lacre al pie de la receta: ornamental, no confirma envío. */
+#reino .receta-pocion .cierre-reino {
+  display: grid; justify-items: center; gap: 9px;
+  max-width: 480px; margin: 12px auto 5px;
+  padding: 0 8px; text-align: center;
+}
+#reino .receta-pocion #formulario-rsvp[hidden] + .cierre-reino { display: none !important; }
+#reino .receta-pocion .cierre-reino-filigrana {
+  color: #886034; letter-spacing: .25em; font: 16px Georgia, serif;
+}
+#reino .sello-lacre {
+  position: relative; isolation: isolate;
+  display: grid; place-items: center;
+  width: clamp(70px, 10vw, 84px);
+  height: clamp(70px, 10vw, 84px);
+  border-radius: 47% 53% 48% 52% / 51% 46% 54% 49%;
+  border: 3px solid rgba(116, 29, 30, .64);
+  background:
+    radial-gradient(ellipse at 28% 21%, rgba(255, 189, 139, .5), transparent 30%),
+    radial-gradient(circle at 50% 42%, #a64743 6%, #7f282c 57%, #541b25 95%);
+  box-shadow: inset 0 2px 6px rgba(255, 222, 178, .46),
+    inset 0 -8px 11px rgba(39, 8, 18, .66),
+    0 3px 0 rgba(68, 19, 24, .75), 0 8px 16px rgba(40, 22, 12, .31);
+}
+#reino .sello-lacre::before {
+  content: ""; position: absolute; inset: 6px;
+  border: 2px ridge rgba(238, 178, 138, .50);
+  border-radius: 50% 44% 51% 48%;
+  box-shadow: inset 0 0 6px rgba(56, 14, 21, .8);
+}
+#reino .sello-lacre-medallon {
+  position: relative; display: grid; place-items: center;
+  width: 57%; height: 57%; border-radius: 50%;
+  border: 1px solid rgba(255, 198, 153, .68);
+  box-shadow: 0 1px 1px rgba(255, 209, 172, .45),
+    inset 0 3px 6px rgba(44, 12, 18, .65);
+  transform: rotate(-8deg);
+}
+#reino .sello-lacre-cifra {
+  color: #f0c9a1; font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(19px, 2.7vw, 24px); font-weight: 600;
+  text-shadow: 0 2px 2px #451720, 0 0 7px rgba(255, 210, 171, .3);
+}
+#reino .receta-pocion .cierre-reino-texto {
+  max-width: 430px; margin: 3px auto 0;
+  color: #674728; font-family: Georgia, serif;
+  font-size: clamp(.81rem, 1.8vw, .94rem);
+  font-style: italic; line-height: 1.5;
+}
+@media (max-width: 640px) {
+  #reino .receta-pocion .cierre-reino { gap: 7px; margin-top: 7px; }
+}

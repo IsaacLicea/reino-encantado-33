@@ -223,5 +223,7 @@ function crearLuciernagas(idContenedor, cantidad) {
   contenedor.appendChild(fragmento);
 }
 
-crearLuciernagas("luciernagasPortal", 22);
-crearLuciernagas("luciernagasHero", 16);
+// Menos partículas animadas en celular para preservar fluidez.
+const lucesMoviles = window.matchMedia("(max-width: 700px)").matches;
+crearLuciernagas("luciernagasPortal", lucesMoviles ? 12 : 22);
+crearLuciernagas("luciernagasHero", lucesMoviles ? 8 : 16);
