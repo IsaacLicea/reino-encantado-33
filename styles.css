@@ -674,24 +674,6 @@ body.reino-aparece .hero-image-wrap {
   }
 }
 
-/* Omitir introducción */
-.boton-saltar {
-  display: block;
-  margin: 12px auto 0;
-  padding: 8px 15px;
-  border: none;
-  background: transparent;
-  color: #aebddd;
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.8rem;
-}
-
-.boton-saltar:hover {
-  background: transparent;
-  color: white;
-  box-shadow: none;
-}
-
 /* Accesibilidad */
 @media (prefers-reduced-motion: reduce) {
   .luciernaga,

@@ -3,7 +3,6 @@
 // =====================================
 
 const boton = document.getElementById("abrirPortal");
-const saltarIntro = document.getElementById("saltarIntro");
 const portal = document.getElementById("portal");
 const reino = document.getElementById("reino");
 
@@ -21,7 +20,7 @@ function finalizarApertura() {
   window.scrollTo(0, 0);
 }
 
-function abrirReino(conAnimacion = true) {
+function abrirReino() {
   // Evita activar el hechizo dos veces.
   if (portalAbierto) return;
   portalAbierto = true;
@@ -37,7 +36,7 @@ function abrirReino(conAnimacion = true) {
     requestAnimationFrame(cargarPinterestDelBosque);
   });
 
-  const animar = conAnimacion && !reducirMovimiento.matches;
+  const animar = !reducirMovimiento.matches;
 
   if (!animar) {
     finalizarApertura();
@@ -60,13 +59,7 @@ function abrirReino(conAnimacion = true) {
   }, 2150);
 }
 
-boton.addEventListener("click", () => {
-  abrirReino(true);
-});
-
-saltarIntro.addEventListener("click", () => {
-  abrirReino(false);
-});
+boton.addEventListener("click", abrirReino);
 
 // =====================================
 // TABLERO DE PINTEREST — MODA DEL BOSQUE
