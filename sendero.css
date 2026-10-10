@@ -913,3 +913,94 @@
     animation: none !important;
   }
 }
+
+
+/* ============================================
+   TÍTULO CRISTAL — EL REINO DE LOS 33
+============================================ */
+#reino .hero h1.titulo-cristal {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(
+      180deg,
+      #f9fcff 0%,
+      #dff1ff 18%,
+      #ffffff 34%,
+      #a9d9ff 52%,
+      #eef7ff 70%,
+      #88afe0 100%
+    );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 1px rgba(214, 235, 255, 0.46);
+  text-shadow:
+    0 0 18px rgba(150, 206, 255, 0.15),
+    0 2px 18px rgba(5, 12, 24, 0.42);
+  filter: drop-shadow(0 0 10px rgba(173, 216, 255, 0.12));
+}
+
+#reino .hero h1.titulo-cristal::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.9) 0%,
+      rgba(255,255,255,0.35) 24%,
+      rgba(176,224,255,0.15) 42%,
+      rgba(255,255,255,0.78) 52%,
+      rgba(130,180,255,0.12) 68%,
+      rgba(255,255,255,0.4) 100%
+    );
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.72;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+#reino .hero h1.titulo-cristal::after {
+  content: "";
+  position: absolute;
+  inset: 6% -6%;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 34%,
+      rgba(255,255,255,0.08) 42%,
+      rgba(255,255,255,0.72) 49%,
+      rgba(255,255,255,0.10) 56%,
+      transparent 64%,
+      transparent 100%
+    );
+  transform: translateX(-130%) skewX(-18deg);
+  animation: brilloCristalTitulo 7s ease-in-out infinite;
+}
+
+@keyframes brilloCristalTitulo {
+  0%, 72%, 100% {
+    transform: translateX(-130%) skewX(-18deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  24% {
+    transform: translateX(130%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #reino .hero h1.titulo-cristal::after {
+    animation: none;
+    opacity: 0.35;
+    transform: translateX(0) skewX(-18deg);
+  }
+}
