@@ -204,7 +204,7 @@
   const finalizarLectura = (resultado) => {
     carta.disabled = true;
     carta.setAttribute("aria-label", "Carta revelada: " + resultado.nombre + ". Lectura única completada.");
-    if (avisoUnico) avisoUnico.textContent = "✨ El oráculo ha elegido tu única carta. Su mensaje permanecerá aquí.";
+    if (avisoUnico) avisoUnico.textContent = "✨ El oráculo ha elegido tu carta";
     if (mensajeIsaac) mensajeIsaac.hidden = false;
   };
 
