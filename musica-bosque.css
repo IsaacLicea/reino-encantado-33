@@ -125,3 +125,26 @@
   .musica-reino, .musica-reino-senal { transition: none !important; }
   .musica-reino.sonando .musica-reino-nota::after { animation: none !important; }
 }
+
+/* Atribución discreta de la pista Wonder6, requerida por CC BY 4.0. */
+#reino footer .credito-musica {
+  display: block;
+  margin: 12px auto 0;
+  font-family: Georgia, serif;
+  font-size: .72rem;
+  line-height: 1.65;
+  font-weight: 400;
+  letter-spacing: .015em;
+  color: rgba(229, 209, 176, .76);
+  text-transform: none;
+}
+#reino footer .credito-musica a {
+  color: #d5bd91;
+  text-decoration-color: rgba(213, 189, 145, .4);
+  text-underline-offset: 3px;
+}
+#reino footer .credito-musica a:hover,
+#reino footer .credito-musica a:focus-visible {
+  color: #f3dfb9;
+  text-decoration-color: currentColor;
+}
