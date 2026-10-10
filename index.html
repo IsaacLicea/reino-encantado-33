@@ -13,11 +13,11 @@
     />
 
     <link rel="stylesheet" href="styles.css?v=20261009-sin-omitir" />
-    <script src="script.js?v=20261009-luces-moviles" defer></script>
+    <script src="script.js?v=20261010-sello-dinamico" defer></script>
 
     <link rel="stylesheet" href="efectos-magicos.css?v=20261009-mapa2" />
     <script src="efectos-magicos.js?v=20261009-hada" defer></script>
-    <link rel="stylesheet" href="sendero.css?v=20261010-hospedaje-rsvp" />
+    <link rel="stylesheet" href="sendero.css?v=20261010-sello-dinamico" />
   </head>
   <body>
     <!-- INTRO / PORTAL -->
@@ -276,15 +276,15 @@
             loading="lazy"
           >
           </iframe>
-          <p class="cierre-reino-texto">
-            Tu respuesta ha quedado sellada bajo la magia del bosque.
-          </p>
-          <!-- Sello ornamental: se muestra siempre, no confirma un envío. -->
-          <div id="selloConfirmacion" class="cierre-reino" aria-live="polite">
+          <!-- El sello únicamente aparece tras recibir la confirmación de Apps Script. -->
+          <div id="selloConfirmacion" class="cierre-reino" role="status" aria-live="polite" hidden>
             <span class="cierre-reino-filigrana" aria-hidden="true">❦ ✧ ❦</span>
             <div class="sello-lacre" aria-hidden="true">
               <span class="sello-lacre-medallon"><span class="sello-lacre-cifra">33</span></span>
             </div>
+            <p class="cierre-reino-texto">
+              Tu respuesta ha quedado sellada bajo la magia del bosque.
+            </p>
           </div>
         </div>
 
