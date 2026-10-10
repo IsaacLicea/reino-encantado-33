@@ -153,6 +153,174 @@
   margin-top: 5px;
 }
 
+/* ==========================================================
+   FECHA FEÉRICA — ALMANAQUE ANTIGUO EN LA PORTADA
+   Sin imágenes adicionales y con animación ligera.
+========================================================== */
+#reino .hero-datos {
+  display: block;
+  width: 100%;
+  max-width: 490px;
+  margin-top: clamp(25px, 3.5vw, 38px);
+}
+
+#reino .fecha-encantada {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding: clamp(23px, 3vw, 31px) clamp(18px, 3vw, 34px) 21px;
+  border: 1px solid rgba(211, 177, 112, .48);
+  border-radius: 3px 16px 3px 16px;
+  background:
+    radial-gradient(ellipse at 50% 18%, rgba(191, 147, 74, .15), transparent 70%),
+    linear-gradient(140deg, rgba(23, 28, 45, .84), rgba(12, 19, 34, .78));
+  box-shadow: 0 17px 44px rgba(0, 0, 0, .2), inset 0 0 24px rgba(215, 180, 106, .05);
+  text-align: center;
+}
+
+#reino .fecha-encantada::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(205, 168, 100, .22);
+  border-radius: 1px 11px 1px 11px;
+  pointer-events: none;
+}
+
+#reino .fecha-encantada::after {
+  content: "✦";
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  color: #eacb8a;
+  font-size: 11px;
+  text-shadow: 0 0 13px rgba(249, 219, 158, .8);
+  pointer-events: none;
+  animation: latidoFecha 4.4s ease-in-out infinite;
+}
+
+#reino .fecha-corona {
+  display: block;
+  color: #cfac70;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  letter-spacing: .45em;
+  line-height: 1.3;
+}
+
+#reino .fecha-preludio {
+  margin: 6px 0 15px;
+  color: #ebd8b1;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: .73rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+#reino .fecha-calendario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(14px, 3vw, 24px);
+  padding: 0 0 20px;
+}
+
+#reino .fecha-numero {
+  display: block;
+  flex: 0 0 auto;
+  color: #f1d291;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(4.8rem, 9vw, 6.8rem);
+  font-weight: 500;
+  letter-spacing: -.08em;
+  line-height: 1;
+  text-shadow: 0 2px 0 rgba(67, 40, 17, .58), 0 0 30px rgba(204, 153, 75, .15);
+}
+
+#reino .fecha-desglose {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  text-align: left;
+}
+
+#reino .fecha-semana {
+  color: #d3c5ab;
+  font-family: Georgia, serif;
+  font-size: .9rem;
+  font-style: italic;
+}
+
+#reino .fecha-mes {
+  color: #fff0ce;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+  letter-spacing: .02em;
+  line-height: 1.25;
+}
+
+#reino .fecha-anio {
+  color: #d0b88f;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: .92rem;
+  letter-spacing: .24em;
+}
+
+#reino .fecha-hora {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 14px;
+  row-gap: 2px;
+  border-top: 1px solid rgba(211, 177, 112, .3);
+  padding-top: 15px;
+}
+
+#reino .fecha-hora-etiqueta {
+  color: #cfbfa6;
+  font-family: Georgia, serif;
+  font-size: .92rem;
+  font-style: italic;
+}
+
+#reino .fecha-hora-numero {
+  color: #f1d291;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+#reino .fecha-hora-numero span {
+  color: #dbcaad;
+  font-size: .73rem;
+  letter-spacing: .06em;
+}
+
+@keyframes latidoFecha {
+  0%, 100% { opacity: .35; transform: scale(.82); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@media (max-width: 900px) {
+  #reino .hero-datos { margin-inline: auto; }
+}
+
+@media (max-width: 600px) {
+  #reino .hero-datos { max-width: 410px; }
+  #reino .fecha-encantada { padding: 21px 16px 18px; }
+  #reino .fecha-calendario { gap: 16px; }
+  #reino .fecha-numero { font-size: clamp(4.6rem, 20vw, 5.5rem); }
+  #reino .fecha-mes { font-size: clamp(1.16rem, 5.6vw, 1.42rem); }
+  #reino .fecha-hora { column-gap: 10px; }
+  #reino .fecha-encantada::after { right: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #reino .fecha-encantada::after { animation: none !important; }
+}
+
 /* La carta del tarot parece un objeto antiguo, no una ficha de interfaz. */
 #reino .tarot-imagen-wrap {
   display: flex;
