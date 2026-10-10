@@ -163,15 +163,6 @@ button:hover {
   max-width: 620px;
 }
 
-/* Sólo el texto de bienvenida participa en la animación de entrada.
-   Fecha y hora no heredan la opacidad ni el movimiento del contenedor. */
-.hero-copy > .eyebrow,
-.hero-copy > h1,
-.hero-copy > .subtitulo {
-  opacity: 0;
-  transform: translateY(35px);
-}
-
 .subtitulo {
   max-width: 560px;
   font-size: 1.02rem;
@@ -644,13 +635,6 @@ body.animando-portal {
   opacity: 0;
   pointer-events: none;
   transition: opacity 1s ease;
-}
-
-/* Animamos el título y su introducción, nunca la fecha ni la hora. */
-body.reino-aparece .hero-copy > .eyebrow,
-body.reino-aparece .hero-copy > h1,
-body.reino-aparece .hero-copy > .subtitulo {
-  animation: aparecerReino 1.2s ease-out both;
 }
 
 body.reino-aparece .hero-image-wrap {
@@ -1263,13 +1247,3 @@ body.reino-aparece .hero-image-wrap {
 }
 
 
-/* Accesibilidad: también el título queda visible sin movimiento. */
-@media (prefers-reduced-motion: reduce) {
-  body.reino-aparece .hero-copy > .eyebrow,
-  body.reino-aparece .hero-copy > h1,
-  body.reino-aparece .hero-copy > .subtitulo {
-    opacity: 1;
-    transform: none;
-    animation: none !important;
-  }
-}
