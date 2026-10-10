@@ -1583,3 +1583,98 @@
 @media (max-width: 640px) {
   #reino .receta-pocion .cierre-reino { gap: 7px; margin-top: 7px; }
 }
+
+
+/* ==========================================================
+   ORNAMENTOS MÁGICOS EXTRA
+========================================================== */
+
+#reino .seccion-tarot,
+#reino .seccion-moda,
+#reino .seccion-estilo {
+  position: relative;
+}
+
+/* Si ya existe .ornamento-magico, esto solo complementa */
+#reino .ornamento-cristal,
+#reino .ornamento-varita {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: center;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.22));
+}
+
+/* Bola de cristal */
+#reino .ornamento-cristal {
+  width: clamp(74px, 8vw, 98px);
+  top: -18px;
+  right: clamp(10px, 4vw, 34px);
+  animation:
+    flotarCristal 4.8s ease-in-out infinite,
+    brilloCristal 3.8s ease-in-out infinite;
+}
+
+/* Varita mágica */
+#reino .ornamento-varita {
+  width: clamp(78px, 8vw, 102px);
+  top: -14px;
+  right: clamp(8px, 4vw, 30px);
+  transform: rotate(12deg);
+  animation:
+    flotarVarita 4.5s ease-in-out infinite,
+    destelloVarita 2.8s ease-in-out infinite;
+}
+
+@keyframes flotarCristal {
+  0%, 100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes brilloCristal {
+  0%, 100% {
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.22))
+            drop-shadow(0 0 0 rgba(147, 199, 255, 0));
+  }
+  50% {
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.22))
+            drop-shadow(0 0 14px rgba(147, 199, 255, .65));
+  }
+}
+
+@keyframes flotarVarita {
+  0%, 100% {
+    transform: rotate(12deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(7deg) translateY(-7px);
+  }
+}
+
+@keyframes destelloVarita {
+  0%, 100% {
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.22))
+            drop-shadow(0 0 0 rgba(255, 233, 150, 0));
+  }
+  50% {
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.22))
+            drop-shadow(0 0 16px rgba(255, 233, 150, .75));
+  }
+}
+
+@media (max-width: 640px) {
+  #reino .ornamento-cristal {
+    top: -12px;
+    right: 10px;
+  }
+
+  #reino .ornamento-varita {
+    top: -10px;
+    right: 8px;
+  }
+}
