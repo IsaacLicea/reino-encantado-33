@@ -1,0 +1,34 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fairyGold" x1="8" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f8e7b5"/>
+      <stop offset="55%" stop-color="#e2c47a"/>
+      <stop offset="100%" stop-color="#b88d48"/>
+    </linearGradient>
+
+    <radialGradient id="wingGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(32 24) rotate(90) scale(18 22)">
+      <stop offset="0%" stop-color="#f6f6ff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#c8d9ff" stop-opacity="0.15"/>
+    </radialGradient>
+  </defs>
+
+  <!-- alas -->
+  <ellipse cx="22" cy="22" rx="10" ry="15" transform="rotate(-28 22 22)" fill="url(#wingGlow)"/>
+  <ellipse cx="42" cy="22" rx="10" ry="15" transform="rotate(28 42 22)" fill="url(#wingGlow)"/>
+  <ellipse cx="24" cy="32" rx="8" ry="11" transform="rotate(-18 24 32)" fill="url(#wingGlow)" opacity="0.85"/>
+  <ellipse cx="40" cy="32" rx="8" ry="11" transform="rotate(18 40 32)" fill="url(#wingGlow)" opacity="0.85"/>
+
+  <!-- cuerpo -->
+  <circle cx="32" cy="16" r="4.2" fill="url(#fairyGold)"/>
+  <path d="M32 21.5C34.8 21.5 36.7 24.4 36.2 27.1L35.1 33.4C34.7 35.8 33.5 37.8 32 37.8C30.5 37.8 29.3 35.8 28.9 33.4L27.8 27.1C27.3 24.4 29.2 21.5 32 21.5Z" fill="url(#fairyGold)"/>
+  <path d="M31.7 37.7L24.2 48.8C23.3 50.2 24.2 52 25.9 52H38.1C39.8 52 40.7 50.2 39.8 48.8L32.3 37.7C32.2 37.5 31.8 37.5 31.7 37.7Z" fill="url(#fairyGold)"/>
+
+  <!-- brazos -->
+  <path d="M29.3 26.5L22.3 30.2" stroke="#e7cf92" stroke-width="2" stroke-linecap="round"/>
+  <path d="M34.7 26.5L41.7 21.6" stroke="#e7cf92" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- varita -->
+  <path d="M41.7 21.6L48.5 17" stroke="#f0d898" stroke-width="1.7" stroke-linecap="round"/>
+  <path d="M50.6 14.6L51.5 17.2L54.2 17.4L52.1 19.1L52.8 21.8L50.6 20.4L48.4 21.8L49.1 19.1L47 17.4L49.7 17.2L50.6 14.6Z" fill="#f6e8bc"/>
+</svg>
