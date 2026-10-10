@@ -188,3 +188,27 @@ function crearLuciernagas(idContenedor, cantidad) {
 
 crearLuciernagas("luciernagasPortal", 22);
 crearLuciernagas("luciernagasHero", 16);
+
+
+function actualizarUnidad(id, nuevoValor) {
+  const numero = document.getElementById(id);
+  if (!numero) return;
+
+  const caja = numero.closest("div");
+  const valorActual = numero.textContent;
+
+  if (valorActual !== nuevoValor) {
+    numero.textContent = nuevoValor;
+
+    if (caja) {
+      caja.classList.remove("tick-magico");
+      void caja.offsetWidth; // reinicia animación
+      caja.classList.add("tick-magico");
+    }
+  }
+}
+
+actualizarUnidad("dias", diasTexto);
+actualizarUnidad("horas", horasTexto);
+actualizarUnidad("minutos", minutosTexto);
+actualizarUnidad("segundos", segundosTexto);
