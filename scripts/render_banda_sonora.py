@@ -13,7 +13,7 @@ from pathlib import Path
 import mido
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "assets" / "danza-luciernagas-cinematica.mp3"
+OUTPUT = ROOT / "assets" / "danza-luciernagas-cristal.mp3"
 MIDI = ROOT / "scripts" / ".banda-sonora.mid"
 RAW = ROOT / "scripts" / ".banda-sonora.wav"
 SOUNDFONT = Path(os.environ.get("REINO_SF2", "/tmp/GeneralUser-GS.sf2"))
@@ -77,19 +77,22 @@ def main():
     conductor.append(mido.MetaMessage("set_tempo", tempo=mido.bpm2tempo(TEMPO), time=0))
     conductor.append(mido.MetaMessage("time_signature", numerator=6, denominator=8, time=0))
 
-    # GM programs zero-indexados: arpa 46, flauta 73, cuerdas 48,
-    # violín 40, pizzicato 45, glockenspiel 9, celesta 8.
+    # GM programs zero-indexados. GeneralUser GS patch 92 = Bowed Glass.
+    # Usamos ese timbre como voz principal de armónica de cristal,
+    # con ataques puntuales de vibráfono muestreado para dar nitidez
+    # sin devolver la melodía al sonido de sintetizador puro.
     definitions = [
         ("Arpa acústica", 0, 46, 42, 91, 56),
-        ("Flauta solista", 1, 73, 75, 88, 60),
+        ("Armónica de cristal", 1, 92, 73, 101, 95),
         ("Cuerdas de cámara", 2, 48, 38, 72, 71),
         ("Violín contrapunto", 3, 40, 90, 70, 62),
         ("Celesta", 4, 8, 92, 73, 77),
         ("Glockenspiel", 5, 9, 31, 68, 79),
         ("Pizzicato de cuerdas", 6, 45, 82, 77, 44),
-        ("Corno inglés", 7, 69, 55, 72, 64),
+        ("Cristal grave de contrapunto", 7, 92, 51, 68, 91),
         ("Coro etéreo", 8, 52, 62, 52, 85),
         ("Violonchelo", 10, 42, 39, 78, 62),
+        ("Vibráfono en armónicos", 11, 11, 83, 45, 86),
     ]
     tracks = {}
     for title, ch, gm, pan, volume, reverb in definitions:
@@ -129,20 +132,27 @@ def main():
                  BEAT8*(1.8 if i in (0,3) else 1.25),
                  (76 if bloom else 65)*section*accents[i], 10)
 
-        # Melodía clara y repetida, con respiraciones e instrumentos distintos.
+        # La melodía ahora nace de copas de cristal frotadas, no de una flauta.
+        # Uniendo suavemente notas y añadiendo un armónico de vibráfono,
+        # la línea se siente continua, delicada y misteriosa.
         if bar >= 4:
             attacks = [0.12, 1.04, 2.03, 3.18, 4.60]
-            durations = [.75, .76, .92, .79, 1.18]
+            durations = [1.12, 1.10, 1.20, 1.12, 1.66]
             for i, p in enumerate(melody):
                 if outro and i == 2 and bar%2 == 0:
                     continue
                 pos = start + attacks[i]*BEAT8
                 pitch = p - (12 if intro else 0)
-                play("Flauta solista", pitch, pos, durations[i]*BEAT8,
-                     (82 if bloom else 75 if not secret else 67)*section, 10)
+                play("Armónica de cristal", pitch, pos, durations[i]*BEAT8,
+                     (84 if bloom else 74 if not secret else 69)*section, 5)
+                # Luz en cada primera y última nota del motivo: refuerzo suave,
+                # no otra melodía que compita con el timbre de cristal.
+                if i in (0,4) and (bar%2==0 or bloom):
+                    play("Vibráfono en armónicos", pitch+12, pos+15,
+                         BEAT8*.80, (35 if bloom else 29)*section, 6)
                 if bloom and bar%2==0 and i in (0,2,4):
-                    play("Violín contrapunto", p-12, pos+18, durations[i]*BEAT8*1.35,
-                         49 + 5*section, 15)
+                    play("Violín contrapunto", p-12, pos+23, durations[i]*BEAT8*1.25,
+                         44 + 5*section, 15)
 
         # Cuerdas: voicings abiertos que crecen y respiran.
         if bar%2==0 or bloom:
@@ -150,14 +160,14 @@ def main():
                 play("Cuerdas de cámara", p, start+32*i, BAR*(2.05 if bar%2==0 else 1.05),
                      52*section + 6*i, 9)
 
-        # Voces de cristal y corno inglés en escenas específicas.
+        # Coro suave y resonancias graves de cristal en el sendero secreto.
         if bar%4==0 and bar>=8:
             for i, p in enumerate(chord[2:4]):
                 play("Coro etéreo", p+12, start+80+45*i, BAR*2.25,
                      (44 if bloom else 36)*section, 12)
         if secret or (bar>=56 and bar%2==1):
-            play("Corno inglés", melody[bar%5]-12, start+2*BEAT8, BEAT8*2.5,
-                 50*section, 8)
+            play("Cristal grave de contrapunto", melody[bar%5]-12,
+                 start+2*BEAT8, BEAT8*3.0, 49*section, 8)
 
         # Bajo y pizzicato dan movimiento continuo sin sonido de videojuego.
         if not intro:

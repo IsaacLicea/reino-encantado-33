@@ -1,5 +1,5 @@
 /* Reino de los 33 — La danza de las luciérnagas.
-   Reproduce la mezcla original de instrumentos muestreados.
+   Reproduce la versión orquestal con armónica de cristal muestreada.
    El audio se descarga solo después de que el visitante pulsa "Activar".
    Se conserva la versión sintetizada anterior en scripts/ como respaldo. */
 (() => {
@@ -16,7 +16,7 @@
     return;
   }
 
-  const pista = new AudioAPI("assets/danza-luciernagas-cinematica.mp3");
+  const pista = new AudioAPI("assets/danza-luciernagas-cristal.mp3");
   pista.preload = "none";
   pista.loop = true;
   pista.volume = 0.66;
