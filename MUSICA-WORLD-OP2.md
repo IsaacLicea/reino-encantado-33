@@ -21,7 +21,7 @@ En `assets/peritune-world-op2.mp3` se aloja la grabación, obtenida mediante `sc
 - Grabación original de Commons: https://commons.wikimedia.org/wiki/File:%E3%80%90%E7%84%A1%E6%96%99%E3%83%95%E3%83%AA%E3%83%BCBGM%E3%80%91%E7%89%A9%E8%AA%9E%E3%81%AE%E5%A7%8B%E3%81%BE%E3%82%8A%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E5%B9%BB%E6%83%B3%E7%9A%84%E3%81%AA%E3%83%AF%E3%83%AB%E3%83%84%E3%80%8CWorld_OP2%E3%80%8D.opus
 - La descripción de la grabación en Wikimedia Commons cita CC BY 3.0 para la versión de video publicada originalmente en YouTube. La canción individual se distribuye bajo CC BY 4.0 en el sitio oficial de PeriTune.
 
-**Archivo final verificado**: consultar los registros de GitHub Actions `Integrar World_OP2 (CC BY 4.0)`, que indican claramente qué fuente se usó y la duración final.
+**Grabación oficial:** la descarga del MP3 directo desde PeriTune fue probada con FFprobe y tiene una duración aproximada de **2:06**. La versión del archivo oficial se conserva **sin recodificar, recortar ni modificar**. Los registros de GitHub Actions `Integrar World_OP2 (CC BY 4.0)` confirman la fuente elegida y las medidas exactas del MP3.
 
 ## Integración en la web
 
