@@ -37,16 +37,16 @@ def discover():
         for attr in ("href", "src", "data-src", "data-url", "download"):
             u = element.get(attr)
             if isinstance(u, str) and ("wonder6" in u.lower() or
-                (re.search(r"\\.(?:mp3|zip)(?:\\?|$)", u, re.I) and "peritune" in u.lower())):
+                (re.search(r"\.(?:mp3|zip)(?:\?|$)", u, re.I) and "peritune" in u.lower())):
                 urls.add(urljoin(PAGE, html.unescape(u).replace("\\/", "/")))
-    for match in re.findall(r'https?:(?:\\/\\/|//)[^"\\'\\s<>]+', response.text):
+    for match in re.findall(r"https?://[^\s<>]+", response.text):
         u = html.unescape(match).replace("\\/", "/")
         if "wonder6" in u.lower() and ("mp3" in u.lower() or "zip" in u.lower()):
             urls.add(u)
     # Old PeriTune files often follow this stable uploads naming convention.
     urls.add("https://peritune.com/wp-content/uploads/2019/01/PerituneMaterial_Wonder6.mp3")
     cleaned = sorted({u.split("#")[0] for u in urls if allowed(u)})
-    print("Official-site candidate links:", *cleaned[:30], sep="\\n- ", flush=True)
+    print("Official-site candidate links:", *cleaned[:30], sep="\n- ", flush=True)
     archives = [x for x in cleaned if ".zip" in x.lower() and "loop" in x.lower()]
     others = [x for x in cleaned if ".mp3" in x.lower() and "wonder6" in x.lower()]
     archives += [x for x in cleaned if ".zip" in x.lower() and x not in archives]
