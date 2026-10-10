@@ -161,6 +161,10 @@ button:hover {
 
 .hero-copy {
   max-width: 620px;
+  /* Oculto desde el primer fotograma: antes se veía bajo el portal
+     y aparecía de nuevo al comenzar "aparecerReino". */
+  opacity: 0;
+  transform: translateY(35px);
 }
 
 .subtitulo {
@@ -1251,4 +1255,12 @@ body.reino-aparece .hero-image-wrap {
 }
 
 
-
+/* Si el sistema reduce el movimiento, se conserva el título visible
+   sin dejar una opacidad inicial de cero. */
+@media (prefers-reduced-motion: reduce) {
+  body.reino-aparece .hero-copy {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}
