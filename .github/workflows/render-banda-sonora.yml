@@ -46,5 +46,7 @@ jobs:
             echo "La banda sonora ya estaba actualizada."
           else
             git commit -m "Añadir banda sonora orquestal grabada para la invitación"
-            git push origin HEAD:${{ github.ref_name }}
+            git fetch origin "${{ github.ref_name }}"
+            git rebase "origin/${{ github.ref_name }}"
+            git push origin HEAD:"${{ github.ref_name }}"
           fi
