@@ -161,8 +161,13 @@ button:hover {
 
 .hero-copy {
   max-width: 620px;
-  /* Oculto desde el primer fotograma: antes se veía bajo el portal
-     y aparecía de nuevo al comenzar "aparecerReino". */
+}
+
+/* Sólo el texto de bienvenida participa en la animación de entrada.
+   Fecha y hora no heredan la opacidad ni el movimiento del contenedor. */
+.hero-copy > .eyebrow,
+.hero-copy > h1,
+.hero-copy > .subtitulo {
   opacity: 0;
   transform: translateY(35px);
 }
@@ -177,6 +182,8 @@ button:hover {
   gap: 14px;
   margin-top: 30px;
   max-width: 420px;
+  /* Se muestran de golpe cuando el portal termina, sin animación. */
+  visibility: hidden;
 }
 
 .dato {
@@ -640,9 +647,16 @@ body.animando-portal {
   transition: opacity 1s ease;
 }
 
-/* Aparición del reino */
-body.reino-aparece .hero-copy {
+/* Animamos el título y su introducción, nunca la fecha ni la hora. */
+body.reino-aparece .hero-copy > .eyebrow,
+body.reino-aparece .hero-copy > h1,
+body.reino-aparece .hero-copy > .subtitulo {
   animation: aparecerReino 1.2s ease-out both;
+}
+
+/* Fecha y hora visibles inmediatamente, sin fades ni desplazamientos. */
+body.reino-aparece .hero-datos {
+  visibility: visible;
 }
 
 body.reino-aparece .hero-image-wrap {
@@ -1255,10 +1269,11 @@ body.reino-aparece .hero-image-wrap {
 }
 
 
-/* Si el sistema reduce el movimiento, se conserva el título visible
-   sin dejar una opacidad inicial de cero. */
+/* Accesibilidad: también el título queda visible sin movimiento. */
 @media (prefers-reduced-motion: reduce) {
-  body.reino-aparece .hero-copy {
+  body.reino-aparece .hero-copy > .eyebrow,
+  body.reino-aparece .hero-copy > h1,
+  body.reino-aparece .hero-copy > .subtitulo {
     opacity: 1;
     transform: none;
     animation: none !important;
