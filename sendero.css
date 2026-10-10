@@ -1113,7 +1113,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
-  height: 520px;
+  height: 480px;
   min-height: 0;
   max-height: none;
   margin: 12px auto 0;
@@ -1130,7 +1130,7 @@
     padding-bottom: 10px;
   }
   #reino .receta-pocion #formulario-rsvp {
-    height: 610px;
+    height: 560px;
     margin-top: 10px;
     border-radius: 10px;
   }
@@ -1506,7 +1506,7 @@
 #reino .receta-pocion #formulario-rsvp {
   width: 100%;
   max-width: 100%;
-  height: 520px;
+  height: 480px;
   margin: 5px auto 0;
   border: 0;
   border-radius: 4px;
@@ -1525,7 +1525,7 @@
     margin-top: 14px;
   }
   #reino .receta-pocion #formulario-rsvp {
-    height: 610px;
+    height: 560px;
     margin-top: 0;
   }
 }
@@ -1534,7 +1534,7 @@
 /* Sello de lacre al pie de la receta: ornamental, no confirma envío. */
 #reino .receta-pocion .cierre-reino {
   display: grid; justify-items: center; gap: 9px;
-  max-width: 480px; margin: 12px auto 5px;
+  max-width: 480px; margin: 8px auto 5px;
   padding: 0 8px; text-align: center;
 }
 #reino .receta-pocion #formulario-rsvp[hidden] + .cierre-reino { display: none !important; }
@@ -1581,7 +1581,7 @@
   font-style: italic; line-height: 1.5;
 }
 @media (max-width: 640px) {
-  #reino .receta-pocion .cierre-reino { gap: 7px; margin-top: 7px; }
+  #reino .receta-pocion .cierre-reino { gap: 7px; margin-top: 5px; }
 }
 
 
