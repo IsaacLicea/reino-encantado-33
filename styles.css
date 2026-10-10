@@ -182,8 +182,7 @@ button:hover {
   gap: 14px;
   margin-top: 30px;
   max-width: 420px;
-  /* Se muestran de golpe cuando el portal termina, sin animación. */
-  visibility: hidden;
+  /* Ya están presentes detrás del portal, sin animación. */
 }
 
 .dato {
@@ -652,11 +651,6 @@ body.reino-aparece .hero-copy > .eyebrow,
 body.reino-aparece .hero-copy > h1,
 body.reino-aparece .hero-copy > .subtitulo {
   animation: aparecerReino 1.2s ease-out both;
-}
-
-/* Fecha y hora visibles inmediatamente, sin fades ni desplazamientos. */
-body.reino-aparece .hero-datos {
-  visibility: visible;
 }
 
 body.reino-aparece .hero-image-wrap {
