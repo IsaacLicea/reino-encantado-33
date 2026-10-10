@@ -1,7 +1,7 @@
 /* Reino de los 33 — "La danza de las luciérnagas".
-   Fantasía instrumental original de 6/8: melodía tarareable,
-   pulso de madera, un secreto armónico y luces de arpa y flauta.
-   Reproducción voluntaria, sin grabaciones externas. */
+   Fantasía luminosa en 6/8: estribillo memorable de flauta, arpa,
+   pandero suave, cascabeles y campanillas. Con un sendero misterioso.
+   Todo sintetizado con Web Audio, sin reproducción automática. */
 (() => {
   "use strict";
 
@@ -36,12 +36,18 @@
     [45,52,57,61,64], [52,59,62,66,71], [55,59,62,66,69],
     [48,55,59,64,66], [45,52,57,61,64]
   ];
-  // Tema principal de cinco notas; vuelve con cambios de intensidad.
+  // Estribillo de cinco notas, con una "llamada" que regresa varias veces.
+  // F#–A–B–A–F# tiene un contorno fácil de tararear; cada segundo
+  // compás responde y prepara la siguiente repetición.
   const tema = [
-    [78,81,78,76,74], [79,81,83,81,78],
-    [78,74,76,78,81], [76,73,76,78,81],
-    [79,78,76,79,83], [83,81,79,78,76],
-    [76,79,83,78,79], [76,73,76,78,74]
+    [78,81,83,81,78], // llamada: luce la primera luciérnaga
+    [79,81,79,78,76], // respuesta entre las ramas
+    [78,81,83,81,78], // vuelve el gancho
+    [76,78,76,73,76], // la pregunta se vuelve luminosa
+    [79,83,81,79,78], // variación que eleva el coro
+    [79,81,83,81,79], // brillo de la tarde
+    [76,79,83,78,79], // puerta misteriosa
+    [76,73,76,78,74]  // resolución hacia el comienzo
   ];
   const eventos = [];
   // Ocaso (0-7), baile (8-15), sendero secreto (16-23),
@@ -85,8 +91,10 @@
 
     // Motivo tarareable: siempre reaparece, primero en susurros,
     // luego con más fuerza. Pausas intencionadas entre frases.
-    const ataques=misterio?[.35,1.33,2.28,3.7,4.65]:[.24,1.13,2.14,3.33,4.69];
-    const largos=[.38,.46,.51,.58,.85];
+    // "ta ta — ta-ta taaa": ritmo reconocible del estribillo.
+    // En el sendero secreto se desplaza ligeramente para crear intriga.
+    const ataques=misterio?[.32,1.42,2.47,3.58,4.67]:[.22,1.11,2.18,3.31,4.58];
+    const largos=[.36,.42,.59,.42,.76];
     if (!intro || compas>=2) {
       frase.forEach((nota,i) => {
         if (final && i===2 && compas%2===0) return;
@@ -122,6 +130,47 @@
     if (compas%8===0||compas===23||compas===39) eventos.push({
       pulso:base+.02,tipo:"brisa",intensidad:misterio?.45:.3
     });
+
+    // Un pandero discreto conduce la danza en grupos de tres.
+    // En la fiesta el tintineo gana presencia, nunca desplaza al arpa.
+    if (compas>=4) {
+      const cascabeleo=fiesta?[0.10,1.12,2.12,3.10,4.13,5.13]:
+        misterio?[0.11,1.98,3.12,4.94]:[0.11,1.98,3.12,4.94];
+      cascabeleo.forEach((paso,i)=>{
+        const acento=i===0 || (fiesta && i===3) || (!fiesta && i===2);
+        eventos.push({
+          pulso:base+paso+((i+compas)%3-1)*.016,
+          tipo:"pandero",
+          intensidad:(fiesta?.57:misterio?.29:final?.35:.43)*(acento?1:.60),
+          paneo:((i%2)*2-1)*.13
+        });
+      });
+    }
+
+    // Un pequeño repique melódico contesta al estribillo,
+    // como campanas de plata entre flores y luciérnagas.
+    if (compas>=4 && (compas%2===0 || fiesta)) {
+      [1.62,4.07].forEach((paso,i)=>{
+        eventos.push({
+          pulso:base+paso,tipo:"cascabel",
+          nota:i===0?acorde[3]+24:acorde[4]+19,
+          intensidad:fiesta?.66:misterio?.26:final?.34:.48,
+          paneo:i===0?-.32:.32
+        });
+      });
+    }
+    // Al final de cada cuatro compases: frase de campanillas a modo
+    // de respuesta a la flauta, resaltada durante la celebración.
+    if (compas>=7 && compas%4===3) {
+      [3.92,4.58,5.25].forEach((paso,i)=>{
+        eventos.push({
+          pulso:base+paso,tipo:"cascabel",
+          nota:[acorde[2]+24,acorde[3]+24,acorde[4]+24][i],
+          intensidad:fiesta?.65:misterio?.25:.44,
+          paneo:(i-1)*.25
+        });
+      });
+    }
   }
   eventos.sort((a,b)=>a.pulso-b.pulso);
 
@@ -450,6 +499,57 @@
     fuente.stop(cuando+.1);
   }
 
+  // Pandero feérico: aro de resonancia y pequeños platillos metálicos.
+  // Es síntesis de ruido filtrado, sin depender de muestras grabadas.
+  function pandero(cuando, intensidad, paneo) {
+    const sonido = audio.createBufferSource();
+    sonido.buffer = ruido;
+    const filtro = audio.createBiquadFilter();
+    filtro.type = "highpass";
+    filtro.frequency.value = 3800;
+    const volumenPandero = audio.createGain();
+    volumenPandero.gain.setValueAtTime(.0001,cuando);
+    volumenPandero.gain.linearRampToValueAtTime(.012*intensidad,cuando+.005);
+    volumenPandero.gain.exponentialRampToValueAtTime(.0001,cuando+.15);
+    sonido.connect(filtro);
+    filtro.connect(volumenPandero);
+    conectarConPan(volumenPandero,paneo);
+    sonido.start(cuando);
+    sonido.stop(cuando+.16);
+    // Dos chapitas de metal con alturas ligeramente distintas.
+    [2860,3980].forEach((hz,i)=>{
+      const osc=audio.createOscillator();
+      const salida=audio.createGain();
+      osc.type="sine";
+      osc.frequency.value=hz*(1+((i+1)%3)*.012);
+      salida.gain.setValueAtTime(.0001,cuando);
+      salida.gain.linearRampToValueAtTime((i?.0025:.0035)*intensidad,cuando+.008);
+      salida.gain.exponentialRampToValueAtTime(.0001,cuando+.11+(i*.04));
+      osc.connect(salida);
+      conectarConPan(salida,paneo);
+      osc.start(cuando);
+      osc.stop(cuando+.17);
+    });
+  }
+
+  // Cascabel de notas: brillo corto y afinado que responde a la melodía.
+  function cascabel(nota,cuando,intensidad,paneo) {
+    [1,2.12,3.91].forEach((arm,i)=>{
+      const osc=audio.createOscillator();
+      const salida=audio.createGain();
+      osc.type="sine";
+      osc.frequency.value=frecuencia(nota)*arm;
+      const duracion=i===0?.62:.32;
+      salida.gain.setValueAtTime(.0001,cuando);
+      salida.gain.linearRampToValueAtTime((i?.0038:.012)*intensidad,cuando+.008);
+      salida.gain.exponentialRampToValueAtTime(.0001,cuando+duracion);
+      osc.connect(salida);
+      conectarConPan(salida,paneo);
+      osc.start(cuando);
+      osc.stop(cuando+duracion+.025);
+    });
+  }
+
   function tocar(evento, cuando) {
     if (evento.tipo === "arpa") arpa(evento.nota, cuando, evento.intensidad, evento.paneo);
     else if (evento.tipo === "flauta") flauta(evento.nota, cuando, evento.largo, evento.intensidad);
@@ -459,6 +559,8 @@
     else if (evento.tipo === "paso") paso(evento.nota, cuando, evento.intensidad);
     else if (evento.tipo === "madera") madera(cuando, evento.intensidad, evento.paneo);
     else if (evento.tipo === "hojas") hojas(cuando, evento.intensidad, evento.paneo);
+    else if (evento.tipo === "pandero") pandero(cuando, evento.intensidad, evento.paneo);
+    else if (evento.tipo === "cascabel") cascabel(evento.nota, cuando, evento.intensidad, evento.paneo);
     else if (evento.tipo === "coro") coroEtéreo(evento.notas, cuando, evento.intensidad);
     else if (evento.tipo === "cuerdas") {
       evento.notas.forEach((nota, i) =>
