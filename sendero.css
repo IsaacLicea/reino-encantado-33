@@ -579,9 +579,10 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* Mantener el degradado existente; fondo-tarot.png no está publicado,
+     por lo que antes causaba un 404 y no aportaba ninguna ilustración. */
   background:
-    linear-gradient(180deg, rgba(6, 10, 18, 0.72), rgba(8, 10, 18, 0.9)),
-    url("assets/fondo-tarot.png");
+    linear-gradient(180deg, rgba(6, 10, 18, 0.72), rgba(8, 10, 18, 0.9));
   background-size: cover;
   background-position: center;
   opacity: 0.95;
