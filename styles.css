@@ -412,7 +412,7 @@ footer {
     radial-gradient(
       ellipse at center,
       rgba(48, 89, 155, 0.16),
-      transparent 80%
+      transparent 90%
     ),
     rgba(9, 16, 31, 0.85);
 }
@@ -420,8 +420,8 @@ footer {
 #mapa-privado {
   display: block;
   width: 100%;
-  max-width: 780px;
-  height: 530px;
+  max-width: 750px;
+  height: 500px;
   margin: 28px auto 0;
   border: 0;
   background: transparent;
