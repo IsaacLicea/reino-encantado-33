@@ -1,0 +1,25 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="cristal" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(70 55) rotate(90) scale(58)">
+      <stop offset="0%" stop-color="#dff7ff"/>
+      <stop offset="38%" stop-color="#9ad7ff"/>
+      <stop offset="70%" stop-color="#6f8fff"/>
+      <stop offset="100%" stop-color="#31406f"/>
+    </radialGradient>
+    <linearGradient id="base" x1="36" y1="106" x2="124" y2="145" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b68643"/>
+      <stop offset="0.5" stop-color="#f0d38c"/>
+      <stop offset="1" stop-color="#8a5a24"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="80" cy="58" r="50" fill="url(#cristal)" stroke="#e7d8a8" stroke-width="3"/>
+  <ellipse cx="62" cy="38" rx="18" ry="9" fill="rgba(255,255,255,0.45)"/>
+  <circle cx="98" cy="73" r="5" fill="rgba(255,255,255,0.55)"/>
+
+  <path d="M52 108H108L116 124H44L52 108Z" fill="url(#base)" stroke="#7b5325" stroke-width="3"/>
+  <rect x="38" y="124" width="84" height="15" rx="7.5" fill="#6d4522" stroke="#d9b56b" stroke-width="3"/>
+  <circle cx="80" cy="18" r="3" fill="#fff3c9"/>
+  <circle cx="26" cy="52" r="2.5" fill="#fff3c9"/>
+  <circle cx="134" cy="46" r="2.5" fill="#fff3c9"/>
+</svg>
