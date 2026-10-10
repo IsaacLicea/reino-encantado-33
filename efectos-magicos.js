@@ -211,6 +211,98 @@
   };
 
   carta.addEventListener("click", revelar);
+
+     // 6. Hada voladora por todo el reino, dejando destellos.
+  if (!quieto) {
+    const capaHada = document.createElement("div");
+    capaHada.className = "capa-hada-magica";
+    capaHada.setAttribute("aria-hidden", "true");
+    main.appendChild(capaHada);
+
+    const hada = document.createElement("div");
+    hada.className = "hada-voladora";
+    capaHada.appendChild(hada);
+
+    let ultimoX = 0;
+    let ultimoDestello = 0;
+
+    const crearDestello = (x, y) => {
+      const destello = document.createElement("span");
+      destello.className = "destello-hada";
+      destello.style.left = `${x}px`;
+      destello.style.top = `${y}px`;
+      destello.style.setProperty("--dx", `${(Math.random() - 0.5) * 18}px`);
+      destello.style.setProperty("--dy", `${-10 - Math.random() * 16}px`);
+      destello.style.setProperty("--duracion", `${1 + Math.random() * 0.55}s`);
+      capaHada.appendChild(destello);
+
+      destello.addEventListener(
+        "animationend",
+        () => destello.remove(),
+        { once: true }
+      );
+    };
+
+    const animarHada = (ts) => {
+      if (main.hidden || main.clientWidth < 60 || main.scrollHeight < 120) {
+        requestAnimationFrame(animarHada);
+        return;
+      }
+
+      const t = ts / 1000;
+      const vh = Math.max(window.innerHeight, 480);
+
+      const rect = main.getBoundingClientRect();
+      const topDoc = rect.top + window.scrollY;
+
+      const ancho = Math.max(main.clientWidth, 320);
+      const alto = Math.max(main.scrollHeight, vh);
+
+      const x = Math.max(
+        28,
+        Math.min(
+          ancho - 28,
+          ancho * 0.16 +
+            ((Math.sin(t * 0.34) + 1) / 2) * (ancho * 0.68) +
+            Math.sin(t * 1.45) * 18
+        )
+      );
+
+      const yBase = (window.scrollY - topDoc) + vh * 0.14;
+
+      const y = Math.max(
+        26,
+        Math.min(
+          alto - 40,
+          yBase +
+            ((Math.sin(t * 0.23 + 1.2) + 1) / 2) * (vh * 0.62) +
+            Math.cos(t * 1.12) * 12
+        )
+      );
+
+      const haciaDerecha = x >= ultimoX;
+      const inclinacion = Math.sin(t * 1.7) * 8;
+
+      hada.style.transform =
+        `translate(${x}px, ${y}px) scaleX(${haciaDerecha ? 1 : -1}) rotate(${inclinacion}deg)`;
+
+      if (ts - ultimoDestello > 120) {
+        crearDestello(x + (haciaDerecha ? 6 : 20), y + 16);
+
+        if (Math.random() > 0.55) {
+          crearDestello(x + 12, y + 8);
+        }
+
+        ultimoDestello = ts;
+      }
+
+      ultimoX = x;
+      requestAnimationFrame(animarHada);
+    };
+
+    requestAnimationFrame(animarHada);
+  }
+   
 })();
 
 
