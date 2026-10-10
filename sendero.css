@@ -1391,12 +1391,12 @@
 /* ================================================================
    RECETA DE POCIÓN ANTIGUA — PAPEL PREPARADO PARA FUTURA ILUSTRACIÓN
 
-   Al crear la imagen de fondo, SOLO cambia esta variable a:
-   --fondo-ilustrado-receta: url("assets/receta-pocion-antigua.webp");
-   Deja las capas translúcidas: protegen la legibilidad del formulario.
+   Ilustración PNG sin texto; los formularios se dibujan por encima.
+   Cambiar el archivo de fondo sólo requiere modificar la variable.
+   Las capas suaves ayudan a mantener la legibilidad del formulario.
 ================================================================ */
 #reino .receta-pocion {
-  --fondo-ilustrado-receta: none;
+  --fondo-ilustrado-receta: url("assets/receta-pocion-antigua.png");
   position: relative;
   isolation: isolate;
   width: min(820px, 100%);
@@ -1408,9 +1408,9 @@
   color: #533c22;
   background-color: #d7be8d;
   background-image:
-    radial-gradient(ellipse at 16% 11%, rgba(145, 99, 45, .16), transparent 31%),
-    radial-gradient(ellipse at 91% 78%, rgba(121, 77, 36, .20), transparent 34%),
-    linear-gradient(180deg, rgba(250, 238, 208, .70), rgba(226, 203, 159, .73) 45%, rgba(195, 155, 103, .68)),
+    radial-gradient(ellipse at 16% 11%, rgba(145, 99, 45, .08), transparent 31%),
+    radial-gradient(ellipse at 91% 78%, rgba(121, 77, 36, .10), transparent 34%),
+    linear-gradient(180deg, rgba(250, 238, 208, .18), rgba(226, 203, 159, .13) 45%, rgba(195, 155, 103, .18)),
     var(--fondo-ilustrado-receta);
   background-position: center, center, center, center;
   background-size: cover, cover, cover, cover;
