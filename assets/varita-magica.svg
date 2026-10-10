@@ -1,0 +1,23 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wand" x1="64" y1="126" x2="128" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7a4b22"/>
+      <stop offset="1" stop-color="#d0a56b"/>
+    </linearGradient>
+    <linearGradient id="star" x1="106" y1="22" x2="146" y2="62" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff3bf"/>
+      <stop offset="1" stop-color="#d9b56b"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="56" y="122" width="86" height="10" rx="5" transform="rotate(-45 56 122)" fill="url(#wand)" stroke="#6a4220" stroke-width="2.5"/>
+
+  <path d="M124 24L129 38L144 39L132 48L136 62L124 54L112 62L116 48L104 39L119 38L124 24Z"
+        fill="url(#star)" stroke="#8e6a2e" stroke-width="2.5"/>
+
+  <circle cx="97" cy="57" r="4" fill="#fff8df"/>
+  <circle cx="89" cy="42" r="3" fill="#fff1b5"/>
+  <circle cx="145" cy="62" r="3.5" fill="#fff8df"/>
+  <circle cx="152" cy="44" r="2.5" fill="#fff1b5"/>
+  <circle cx="108" cy="73" r="2.5" fill="#fff1b5"/>
+</svg>
