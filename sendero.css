@@ -1856,3 +1856,141 @@
     animation: none !important;
   }
 }
+
+
+/* ==========================================================
+   HADA VOLADORA — RECORRE EL REINO CON DESTELLOS
+========================================================== */
+
+#reino .capa-hada-magica {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#reino .hada-voladora {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 38px;
+  height: 38px;
+  margin-left: -19px;
+  margin-top: -19px;
+  will-change: transform;
+  filter:
+    drop-shadow(0 0 8px rgba(255, 227, 162, 0.42))
+    drop-shadow(0 0 14px rgba(170, 210, 255, 0.26));
+}
+
+#reino .hada-voladora::before {
+  content: "🧚";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  line-height: 1;
+  opacity: 0.95;
+}
+
+#reino .hada-voladora::after {
+  content: "✦";
+  position: absolute;
+  right: -2px;
+  top: 2px;
+  color: #f0d896;
+  font-size: 11px;
+  text-shadow: 0 0 10px rgba(255, 224, 152, 0.9);
+  animation: titilarHada 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes titilarHada {
+  from {
+    opacity: 0.28;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.16);
+  }
+}
+
+#reino .destello-hada {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle,
+      rgba(255, 247, 214, 0.98) 0 22%,
+      rgba(245, 215, 150, 0.85) 23% 42%,
+      rgba(177, 215, 255, 0.35) 43% 67%,
+      transparent 70%);
+  box-shadow:
+    0 0 10px rgba(255, 221, 154, 0.56),
+    0 0 18px rgba(165, 205, 255, 0.28);
+  mix-blend-mode: screen;
+  animation: destelloHada var(--duracion, 1.25s) ease-out forwards;
+}
+
+#reino .destello-hada::before,
+#reino .destello-hada::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: rgba(255, 235, 183, 0.72);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+#reino .destello-hada::before {
+  width: 1px;
+  height: 16px;
+}
+
+#reino .destello-hada::after {
+  width: 16px;
+  height: 1px;
+}
+
+@keyframes destelloHada {
+  0% {
+    opacity: 0.95;
+    transform: translate(0, 0) scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx, 0px), var(--dy, -16px)) scale(1.65);
+  }
+}
+
+@media (max-width: 640px) {
+  #reino .hada-voladora {
+    width: 34px;
+    height: 34px;
+    margin-left: -17px;
+    margin-top: -17px;
+  }
+
+  #reino .hada-voladora::before {
+    font-size: 27px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #reino .capa-hada-magica {
+    display: none !important;
+  }
+
+  #reino .hada-voladora::after {
+    animation: none !important;
+  }
+}
