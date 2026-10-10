@@ -1,7 +1,7 @@
-/* Reino de los 33 — La danza de las luciérnagas.
-   Reproduce la versión orquestal con armónica de cristal muestreada.
-   El audio se descarga solo después de que el visitante pulsa "Activar".
-   Se conserva la versión sintetizada anterior en scripts/ como respaldo. */
+/* Reino de los 33 — Reproductor de música de fondo.
+   La pista y su nombre se configuran en los atributos data-audio-* del
+   botón #musicaReino en index.html. No cargar música sin licencia.
+   El audio se descarga solo después de pulsar "Activar". */
 (() => {
   "use strict";
 
@@ -16,7 +16,11 @@
     return;
   }
 
-  const pista = new AudioAPI("assets/danza-luciernagas-cristal.mp3");
+  // El origen de la pista se cambia solamente tras obtener permiso del
+  // titular para alojar y reproducir el audio públicamente en GitHub Pages.
+  const ruta = boton.getAttribute("data-audio-src") || "assets/danza-luciernagas-cristal.mp3";
+  const titulo = boton.getAttribute("data-audio-title") || "La danza de las luciérnagas";
+  const pista = new AudioAPI(ruta);
   pista.preload = "none";
   pista.loop = true;
   pista.volume = 0.66;
@@ -27,7 +31,7 @@
     boton.classList.toggle("sonando", sonando);
     boton.setAttribute("aria-pressed", String(sonando));
     boton.setAttribute("aria-label",
-      sonando ? "Pausar La danza de las luciérnagas" : "Activar La danza de las luciérnagas"
+      sonando ? "Pausar " + titulo : "Activar " + titulo
     );
     if (!cargando) {
       estado.textContent = sonando ? "Pausar música" : "Activar música";
@@ -53,7 +57,7 @@
       else {
         boton.classList.remove("sonando");
         boton.setAttribute("aria-pressed", "false");
-        boton.setAttribute("aria-label", "Activar La danza de las luciérnagas");
+        boton.setAttribute("aria-label", "Activar " + titulo);
       }
     }
   }
