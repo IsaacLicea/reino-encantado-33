@@ -1,0 +1,27 @@
+name: Validar sitio y vista previa de WhatsApp
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - fix/preview-whatsapp-rendimiento
+permissions:
+  contents: read
+
+jobs:
+  validar-sitio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar Pillow para verificar tamaño de imágenes
+        run: python -m pip install --disable-pip-version-check Pillow
+      - name: Revisar metadatos de WhatsApp y enlaces a archivos
+        run: python scripts/auditar_invitacion.py
+      - name: Comprobar sintaxis de JavaScript
+        run: |
+          node --check script.js
+          node --check efectos-magicos.js
+          node --check musica-bosque.js

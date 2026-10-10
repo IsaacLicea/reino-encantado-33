@@ -300,7 +300,21 @@
       requestAnimationFrame(animarHada);
     };
 
-    requestAnimationFrame(animarHada);
+    // No ejecutar 60 fotogramas por segundo mientras el portal
+    // mantenga oculto el reino. Comenzar solo al abrir el portal.
+    if (main.hidden) {
+      const esperarApertura = new MutationObserver(() => {
+        if (main.hidden) return;
+        esperarApertura.disconnect();
+        requestAnimationFrame(animarHada);
+      });
+      esperarApertura.observe(main, {
+        attributes: true,
+        attributeFilter: ["hidden"]
+      });
+    } else {
+      requestAnimationFrame(animarHada);
+    }
   }
    
 })();
