@@ -227,3 +227,12 @@ function crearLuciernagas(idContenedor, cantidad) {
 const lucesMoviles = window.matchMedia("(max-width: 700px)").matches;
 crearLuciernagas("luciernagasPortal", lucesMoviles ? 12 : 22);
 crearLuciernagas("luciernagasHero", lucesMoviles ? 8 : 16);
+
+window.addEventListener("message", (event) => {
+  if (!event.data || event.data.type !== "rsvp-enviado") return;
+
+  const sello = document.getElementById("selloConfirmacion");
+  if (!sello) return;
+
+  sello.classList.add("activo");
+});
