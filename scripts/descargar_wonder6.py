@@ -1,106 +1,69 @@
 #!/usr/bin/env python3
-"""Download PeriTune Wonder6 from PeriTune's official page only.
+"""Prepara Wonder6 de PeriTune (2019), CC BY 4.0, para la invitación.
 
-This script is used during the build, not by visitors. No unverified mirrors.
-PeriTune Wonder6 (2019): CC BY 4.0; original:
-https://peritune.com/blog/2019/01/19/wonder6/
+PeriTune confirma la canción y licencia: https://peritune.com/blog/2019/01/19/wonder6/
+Su recopilación oficial Sparkling_Forest coloca Wonder6 entre 30:54 y 34:21.
+La grabación compartida en Wikimedia Commons procede del video de PeriTune.
+La pista ha sido EXTRAÍDA y RECODIFICADA (adaptación declarada en créditos).
 """
-from __future__ import annotations
-import html
-import io
-import re
+from pathlib import Path
 import shutil
 import subprocess
-import sys
-import zipfile
-from pathlib import Path
-from urllib.parse import urljoin, urlparse
 import requests
-from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGE = "https://peritune.com/blog/2019/01/19/wonder6/"
+TMP = ROOT / "scripts" / ".sparkling-forest-source.opus"
 DEST = ROOT / "assets" / "peritune-wonder6.mp3"
-HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; Wonder6 Licensed BGM Build/1.0)"}
 
-def allowed(url: str) -> bool:
-    p = urlparse(url)
-    return p.scheme == "https" and (p.hostname == "peritune.com" or
-                                        (p.hostname or "").endswith(".peritune.com"))
+SOURCE = (
+    "https://upload.wikimedia.org/wikipedia/commons/c/cf/"
+    "%E3%80%90%E7%84%A1%E6%96%99%E3%83%95%E3%83%AA%E3%83%BCBGM%E3%80%91"
+    "%E5%B9%BB%E6%83%B3%E7%9A%84%E3%81%AA%E6%A3%AE%E3%81%AE"
+    "%E9%9F%B3%E6%A5%BD%E7%B4%A0%E6%9D%90%E9%9B%86"
+    "%E3%80%8CSparkling_Forest%E3%80%8D.opus"
+)
+# Source tracklist timestamps: Wonder6 starts 30:54; Glimmering_Woods starts 34:21.
+START_SECONDS = 30 * 60 + 54
+DURATION_SECONDS = 207
 
-def discover():
-    response = requests.get(PAGE, timeout=35, headers=HEADERS)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, "html.parser")
-    # Diagnóstico de enlaces oficiales si el post migró las descargas.
-    for word in ("MP3(192kbps)", "ループ版", "PerituneMaterial", "drive.google", "download", "Wonder6"):
-        p = response.text.lower().find(word.lower())
-        if p >= 0:
-            excerpt = response.text[max(0,p-400):p+750]
-            print("SOURCE CONTEXT", word, excerpt.replace("\n", " ")[:1000], flush=True)
-    for tag in soup.find_all(["a","iframe","source","audio"]):
-        url = tag.get("href") or tag.get("src") or ""
-        if any(x in url.lower() for x in ("dl", "drive", "dropbox", "wonder", "mp3", "zip", "download")):
-            print("SOURCE LINK", str(url)[:400], flush=True)
-
-    urls = set()
-    for element in soup.find_all(True):
-        for attr in ("href", "src", "data-src", "data-url", "download"):
-            u = element.get(attr)
-            if isinstance(u, str) and ("wonder6" in u.lower() or
-                (re.search(r"\.(?:mp3|zip)(?:\?|$)", u, re.I) and "peritune" in u.lower())):
-                urls.add(urljoin(PAGE, html.unescape(u).replace("\\/", "/")))
-    for match in re.findall(r"https?://[^\s<>]+", response.text):
-        u = html.unescape(match).replace("\\/", "/")
-        if "wonder6" in u.lower() and ("mp3" in u.lower() or "zip" in u.lower()):
-            urls.add(u)
-    # Old PeriTune files often follow this stable uploads naming convention.
-    urls.add("https://peritune.com/wp-content/uploads/2019/01/PerituneMaterial_Wonder6.mp3")
-    cleaned = sorted({u.split("#")[0] for u in urls if allowed(u)})
-    print("Official-site candidate links:", *cleaned[:30], sep="\n- ", flush=True)
-    archives = [x for x in cleaned if ".zip" in x.lower() and "loop" in x.lower()]
-    others = [x for x in cleaned if ".mp3" in x.lower() and "wonder6" in x.lower()]
-    archives += [x for x in cleaned if ".zip" in x.lower() and x not in archives]
-    return archives + others
-
-def download():
-    for url in discover():
-        try:
-            print(f"Trying authorized source: {url}", flush=True)
-            resp = requests.get(url, timeout=95, headers=HEADERS)
-            if resp.status_code != 200:
-                print("Status:", resp.status_code, flush=True)
-                continue
-            if len(resp.content) < 450_000:
-                print("Too short to be a full song", len(resp.content), flush=True)
-                continue
-            if ".zip" in url.lower() or resp.content.startswith(b"PK"):
-                with zipfile.ZipFile(io.BytesIO(resp.content)) as package:
-                    names = [n for n in package.namelist() if
-                             n.lower().endswith(".mp3") and "wonder6" in n.lower()]
-                    if not names:
-                        print("ZIP had no Wonder6 MP3", flush=True)
-                        continue
-                    chosen = sorted(names, key=lambda n: ("loop" not in n.lower(), len(n)))[0]
-                    payload = package.read(chosen)
-                    print("Found authorized loop MP3:", chosen, flush=True)
-            else:
-                payload = resp.content
-            if not (payload.startswith(b"ID3") or payload[:2] in
-                   (b"\\xff\\xfb", b"\\xff\\xf3", b"\\xff\\xf2")):
-                print("Not a recognizable MP3 header", flush=True)
-                continue
-            DEST.parent.mkdir(parents=True, exist_ok=True)
-            DEST.write_bytes(payload)
-            subprocess.run(["ffprobe", "-v", "error", "-show_entries",
-                            "format=duration,size", "-of", "default=noprint_wrappers=1",
-                            str(DEST)], check=True)
-            print(f"Verified Wonder6 MP3, bytes={len(payload)}", flush=True)
-            return
-        except (requests.RequestException, OSError, zipfile.BadZipFile,
-                subprocess.CalledProcessError) as err:
-            print(f"Download candidate failed: {type(err).__name__}: {err}", flush=True)
-    raise RuntimeError("Could not verify an official Wonder6 MP3. Do not publish a placeholder.")
+def main():
+    if not shutil.which("ffmpeg") or not shutil.which("ffprobe"):
+        raise RuntimeError("FFmpeg and FFprobe required")
+    print("Fetching CC-licensed PeriTune Sparkling_Forest source from Wikimedia Commons", flush=True)
+    with requests.get(
+        SOURCE, stream=True, timeout=(20, 80),
+        headers={"User-Agent": "ReinoEncantado33-Wonder6-CCBY4.0/1.0 (noncommercial invitation)"}
+    ) as r:
+        r.raise_for_status()
+        TMP.parent.mkdir(parents=True, exist_ok=True)
+        downloaded = 0
+        with TMP.open("wb") as output:
+            for chunk in r.iter_content(chunk_size=512 * 1024):
+                if chunk:
+                    downloaded += len(chunk)
+                    output.write(chunk)
+        print(f"Downloaded original compilation: {downloaded:,} bytes", flush=True)
+    if TMP.stat().st_size < 50_000_000:
+        raise RuntimeError("Expected original ~93 MB recording, download is incomplete")
+    DEST.parent.mkdir(parents=True, exist_ok=True)
+    subprocess.run([
+        "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+        "-ss", str(START_SECONDS), "-t", str(DURATION_SECONDS),
+        "-i", str(TMP),
+        "-af", "afade=t=in:st=0:d=0.2,afade=t=out:st=206.5:d=0.5",
+        "-codec:a", "libmp3lame", "-qscale:a", "4",
+        "-ar", "44100", str(DEST)
+    ], check=True)
+    out = subprocess.check_output([
+        "ffprobe", "-v", "error", "-show_entries",
+        "format=duration,size", "-of", "default=noprint_wrappers=1",
+        str(DEST)
+    ], text=True)
+    print("Wonder6 extracted:", out, flush=True)
+    if DEST.stat().st_size < 2_000_000:
+        raise RuntimeError("Unexpectedly small Wonder6 MP3")
+    # Keep the repo lightweight; publish only the licensed excerpt.
+    TMP.unlink(missing_ok=True)
 
 if __name__ == "__main__":
-    download()
+    main()
