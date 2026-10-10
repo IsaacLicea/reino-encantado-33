@@ -32,6 +32,17 @@ def discover():
     response = requests.get(PAGE, timeout=35, headers=HEADERS)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
+    # Diagnóstico de enlaces oficiales si el post migró las descargas.
+    for word in ("MP3(192kbps)", "ループ版", "PerituneMaterial", "drive.google", "download", "Wonder6"):
+        p = response.text.lower().find(word.lower())
+        if p >= 0:
+            excerpt = response.text[max(0,p-400):p+750]
+            print("SOURCE CONTEXT", word, excerpt.replace("\n", " ")[:1000], flush=True)
+    for tag in soup.find_all(["a","iframe","source","audio"]):
+        url = tag.get("href") or tag.get("src") or ""
+        if any(x in url.lower() for x in ("dl", "drive", "dropbox", "wonder", "mp3", "zip", "download")):
+            print("SOURCE LINK", str(url)[:400], flush=True)
+
     urls = set()
     for element in soup.find_all(True):
         for attr in ("href", "src", "data-src", "data-url", "download"):
