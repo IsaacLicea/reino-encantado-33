@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0b6"/>
+      <stop offset=".22" stop-color="#bb8230"/>
+      <stop offset=".42" stop-color="#f6d98a"/>
+      <stop offset=".68" stop-color="#8a521a"/>
+      <stop offset=".9" stop-color="#f4cb72"/>
+      <stop offset="1" stop-color="#59320f"/>
+    </linearGradient>
+    <radialGradient id="gema"><stop offset="0" stop-color="#fff8cf"/><stop offset=".55" stop-color="#f4c46b"/><stop offset="1" stop-color="#80501f"/></radialGradient>
+  </defs>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Refuerzo tallado del ángulo -->
+    <path d="M12 152V30Q12 12 30 12H152" stroke="#48250b" stroke-width="15"/>
+    <path d="M12 152V30Q12 12 30 12H152" stroke="url(#oro)" stroke-width="10"/>
+    <path d="M17 146V32Q17 17 32 17H145" stroke="#ffe7a3" stroke-width="2.4"/>
+    <!-- Volutas horizontales -->
+    <path d="M31 42C54 13 90 21 102 41C118 69 87 82 69 65C53 50 66 32 82 39C91 43 91 54 84 57" stroke="#4d2c0f" stroke-width="9"/>
+    <path d="M31 42C54 13 90 21 102 41C118 69 87 82 69 65C53 50 66 32 82 39C91 43 91 54 84 57" stroke="url(#oro)" stroke-width="5.7"/>
+    <path d="M103 34C114 19 131 24 139 36C145 46 142 58 133 60C123 63 117 53 124 47" stroke="#5d3614" stroke-width="7"/>
+    <path d="M103 34C114 19 131 24 139 36C145 46 142 58 133 60C123 63 117 53 124 47" stroke="url(#oro)" stroke-width="4.3"/>
+    <!-- Volutas verticales -->
+    <path d="M41 32C11 53 22 88 42 101C67 117 83 84 65 67C51 53 33 65 40 82C44 91 55 91 58 83" stroke="#4d2c0f" stroke-width="9"/>
+    <path d="M41 32C11 53 22 88 42 101C67 117 83 84 65 67C51 53 33 65 40 82C44 91 55 91 58 83" stroke="url(#oro)" stroke-width="5.7"/>
+    <path d="M35 103C21 114 24 130 36 139C46 145 58 141 60 131C61 122 53 116 47 124" stroke="#5d3614" stroke-width="7"/>
+    <path d="M35 103C21 114 24 130 36 139C46 145 58 141 60 131C61 122 53 116 47 124" stroke="url(#oro)" stroke-width="4.3"/>
+    <!-- Hojas de acanto -->
+    <path d="M41 39Q66 35 66 14Q77 35 58 52Q74 52 86 47Q72 69 50 60Q42 77 38 95Q22 63 41 39Z" stroke="#6b3d16" stroke-width="2" fill="url(#oro)"/>
+    <path d="M43 41Q32 65 38 86M43 41Q57 36 63 23M47 55Q68 60 79 52" stroke="#fff0b1" stroke-width="2"/>
+    <path d="M40 38Q14 65 1 55Q18 88 34 67Q34 91 26 108Q47 96 52 66Z" fill="url(#oro)" stroke="#6b3d16" stroke-width="2"/>
+    <path d="M37 48Q19 71 11 64M38 49Q40 78 32 96" stroke="#fff0b1" stroke-width="1.9"/>
+    <!-- Roseta de unión -->
+    <circle cx="38" cy="38" r="15" fill="#633912" stroke="#f6d388" stroke-width="3"/>
+    <path d="M38 22L43 33L54 38L43 43L38 54L33 43L22 38L33 33Z" fill="url(#oro)" stroke="#5b310e" stroke-width="1"/>
+    <circle cx="38" cy="38" r="4" fill="url(#gema)"/>
+  </g>
+</svg>

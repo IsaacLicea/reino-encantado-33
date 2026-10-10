@@ -1238,3 +1238,151 @@
 #reino .marco-tablero-pinterest .marco-tablero-enlace a:hover {
   color: #986c2d;
 }
+
+
+/* ==========================================================
+   ORDEN NUEVO: EL ORÁCULO PRECEDE A LAS COORDENADAS
+   Respiro visible entre las dos secciones ilustradas.
+========================================================== */
+#reino .seccion-tarot {
+  margin: 0 auto clamp(54px, 7vw, 82px);
+}
+
+/* ==========================================================
+   MARCO BARROCO — MOLDURAS DORADAS TALLADAS
+   Relieves en varias capas, cuatro volutas y cartela.
+   Mantiene intacto el widget oficial de Pinterest.
+========================================================== */
+#reino .marco-tablero-pinterest {
+  position: relative;
+  isolation: isolate;
+  width: min(840px, 100%);
+  margin: 42px auto 16px;
+  padding: clamp(25px, 4.2vw, 42px);
+  border: 8px solid #9b682b;
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg,
+      #402509 0%, #9f6a29 9%, #ffedb2 17%,
+      #ad762e 28%, #f5d080 37%, #70451e 51%,
+      #f9dd93 63%, #85551e 80%, #372207 100%);
+  box-shadow:
+    0 0 0 2px #3b230d,
+    0 0 0 5px #efd491,
+    0 0 0 9px #613b16,
+    0 0 0 11px rgba(225, 188, 111, .4),
+    0 24px 60px rgba(0, 0, 0, .53),
+    0 3px 18px rgba(211, 162, 79, .19),
+    inset 0 0 0 3px #f5dea0,
+    inset 0 0 0 9px #654016,
+    inset 0 0 0 12px #ca9a4a,
+    inset 0 8px 18px rgba(255, 244, 200, .4),
+    inset 0 -8px 18px rgba(46, 26, 8, .6);
+}
+#reino .marco-tablero-pinterest::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 13px;
+  border: 3px double rgba(255, 230, 165, .9);
+  border-radius: 11px;
+  box-shadow:
+    0 0 0 2px rgba(85, 51, 15, .85),
+    inset 0 0 0 2px rgba(92, 55, 18, .65),
+    0 0 12px rgba(59, 35, 11, .3);
+  pointer-events: none;
+}
+#reino .marco-tablero-pinterest::after {
+  content: "❦";
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  width: clamp(75px, 14vw, 112px);
+  height: 52px;
+  display: grid;
+  place-items: center;
+  padding-bottom: 8px;
+  border: 3px ridge #e7c77c;
+  border-radius: 54% 54% 35% 35%;
+  color: #ffecb4;
+  font-family: Georgia, serif;
+  font-size: 39px;
+  line-height: 1;
+  text-shadow: 0 2px 1px #593516, 0 0 4px #f6d783;
+  background: radial-gradient(ellipse at 50% 12%, #cfa054 0%, #7b4b1b 62%, #45270c 100%);
+  box-shadow: 0 3px 0 #42250c, 0 8px 17px rgba(0, 0, 0, .3), inset 0 2px 4px #f7df9e;
+  pointer-events: none;
+}
+#reino .marco-filigrana {
+  position: absolute;
+  z-index: 5;
+  width: clamp(74px, 14vw, 129px);
+  height: clamp(74px, 14vw, 129px);
+  background: url("assets/ornamento-marco-barroco.svg") center / contain no-repeat;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 2px rgba(53, 32, 9, .62));
+}
+#reino .marco-filigrana-tl { top: -22px; left: -22px; }
+#reino .marco-filigrana-tr { top: -22px; right: -22px; transform: scaleX(-1); }
+#reino .marco-filigrana-bl { bottom: -22px; left: -22px; transform: scaleY(-1); }
+#reino .marco-filigrana-br { bottom: -22px; right: -22px; transform: scale(-1); }
+#reino .marco-tablero-interior {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  padding: clamp(14px, 2.3vw, 24px);
+  border: 5px ridge #b78c47;
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255, 251, 223, .63), transparent 72%),
+    linear-gradient(155deg, #ecdbb6 0%, #d3bd95 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(81, 46, 16, .33),
+    inset 0 0 28px rgba(89, 57, 25, .25),
+    0 0 0 2px #593915,
+    0 6px 17px rgba(53, 31, 10, .28);
+}
+#reino .marco-tablero-pinterest .marco-tablero-etiqueta {
+  color: #64421f;
+  text-shadow: 0 1px 0 rgba(255, 245, 215, .6);
+}
+#reino .marco-tablero-pinterest .marco-tablero-enlace {
+  color: #684b2a;
+}
+@media (max-width: 640px) {
+  #reino .marco-tablero-pinterest {
+    padding: 21px 15px;
+    border-width: 6px;
+    margin: 33px auto 18px;
+    border-radius: 15px;
+    box-shadow:
+      0 0 0 2px #3b230d,
+      0 0 0 4px #e5be71,
+      0 0 0 7px #613b16,
+      0 14px 34px rgba(0, 0, 0, .5),
+      inset 0 0 0 2px #f5dea0,
+      inset 0 0 0 7px #654016,
+      inset 0 0 0 9px #c99a4a;
+  }
+  #reino .marco-tablero-pinterest::before { inset: 9px; border-width: 2px; }
+  #reino .marco-tablero-pinterest::after {
+    top: -24px;
+    width: 79px;
+    height: 39px;
+    font-size: 28px;
+  }
+  #reino .marco-filigrana {
+    width: 72px;
+    height: 72px;
+  }
+  #reino .marco-filigrana-tl { top: -14px; left: -14px; }
+  #reino .marco-filigrana-tr { top: -14px; right: -14px; }
+  #reino .marco-filigrana-bl { bottom: -14px; left: -14px; }
+  #reino .marco-filigrana-br { bottom: -14px; right: -14px; }
+  #reino .marco-tablero-interior {
+    border-width: 3px;
+    padding: 11px 8px;
+  }
+}

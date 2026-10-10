@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="efectos-magicos.css?v=20261009-mapa2" />
     <script src="efectos-magicos.js?v=20261009-mapa2" defer></script>
-    <link rel="stylesheet" href="sendero.css?v=20261009-pinterest-board" />
+    <link rel="stylesheet" href="sendero.css?v=20261009-marco-barroco" />
   </head>
   <body>
     <!-- INTRO / PORTAL -->
@@ -125,6 +125,11 @@
         <!-- Galería de inspiración: el script oficial se carga al abrir el portal
              para que Pinterest mida el ancho real del marco. -->
         <div id="marcoTableroPinterest" class="marco-tablero-pinterest">
+          <!-- Relieves de filigrana barroca en las cuatro esquinas -->
+          <span class="marco-filigrana marco-filigrana-tl" aria-hidden="true"></span>
+          <span class="marco-filigrana marco-filigrana-tr" aria-hidden="true"></span>
+          <span class="marco-filigrana marco-filigrana-bl" aria-hidden="true"></span>
+          <span class="marco-filigrana marco-filigrana-br" aria-hidden="true"></span>
           <div class="marco-tablero-interior">
             <p class="marco-tablero-etiqueta">El grimorio de los atuendos</p>
             <div id="contenidoTableroPinterest" class="contenido-tablero-pinterest">
@@ -147,30 +152,6 @@
         </div>
       </section>
 
-
-      <!-- UBICACIÓN PRIVADA: solo los pases válidos ven las coordenadas -->
-      <section class="seccion seccion-mapa">
-        <p class="eyebrow">Las coordenadas encantadas</p>
-        <h2>Encuentra el reino</h2>
-        <p class="texto-ancho">
-          Consulta el mapa antiguo del reino y sigue sus rutas encantadas
-          hasta el claro donde la celebración cobrará vida.
-        </p>
-
-
-            <iframe
-              id="mapa-privado"
-              title="Mapa privado del Reino de los 33"
-              loading="lazy"
-              hidden
-            ></iframe>
-
-
-        <p id="mapa-sin-pase">
-          Las coordenadas del bosque están reservadas para quienes poseen un
-          pase encantado.
-        </p>
-      </section>
 
       <!-- TAROT -->
       <section class="seccion seccion-tarot">
@@ -213,6 +194,30 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- UBICACIÓN PRIVADA: solo los pases válidos ven las coordenadas -->
+      <section class="seccion seccion-mapa">
+        <p class="eyebrow">Las coordenadas encantadas</p>
+        <h2>Encuentra el reino</h2>
+        <p class="texto-ancho">
+          Consulta el mapa antiguo del reino y sigue sus rutas encantadas
+          hasta el claro donde la celebración cobrará vida.
+        </p>
+
+
+            <iframe
+              id="mapa-privado"
+              title="Mapa privado del Reino de los 33"
+              loading="lazy"
+              hidden
+            ></iframe>
+
+
+        <p id="mapa-sin-pase">
+          Las coordenadas del bosque están reservadas para quienes poseen un
+          pase encantado.
+        </p>
       </section>
 
       <!-- RSVP PERSONALIZADO -->
